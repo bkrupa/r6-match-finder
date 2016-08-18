@@ -1,0 +1,14 @@
+﻿<div>
+    <form name="createForm" ng-submit="$close(vm.game)">
+        <div class="modal-header">
+            Create A Game
+        </div>
+        <div class="modal-body">
+
+        </div>
+        <div class="modal-footer text-center">
+            <button type="submit" class="btn btn-secondary-outline" ng-click="$dismiss()">Cancel</button>
+            <button type="submit" class="btn btn-success" ng-disabled="createForm.$invalid">Create</button>
+        </div>
+    </form>
+</div>

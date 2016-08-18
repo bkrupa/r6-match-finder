@@ -1,0 +1,134 @@
+﻿@using Microsoft.AspNet.Identity
+@using Microsoft.AspNet.Identity;
+@using Microsoft.Owin.Security;
+@using System;
+@using System.Linq;
+@using System.Web;
+@using System.Web.Mvc;
+@using Microsoft.AspNet.Identity.Owin;
+@using System.Security.Claims;
+@using System.Web.Optimization;
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base href="/">
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @Styles.Render("~/bundles/Libcontent")
+    @Styles.Render("~/bundles/Content/app")
+    @RenderSection("styles", false)
+</head>
+<body>
+    <header class="navbar navbar-dark navbar-static-top bg-inverse" role="banner">
+        <div class="collapse navbar-toggleable-xs">
+
+            @Html.ActionLink(Resources.resources.APPLICATION_NAME, "Home", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
+            <ul class="nav navbar-nav nav-pills pull-right">
+                <li class="nav-item">@Html.ActionLink(Resources.resources.HOME, "Home", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+
+
+
+                @if (Request.IsAuthenticated)
+                {
+                    Claim DisplayClaim = ((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(c => c.Type.Equals("display_name"));
+                    Claim PictureClaim = ((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(c => c.Type.Equals("picture"));
+
+                    <li class="dropdown nav-item" style="min-width: 200px;">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+
+                            @if (PictureClaim != null)
+                            {
+                                <img src="@PictureClaim.Value" alt="@Resources.resources.USER_IMAGE" style="height: 24px; width: 24px; border-radius: 50%;" />
+                            }
+                            else
+                            {
+                                <span class="bg-primary fa fa-user text-center" style="height: 24px; width: 24px; border-radius: 50%; padding-top: 3px;"></span>
+                            }
+
+                            @if (@DisplayClaim != null)
+                            {
+                                <span>
+                                    @DisplayClaim.Value
+                                </span>
+                            }
+                            else
+                            {
+                                <span>
+                                    @User.Identity.GetUserName()
+                                </span>
+                            }
+                        </a>
+                        <div class="dropdown-menu text-center" style="padding: 10px; padding-top: 7px;">
+                            <div style="height: 100px;">
+                                @if (PictureClaim != null)
+                                {
+                                    <img src="@PictureClaim.Value" alt="@Resources.resources.USER_IMAGE" style="height: 60px; width: 60px; border-radius: 50%;" />
+                                }
+                                else
+                                {
+                                    <span class="bg-primary fa fa-user text-center" style="height: 60px; width: 60px; border-radius: 50%; padding-top: 14px; font-size:30px;"></span>
+                                }
+
+
+
+                                @if (DisplayClaim != null)
+                                {
+                                    <div class="dropdown-header">
+                                        @DisplayClaim.Value
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="dropdown-header">
+                                        @User.Identity.GetUserName()
+                                    </div>
+                                }
+                            </div>
+
+                            <div class="dropdown-divider"></div>
+
+                            <ul class="nav nav-pills">
+                                @using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm", }))
+                                {
+                                    @Html.AntiForgeryToken()
+
+                                    <li class="nav-item">
+                                        @Html.ActionLink("Profile", "Index", "Manage", routeValues: new { area = "" }, htmlAttributes: new { title = "Manage", @class = "nav-link active", style = "cursor:pointer;" })
+                                    </li>
+
+                                        <li class="nav-item">
+                                            <a href="javascript:sessionStorage.removeItem('accessToken');$('#logoutForm').submit();" class="nav-link active" style="cursor:pointer;">Log off</a>
+                                        </li>
+                                }
+
+                            </ul>
+
+                        </div>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item">
+                        @Html.ActionLink("Log in", "Login", "Account", routeValues: new { area = "" }, htmlAttributes: new { id = "loginLink", @class = "nav-link" })
+                    </li>
+                }
+            </ul>
+        </div>
+    </header>
+
+
+    @RenderBody()
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jquery-ui")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/toastr")
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

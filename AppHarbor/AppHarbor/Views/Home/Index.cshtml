@@ -1,0 +1,47 @@
+﻿
+@using Newtonsoft.Json;
+@using System.Security.Claims
+
+
+
+<div ng-app="app">
+
+    <div ui-view>
+
+    </div>
+
+
+    <footer style="position:fixed; left: 0; bottom: 0; width:100%; background-color: white;display:none;" ng-style="{'display': 'block'}">
+        <hr style="margin-top: 9px; margin-bottom: 9px;" />
+        <p style="margin-left: 20px; margin-right:20px;" class="text-center">
+            <div class="col-md-6 text-left">
+                &copy; @DateTime.Now.Year - @Resources.resources.APPLICATION_NAME
+                <span ng-show="appVersion">({{appVersion}})</span>
+            </div>
+
+            <div class="col-md-6 text-right"><a href="/contact">Contact Us</a></div>
+        </p>
+    </footer>
+</div>
+
+
+
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/angular-ui")
+
+    @Scripts.Render("~/bundles/Classes")
+    @Scripts.Render("~/bundles/Modules")
+    @Scripts.Render("~/bundles/Filters")
+    @Scripts.Render("~/bundles/Interceptors")
+    @Scripts.Render("~/bundles/Config")
+    @Scripts.Render("~/bundles/Repositories")
+    @Scripts.Render("~/bundles/Services")
+    @Scripts.Render("~/bundles/Providers")
+
+    @Scripts.Render("~/bundles/Controllers")
+    @Scripts.Render("~/bundles/Directives")
+
+}
