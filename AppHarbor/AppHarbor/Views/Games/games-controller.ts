@@ -1,16 +1,14 @@
 ﻿module app {
+
     export class CreateGameController {
         static Injection: string = 'createGameController';
         static $inject = [
-            GamesRepository.Injection
+            'game'
         ];
 
-        public game: any;
-
         constructor(
-            private repository: GamesRepository
+            public game: any
         ) {
-            this.game = repository.create();
         }
     }
 
@@ -23,6 +21,10 @@
 
         private games: Array<any>;
         public pageSize: number = 10;
+        public currentPage: number = 1;
+        public view: string = '';
+
+
 
         constructor(
             private repository: GamesRepository,
@@ -30,7 +32,6 @@
         ) {
 
             this.bindGames();
-
         }
 
         public createGame() {
@@ -39,18 +40,21 @@
                 size: 'lg',
                 templateUrl: '/Views/Games/game-create.html',
                 controllerAs: 'vm',
-                controller: CreateGameController
+                controller: CreateGameController,
+                resolve: { game: () => { return this.repository.create(); } }
             });
 
             modal.result.then((game) => {
-                game.$save().then(() => {
-                    this.bindGames();
-                });
+                game.$save().then(() => { this.bindGames(); });
             });
         }
 
         public bindGames() {
             this.games = this.repository.getAll();
+        }
+
+        public deleteGame(game: any) {
+            game.$delete().then(() => { this.bindGames(); });
         }
 
 

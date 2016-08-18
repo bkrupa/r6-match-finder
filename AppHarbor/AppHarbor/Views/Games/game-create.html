@@ -1,13 +1,184 @@
 ﻿<div>
     <form name="createForm" ng-submit="$close(vm.game)">
         <div class="modal-header">
-            Create A Game
+            <h3 class="col-md-11">Create A Game</h3>
+            <div class="col-md-1 pull-right">
+                <button type="button" class="btn btn-secondary fa fa-times" ng-click="$dismiss()"></button>
+            </div>
         </div>
         <div class="modal-body">
+            <div id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                {{resolve('GAME_SETTINGS')}}
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                        <div style="display: inline-block; width: 35%; min-width: 150px;">
+                            <div class="form-group">
+                                <label class="form-control-label">{{resolve('RULE_SET')}}</label>
+                                <div>
+                                    <div enum-dropdown="RULE_SET" ng-model="vm.game.rules" class="form-control" />
+                                </div>
+                            </div>
 
+                            <div class="form-group">
+                                <label class="form-control-label">{{resolve('TIME_OF_DAY')}}</label>
+                                <div>
+                                    <div enum-dropdown="TIME_OF_DAY" ng-model="vm.game.time" class="form-control" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-control-label">{{resolve('HUD_SETTINGS')}}</label>
+                                <div>
+                                    <div enum-dropdown="HUD_SETTINGS" ng-model="vm.game.hud" class="form-control" />
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingTwo">
+                        <h4 class="panel-title">
+                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                {{resolve('MATCH_SETTINGS')}}
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                        <div style="display: inline-block; width: 35%; min-width: 370px;">
+                            <div class="form-group">
+                                <label class="form-control-label">{{resolve('NUMBER_OF_ROUNDS')}}</label>
+                                <div>
+                                    <div enum-dropdown="GAME_MODE" ng-model="vm.game.numberOfRounds" class="form-control" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-control-label">{{resolve('ROLE_SWAP')}}</label>
+                                <div>
+                                    <div enum-dropdown="GAME_MODE" ng-model="vm.game.roleSwap" class="form-control" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-control-label">{{resolve('OVERTIME_ROUNDS')}}</label>
+                                <div>
+                                    <div class="btn-group" data-toggle="buttons">
+                                        <button type="button" class="btn btn-primary" ng-class="{active: vm.game.matchSettings.overtimeRounds == i}"
+                                                ng-click="vm.game.matchSettings.overtimeRounds = i" ng-repeat="i in range(4,1)">
+                                            {{i}}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-control-label">{{resolve('OVERTIME_SCORE_DIFFERENCE')}}</label>
+                                <div>
+                                    <div class="btn-group" data-toggle="buttons">
+                                        <button type="button" class="btn btn-primary" ng-class="{active: vm.game.matchSettings.overtimeScoreDifference == i}"
+                                                ng-click="vm.game.matchSettings.overtimeScoreDifference = i" ng-repeat="i in range(4,1)">
+                                            {{i}}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-control-label">{{resolve('OVERTIME_ROLE_CHANGE')}}</label>
+                                <div radio-button-group ng-model="vm.game.matchSettings.overtimeRoleChange" count="4" start="1"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-control-label">{{resolve('OBJECTIVE_ROTATION_PARAMETER')}}</label>
+                                <div radio-button-group ng-model="vm.game.matchSettings.objectiveRotationParameter" show-null="true" null-text="{{resolve('OFF')}}" count="7"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-control-label">{{resolve('ATTACKER_UNIQUE_SPAWN')}}</label>
+                                <div>
+                                    <div enum-dropdown="GAME_MODE" ng-model="vm.game.numberOfRounds" class="form-control" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-control-label">{{resolve('DAMAGE_HANDICAP')}}</label>
+                                <div>
+                                    <div class="text-center">{{vm.game.matchSettings.damageHandicap}}</div>
+                                    <div bootstrap-slider ng-model="vm.game.matchSettings.damageHandicap" max-value="150" min-value="50" step="10" style="width: 100%;"></div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-control-label">{{resolve('FRIENDLY_FIRE_DAMAGE')}}</label>
+                                <div>
+                                    <div class="text-center">{{vm.game.matchSettings.friendlyFireDamage}}</div>
+                                    <div bootstrap-slider ng-model="vm.game.matchSettings.friendlyFireDamage" max-value="150" min-value="50" step="10" style="width: 100%;"></div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-control-label">{{resolve('INJURED_HEALTH')}}</label>
+                                <div>
+                                    <div enum-dropdown="GAME_MODE" ng-model="vm.game.numberOfRounds" class="form-control" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-control-label">{{resolve('SPRINT')}}</label>
+                                <div>
+                                    <div enum-dropdown="GAME_MODE" ng-model="vm.game.numberOfRounds" class="form-control" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-control-label">{{resolve('LEAN')}}</label>
+                                <div>
+                                    <div enum-dropdown="GAME_MODE" ng-model="vm.game.numberOfRounds" class="form-control" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-control-label">{{resolve('DEATH_REPLAY')}}</label>
+                                <div>
+                                    <div enum-dropdown="GAME_MODE" ng-model="vm.game.numberOfRounds" class="form-control" />
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingThree">
+                        <h4 class="panel-title">
+                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                {{resolve('MODE_SETTINGS')}}
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                        <div style="display: inline-block; width: 35%; min-width: 150px;">
+                            <div class="form-group">
+                                <label class="form-control-label">{{resolve('GAME_MODE')}}</label>
+                                <div>
+                                    <div enum-dropdown="GAME_MODE" ng-model="vm.game.mode" class="form-control" />
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="modal-footer text-center">
-            <button type="submit" class="btn btn-secondary-outline" ng-click="$dismiss()">Cancel</button>
+            <button type="button" class="btn btn-secondary-outline" ng-click="$dismiss()">Cancel</button>
             <button type="submit" class="btn btn-success" ng-disabled="createForm.$invalid">Create</button>
         </div>
     </form>

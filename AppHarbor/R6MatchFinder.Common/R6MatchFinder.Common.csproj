@@ -97,22 +97,34 @@
       <DependentUpon>CommonResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Configuration\Configuration.cs" />
+    <Compile Include="Database\Abstracts\AbstractGame.cs" />
+    <Compile Include="Database\Abstracts\AbstractMatchSettings.cs" />
+    <Compile Include="Database\Abstracts\AbstractModeSettings.cs" />
     <Compile Include="Database\IDbContext.cs" />
     <Compile Include="Database\Interfaces\IFluentModel.cs" />
     <Compile Include="Database\Interfaces\IValidateEntity.cs" />
     <Compile Include="Database\Migrations\Configuration.cs" />
+    <Compile Include="Database\Model\ActiveGame.cs" />
+    <Compile Include="Database\Model\ActiveGameModeSettings.cs" />
+    <Compile Include="Database\Model\ActiveGameMatchSettings.cs" />
     <Compile Include="Database\Model\ExceptionLog.cs" />
     <Compile Include="Database\Model\Game.cs" />
+    <Compile Include="Database\Model\GameMatchSettings.cs" />
+    <Compile Include="Database\Model\GameModeSettings.cs" />
     <Compile Include="Database\Model\LoginLog.cs" />
     <Compile Include="Database\Model\Role.cs" />
     <Compile Include="Database\Model\User.cs" />
+    <Compile Include="Database\Model\UserStatistics.cs" />
     <Compile Include="Database\R6Context.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utility\Attributes.cs" />
     <Compile Include="Utility\Constants.cs" />
     <Compile Include="Utility\Enums.cs" />
     <Compile Include="Utility\Utilities.cs" />
     <Compile Include="Web\Interfaces\IWebModel.cs" />
     <Compile Include="Web\Model\WMGame.cs" />
+    <Compile Include="Web\Model\WMGameMatchSettings.cs" />
+    <Compile Include="Web\Model\WMGameModeSettings.cs" />
     <Compile Include="Web\Model\WMUser.cs" />
   </ItemGroup>
   <ItemGroup>

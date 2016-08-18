@@ -17,6 +17,11 @@ var app;
                 action: 'new'
             });
         };
+        GamesRepository.prototype.getMyGames = function () {
+            return this.gamesResource.query({
+                action: 'MyGames'
+            });
+        };
         GamesRepository.Injection = 'gamesRepository';
         GamesRepository.$inject = [
             '$resource'
@@ -28,4 +33,3 @@ var app;
         .module('app')
         .factory(GamesRepository.Injection, ['$resource', function ($resource) { return new GamesRepository($resource); }]);
 })(app || (app = {}));
-//# sourceMappingURL=games-repository.js.map

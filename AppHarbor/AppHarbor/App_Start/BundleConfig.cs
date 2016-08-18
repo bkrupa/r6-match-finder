@@ -29,7 +29,7 @@ namespace R6MatchFinder.App_Start
                 "~/Scripts/moment.js"));
 
 
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include("~/Scripts/bootstrap.js"));
+            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include("~/Scripts/bootstrap.js").Include("~/Scripts/bootstrap-slider.min.js"));
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include("~/Scripts/modernizr-{version}.js"));
             bundles.Add(new ScriptBundle("~/bundles/respond").Include("~/Scripts/respond.js"));
             bundles.Add(new ScriptBundle("~/bundles/toastr").Include("~/Scripts/toastr.js"));
@@ -42,7 +42,7 @@ namespace R6MatchFinder.App_Start
                 "~/Content/font-awesome.css",
                 "~/Content/toastr.css",
                 "~/Content/zocial.css",
-                "~/Content/fullcalendar.css"));
+                "~/css/bootstrap-slider.min.css"));
 
             bundles.Add(new StyleBundle("~/bundles/Content/app").Include(
                 "~/Content/App/Spinners.css",
@@ -63,6 +63,7 @@ namespace R6MatchFinder.App_Start
             bundles.Add(new ScriptBundle("~/bundles/Providers").IncludeDirectory("~/Views", "*-provider.js", true));
             bundles.Add(new ScriptBundle("~/bundles/Repositories").IncludeDirectory("~/Views", "*-repository.js", true));
             bundles.Add(new ScriptBundle("~/bundles/Classes").IncludeDirectory("~/Views", "*-classes.js", true));
+            bundles.Add(new ScriptBundle("~/bundles/Startup").IncludeDirectory("~/Views/Shared/Startup", "*.js"));
 
             #endregion
 

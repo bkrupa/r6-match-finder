@@ -1,13 +1,12 @@
 var app;
 (function (app) {
     var CreateGameController = (function () {
-        function CreateGameController(repository) {
-            this.repository = repository;
-            this.game = repository.create();
+        function CreateGameController(game) {
+            this.game = game;
         }
         CreateGameController.Injection = 'createGameController';
         CreateGameController.$inject = [
-            app.GamesRepository.Injection
+            'game'
         ];
         return CreateGameController;
     }());
@@ -17,6 +16,8 @@ var app;
             this.repository = repository;
             this.$uibModal = $uibModal;
             this.pageSize = 10;
+            this.currentPage = 1;
+            this.view = '';
             this.bindGames();
         }
         GamesController.prototype.createGame = function () {
@@ -26,16 +27,19 @@ var app;
                 size: 'lg',
                 templateUrl: '/Views/Games/game-create.html',
                 controllerAs: 'vm',
-                controller: CreateGameController
+                controller: CreateGameController,
+                resolve: { game: function () { return _this.repository.create(); } }
             });
             modal.result.then(function (game) {
-                game.$save().then(function () {
-                    _this.bindGames();
-                });
+                game.$save().then(function () { _this.bindGames(); });
             });
         };
         GamesController.prototype.bindGames = function () {
             this.games = this.repository.getAll();
+        };
+        GamesController.prototype.deleteGame = function (game) {
+            var _this = this;
+            game.$delete().then(function () { _this.bindGames(); });
         };
         GamesController.Injection = 'gamesController';
         GamesController.$inject = [
@@ -49,4 +53,3 @@ var app;
         .module('app')
         .controller(GamesController.Injection, GamesController);
 })(app || (app = {}));
-//# sourceMappingURL=games-controller.js.map

@@ -97,6 +97,11 @@ namespace R6MatchFinder
         {
             return await Current.FindByIdAsync(HttpContext.Current.User.Identity.GetUserId());
         }
+
+        internal static string GetUserId()
+        {
+            throw new NotImplementedException();
+        }
     }
 
     // Configure the application sign-in manager which is used in this application.  

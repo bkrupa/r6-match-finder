@@ -16,7 +16,16 @@ namespace R6MatchFinder.Common.Database
 {
     public class R6Context : IdentityDbContext<User>, IDbContext
     {
+
         public DbSet<Game> Games { get; set; }
+        public DbSet<GameMatchSettings> MatchSettings { get; set; }
+        public DbSet<GameModeSettings> ModeSettings { get; set; }
+
+        public DbSet<ActiveGame> ActiveGames { get; set; }
+        public DbSet<ActiveGameMatchSettings> ActiveGameMatchSettings { get; set; }
+        public DbSet<ActiveGameModeSettings> ActiveGameModeSettings { get; set; }
+
+        public DbSet<UserStatistics> UserStatistics { get; set; }
         public DbSet<ExceptionLog> Exceptions { get; set; }
         public DbSet<LoginLog> LoginLog { get; set; }
 

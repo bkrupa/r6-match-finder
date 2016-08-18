@@ -40,9 +40,9 @@ namespace R6MatchFinder.Common.Utilities
         }
 
 
-        public static DateTime RoundUpDateTime(DateTime dt, TimeSpan d)
+        public static DateTimeOffset RoundUpDateTimeOffset(DateTimeOffset dt, TimeSpan d)
         {
-            return new DateTime(((dt.Ticks + d.Ticks - 1) / d.Ticks) * d.Ticks);
+            return new DateTimeOffset(((dt.Ticks + d.Ticks - 1) / d.Ticks) * d.Ticks, dt.Offset);
         }
     }
 }

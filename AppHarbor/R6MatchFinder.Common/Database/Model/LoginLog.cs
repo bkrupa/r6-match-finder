@@ -29,7 +29,7 @@ namespace R6MatchFinder.Common.Database.Model
         public string UserName { get; set; }
 
         [ReadOnly(true), Required]
-        public DateTime Timestamp { get; private set; }
+        public DateTimeOffset Timestamp { get; private set; }
 
         [ReadOnly(true), Required]
         public SignInStatus Status { get; private set; }

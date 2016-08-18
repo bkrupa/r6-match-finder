@@ -2,6 +2,7 @@
 using R6MatchFinder.Common.Database;
 using R6MatchFinder.Common.Database.Model;
 using R6MatchFinder.Common.Utilities;
+using R6MatchFinder.Common.Utility;
 using R6MatchFinder.Common.Web.Interfaces;
 using R6MatchFinder.Common.Web.Model;
 using System;
@@ -15,15 +16,16 @@ using System.Web.Http;
 namespace R6MatchFinder.Controllers
 {
     [RoutePrefix("Games")]
-    public class GamesController : ApiController
+    public class GameController : ApiController
     {
         private readonly IDbContext DbContext;
 
-        public GamesController(IDbContext context)
+        public GameController(IDbContext context)
         {
             this.DbContext = context;
         }
 
+        [HttpGet, Route("")]
         public async Task<IEnumerable<WMGame>> Get()
         {
             DateTime start = DateTime.UtcNow;
@@ -31,6 +33,20 @@ namespace R6MatchFinder.Controllers
 
             IEnumerable<Game> games = await DbContext.Games
                 .Where(g => g.Date > start && g.Date < end)
+                .OrderBy(g => g.Date).ToListAsync();
+
+            return games.ToWebModels<Game, WMGame>();
+        }
+
+        [HttpGet, Route("MyGames")]
+        public async Task<IEnumerable<WMGame>> GetMyGames()
+        {
+            DateTime start = DateTime.UtcNow;
+            DateTime end = start.AddHours(6);
+            string userId = User.Identity.GetUserId();
+
+            IEnumerable<Game> games = await DbContext.Games
+                .Where(g => g.Date > start && g.Date < end && g.UserId == userId)
                 .OrderBy(g => g.Date).ToListAsync();
 
             return games.ToWebModels<Game, WMGame>();
@@ -54,7 +70,14 @@ namespace R6MatchFinder.Controllers
             {
                 Id = Common.Utility.Constants.NEW_ID,
                 UserId = User.Identity.GetUserId(),
-                Date = Utilities.RoundUpDateTime(DateTime.UtcNow.AddMinutes(30), TimeSpan.FromMinutes(15))
+                Date = Utilities.RoundUpDateTimeOffset(DateTimeOffset.UtcNow.AddMinutes(15), TimeSpan.FromMinutes(15)),
+                Hud = HudSettings.Standard,
+                Mode = GameMode.Bomb,
+                Rules = RuleSet.Standard,
+                Time = TimeOfDay.Day,
+                PlayersPerTeam = 5,
+                ModeSettings = new WMGameModeSettings(),
+                MatchSettings = WMGameMatchSettings.DefaultSettings,
             };
         }
 
@@ -74,9 +97,13 @@ namespace R6MatchFinder.Controllers
             return await Get(dbModel.Id.ToString());
         }
 
+        [HttpDelete, Route("{id}")]
         public async Task Delete(string id)
         {
-            Game dbModel = await DbContext.Games.FindAsync(id);
+            Game dbModel = await DbContext.Games
+                .Include(g => g.ModeSettings)
+                .Include(g => g.MatchSettings)
+                .FirstOrDefaultAsync(g => g.Id.ToString() == id);
 
             if (dbModel == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);

@@ -15,7 +15,7 @@ namespace R6MatchFinder.Common.Database.Model
             Children = new List<ExceptionLog>();
         }
 
-        public DateTime Date { get; private set; }
+        public DateTimeOffset Date { get; private set; }
 
         public string Message { get; set; }
 

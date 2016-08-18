@@ -268,6 +268,7 @@
     <Content Include="Content\toastr.min.css" />
     <Content Include="Content\ui-bootstrap-csp.css" />
     <Content Include="Content\zocial.css" />
+    <Content Include="css\bootstrap-slider.min.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\zocial-regular-webfont.svg" />
     <Content Include="packages.config" />
@@ -295,6 +296,7 @@
     <Content Include="scripts\angular-ui\ui-bootstrap-tpls.min.js" />
     <Content Include="scripts\angular-ui\ui-bootstrap.js" />
     <Content Include="scripts\angular-ui\ui-bootstrap.min.js" />
+    <Content Include="scripts\bootstrap-slider.min.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
     <None Include="scripts\jquery-3.1.0.intellisense.js" />
@@ -1136,9 +1138,15 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Attributes\AuthorizeAdminAttribute.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\GamesController.cs" />
+    <Compile Include="Controllers\DiscoveryController.cs" />
+    <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\UtilityController.cs" />
+    <Compile Include="Formatters\ExactCaseFormatter.cs" />
+    <Compile Include="Formatters\UpperCaseFormatter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1154,7 +1162,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Shared\Interceptors\" />
-    <Folder Include="Views\Shared\Services\" />
+    <Folder Include="Views\Shared\Model\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\R6MatchFinder.Common\R6MatchFinder.Common.csproj">
@@ -1177,15 +1185,26 @@
     <TypeScriptCompile Include="scripts\typings\angularjs\angular-route.d.ts" />
     <TypeScriptCompile Include="scripts\typings\angularjs\angular-sanitize.d.ts" />
     <TypeScriptCompile Include="scripts\typings\angularjs\angular.d.ts" />
+    <TypeScriptCompile Include="scripts\typings\bootstrap-slider\bootstrap-slider.d.ts" />
     <TypeScriptCompile Include="scripts\typings\jquery\jquery.d.ts" />
     <TypeScriptCompile Include="scripts\typings\toastr\toastr.d.ts" />
     <TypeScriptCompile Include="Views\Games\games-controller.ts" />
     <TypeScriptCompile Include="Views\Games\games-repository.ts" />
+    <TypeScriptCompile Include="Views\Shared\Classes\utility-classes.ts" />
+    <TypeScriptCompile Include="Views\Shared\Directives\bootstrap-slider-directive.ts" />
+    <TypeScriptCompile Include="Views\Shared\Directives\enum-dropdown-directive.ts" />
+    <TypeScriptCompile Include="Views\Shared\Directives\radio-button-group-directive.ts" />
+    <TypeScriptCompile Include="Views\Shared\Repositories\utility-repository.ts" />
+    <TypeScriptCompile Include="Views\Shared\Services\resource-service.ts" />
+    <TypeScriptCompile Include="Views\Shared\Startup\current-user.ts" />
     <TypeScriptCompile Include="Views\Shared\Filters\replace-filter.ts" />
     <TypeScriptCompile Include="Views\Shared\Filters\resource-to-array-filter.ts" />
     <TypeScriptCompile Include="Views\Shared\Filters\start-from-filter.ts" />
     <TypeScriptCompile Include="Views\Shared\r6-main-module.ts" />
+    <TypeScriptCompile Include="Views\Shared\Repositories\account-repository.ts" />
     <TypeScriptCompile Include="Views\Shared\route-config.ts" />
+    <TypeScriptCompile Include="Views\Shared\Startup\enums-constant.ts" />
+    <TypeScriptCompile Include="Views\Shared\Startup\root-scope-functions.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

@@ -18,6 +18,10 @@ namespace R6MatchFinder.Common.Database.Model
         [InverseProperty("User")]
         public IEnumerable<Game> CreatedGames { get; set; }
 
+        public bool Disabled { get; set; }
+
+        public virtual UserStatistics Statistics { get; set; }
+
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User, string> manager, IAuthenticationManager authentication = null)
         {

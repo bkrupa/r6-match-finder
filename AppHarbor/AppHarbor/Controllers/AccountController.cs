@@ -392,6 +392,7 @@ namespace TA.Controllers
             // Sign in the user with this external login provider if the user already has a login
             var result = await SignInManager.ExternalSignInAsync(loginInfo, isPersistent: false);
 
+            await LoginLog.Log(Request, result, loginInfo.Email);
 
             switch (result)
             {

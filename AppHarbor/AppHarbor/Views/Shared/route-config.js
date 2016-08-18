@@ -32,4 +32,3 @@ var app;
         .module('app')
         .config(RouteConfig);
 })(app || (app = {}));
-//# sourceMappingURL=route-config.js.map

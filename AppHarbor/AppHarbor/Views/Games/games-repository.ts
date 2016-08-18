@@ -28,6 +28,12 @@
                 action: 'new'
             });
         }
+
+        public getMyGames(): any {
+            return this.gamesResource.query({
+                action: 'MyGames'
+            });
+        }
     }
 
     angular

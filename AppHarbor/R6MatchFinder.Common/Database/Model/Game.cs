@@ -1,28 +1,15 @@
-﻿using System;
+﻿using R6MatchFinder.Common.Database.Abstracts;
+using R6MatchFinder.Common.Database.Interfaces;
+using R6MatchFinder.Common.Utility;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace R6MatchFinder.Common.Database.Model
 {
     [Table("Games")]
-    public class Game
+    public class Game : AbstractGame<GameMatchSettings, GameModeSettings>
     {
-        public Game()
-        {
-            Id = Guid.NewGuid();
-        }
 
-
-        [Key, Required, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid Id { get; set; }
-
-        [Required]
-        public string UserId { get; set; }
-
-        [ForeignKey("UserId")]
-        public User Creator { get; set; }
-
-        [Required]
-        public DateTime Date { get; set; }
     }
 }
