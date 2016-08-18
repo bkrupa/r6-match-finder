@@ -2,6 +2,7 @@
 using R6MatchFinder.App_Start;
 using R6MatchFinder.Common.Configuration;
 using R6MatchFinder.Common.Utilities;
+using R6MatchFinder.Jobs;
 using System;
 using System.Web;
 using System.Web.Http;
@@ -23,6 +24,8 @@ namespace AppHarbor
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             Configuration.ConfigureAutoMapper();
+
+            JobConfig.Start();
         }
 
 
