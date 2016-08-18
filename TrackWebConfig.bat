@@ -1,0 +1,1 @@
+START git update-index --no-assume-unchanged AppHarbor\AppHarbor\Web.config

@@ -1,6 +1,7 @@
 ﻿using Quartz;
 using R6MatchFinder.Common.Database;
 using R6MatchFinder.Common.Database.Model;
+using R6MatchFinder.Common.Utilities;
 using R6MatchFinder.Jobs.Attributes;
 using System;
 using System.Collections.Generic;
@@ -15,15 +16,22 @@ namespace R6MatchFinder.Jobs
     {        
         public void Execute(IJobExecutionContext context)
         {
-            using (R6Context dbContext = R6Context.New)
+            try
             {
-                IEnumerable<Game> gamesToRemove = dbContext.Games.Where(g => g.Date < DateTime.UtcNow).ToList();
+                using (R6Context dbContext = R6Context.New)
+                {
+                    IEnumerable<Game> gamesToRemove = dbContext.Games.Where(g => g.Date < DateTime.UtcNow).ToList();
 
 
-                foreach (Game game in gamesToRemove)
-                    dbContext.Games.Remove(game);
+                    foreach (Game game in gamesToRemove)
+                        dbContext.Games.Remove(game);
 
-                dbContext.SaveChanges();
+                    dbContext.SaveChanges();
+                }
+            }
+            catch(Exception ex)
+            {
+                Utilities.HandleException(ex);
             }
         }
     }
