@@ -7,7 +7,9 @@
         'ngAnimate',
         'ui.bootstrap',
         'ui.router',
-        'angular.filter']);
+        'angular.filter',
+        'SignalR'
+    ]);
 
 
 

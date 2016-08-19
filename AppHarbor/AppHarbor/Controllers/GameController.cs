@@ -6,11 +6,14 @@ using R6MatchFinder.Common.Utility;
 using R6MatchFinder.Common.Web.Interfaces;
 using R6MatchFinder.Common.Web.Model;
 using R6MatchFinder.Common.Web.Model.Abstract;
+using R6MatchFinder.Hubs;
+using Resources;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 
@@ -32,7 +35,7 @@ namespace R6MatchFinder.Controllers
         public async Task<IEnumerable<WMGame>> Get()
         {
             DateTime start = DateTime.UtcNow;
-            DateTime end = start.AddHours(6);
+            DateTime end = start.AddYears(6);
 
             IEnumerable<Game> games = await _gameRepository.GetQueryable()
                 .Where(g => g.Date > start && g.Date < end)
@@ -105,8 +108,18 @@ namespace R6MatchFinder.Controllers
             if (dbModel == null)
                 throw new HttpResponseException(HttpStatusCode.NotAcceptable);
 
+            IEnumerable<WMGameBase> myGames = await GetMyGames();
+
+            if (myGames.Any(g => g.Date.Subtract(dbModel.Date).Duration().TotalHours < 1))
+            {
+                HttpResponseMessage resp = new HttpResponseMessage(HttpStatusCode.NotAcceptable);
+                resp.Content = new StringContent(resources.PLEASE_ALLOW_ONE_HOUR_PRIOR_TO_A_GAMES_SCHEDULED_START_AND_ONE_HOUR_AFTER_CURRENT_GAME_CONFLICTS);
+                throw new HttpResponseException(resp);
+            }
+
             dbModel = await _gameRepository.CreateAsync(dbModel);
 
+            GeneralHub.GameStateChanged();
             return await Get(dbModel.Id.ToString());
         }
 
@@ -122,11 +135,21 @@ namespace R6MatchFinder.Controllers
             if (dbModel.UserId == userId)
                 throw new HttpResponseException(HttpStatusCode.PreconditionFailed);
 
+            IEnumerable<WMGameBase> myGames = await GetMyGames();
+
+            if (myGames.Any(g => g.Date.Subtract(dbModel.Date).Duration().TotalHours < 1))
+            {
+                HttpResponseMessage resp = new HttpResponseMessage(HttpStatusCode.NotAcceptable);
+                resp.Content = new StringContent(resources.PLEASE_ALLOW_ONE_HOUR_PRIOR_TO_A_GAMES_SCHEDULED_START_AND_ONE_HOUR_AFTER_CURRENT_GAME_CONFLICTS);
+                throw new HttpResponseException(resp);
+            }
+
             ActiveGame activeGame = ActiveGame.FromGame(dbModel);
             activeGame.ChallengerId = userId;
 
             activeGame = await _activeGameRepository.CreateAsync(activeGame);
             await _gameRepository.DeleteAsync(dbModel);
+            GeneralHub.GameStateChanged();
         }
 
         [HttpDelete, Route("{id}")]
@@ -141,6 +164,8 @@ namespace R6MatchFinder.Controllers
                 throw new HttpResponseException(HttpStatusCode.Forbidden);
 
             await _gameRepository.DeleteAsync(dbModel);
+
+            GeneralHub.GameStateChanged();
         }
     }
 }

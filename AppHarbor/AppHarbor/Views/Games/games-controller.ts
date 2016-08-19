@@ -1,37 +1,87 @@
 ﻿module app {
 
+
+
+    export class GameDetailsController {
+        static Injection: string = 'gameDetailsController';
+        static $inject = ['game']
+
+        constructor(public game: any) { }
+    }
+
     export class CreateGameController {
         static Injection: string = 'createGameController';
         static $inject = [
             'game'
         ];
 
-        constructor(
-            public game: any
-        ) {
+        public minDate = new Date();
+        public hourStep = 1;
+        public dateOptions = {
+            startingDay: 1,
+            showWeeks: false
+        };
+
+        public Test() {
+            console.log(this.game.date);
         }
+
+        constructor(public game: any) { }
     }
 
     export class GamesController {
         static Injection: string = 'gamesController';
         static $inject = [
+            '$scope',
             GamesRepository.Injection,
-            '$uibModal'
+            '$uibModal',
+            'Hub'
         ];
 
-        private games: Array<any>;
-        private myGames: Array<any>;
+        private games: Array<any> = [];
+        private myGames: Array<any> = [];
         public pageSize: number = 10;
         public currentPage: number = 1;
         public view: string = '';
 
+        private generalHub: any;
 
+        private options: ngSignalr.HubOptions = {
+            listeners: {
+                refreshGamesList: () => {
+                    this.bindGames();
+                }
+            },
+            errorHandler: this.onSignalRError,
+            stateChanged: function (state) {
+                switch (state.newState) {
+                    case $.signalR.connectionState.connecting:
+                        //your code here
+                        break;
+                    case $.signalR.connectionState.connected:
+                        //your code here
+                        break;
+                    case $.signalR.connectionState.reconnecting:
+                        //your code here
+                        break;
+                    case $.signalR.connectionState.disconnected:
+                        //your code here
+                        break;
+                }
+            }
+        };
+
+        private onSignalRError(error) {
+            console.error(error);
+        }
 
         constructor(
+            private $scope: ng.IScope,
             private repository: GamesRepository,
-            private $uibModal: ng.ui.bootstrap.IModalService
+            private $uibModal: ng.ui.bootstrap.IModalService,
+            private Hub: ngSignalr.HubFactory
         ) {
-
+            this.generalHub = new Hub('generalHub', this.options);
             this.bindGames();
         }
 
@@ -50,9 +100,26 @@
             });
         }
 
+        public showDetails(game) {
+            var modal: ng.ui.bootstrap.IModalServiceInstance = this.$uibModal.open({
+                backdrop: 'static',
+                size: 'lg',
+                templateUrl: '/Views/Games/game-details.html',
+                controllerAs: 'vm',
+                controller: GameDetailsController,
+                resolve: { game: () => { return game; } }
+            });
+
+            modal.result.then(() => {
+                this.bindGames();
+            });
+        }
+
         public bindGames() {
-            this.games = this.repository.getAll();
-            this.myGames = this.repository.getMyGames();
+            if (this.games.$resolved !== false)
+                this.games = this.repository.getAll();
+            if (this.myGames.$resolved !== false)
+                this.myGames = this.repository.getMyGames();
         }
 
         public deleteGame(game: any) {

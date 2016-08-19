@@ -63,12 +63,12 @@
                             <button class="fa fa-trash-o btn btn-link" type="button" ng-if="game.userId == userInfo.id" ng-click="vm.deleteGame(game)"></button>
                         </td>
                     </tr>
-                    <tr ng-if="vm.games.length === 0 && vm.games.$resolved">
+                    <tr ng-if="vm.myGames.length === 0 && vm.myGames.$resolved">
                         <td>
                             {{resolve('YOU_HAVE_NOT_SIGNED_UP_FOR_ANY_MATCHES')}}
                         </td>
                     </tr>
-                    <tr ng-if="!vm.games.$resolved">
+                    <tr ng-if="!vm.myGames.$resolved">
                         <td class="text-center">
                             <span class="fa fa-spinner fa-spin"></span>
                         </td>
@@ -76,7 +76,7 @@
                 </tbody>
             </table>
 
-            <div class="text-center" ng-if="vm.games.length > vm.pageSize">
+            <div class="text-center" ng-if="vm.myGames.length > vm.pageSize">
                 <ul class="text-center" uib-pagination total-items="vm.games.length" ng-model="vm.currentPage" ng-change="pageChanged()"></ul>
             </div>
         </div>

@@ -103,6 +103,7 @@
     <Compile Include="Database\IDbContext.cs" />
     <Compile Include="Database\Interfaces\IFluentModel.cs" />
     <Compile Include="Database\Interfaces\IValidateEntity.cs" />
+    <Compile Include="Database\Interfaces\MapTo.cs" />
     <Compile Include="Database\Migrations\Configuration.cs" />
     <Compile Include="Database\Model\ActiveGame.cs" />
     <Compile Include="Database\Model\ActiveGameModeSettings.cs" />

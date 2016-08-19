@@ -100,9 +100,9 @@
                                         @Html.ActionLink("Profile", "Index", "Manage", routeValues: new { area = "" }, htmlAttributes: new { title = "Manage", @class = "nav-link active", style = "cursor:pointer;" })
                                     </li>
 
-                                        <li class="nav-item">
-                                            <a href="javascript:sessionStorage.removeItem('accessToken');$('#logoutForm').submit();" class="nav-link active" style="cursor:pointer;">Log off</a>
-                                        </li>
+                                    <li class="nav-item">
+                                        <a href="javascript:sessionStorage.removeItem('accessToken');$('#logoutForm').submit();" class="nav-link active" style="cursor:pointer;">Log off</a>
+                                    </li>
                                 }
 
                             </ul>
@@ -125,8 +125,6 @@
 
 
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/jquery-ui")
-    @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/toastr")
     @RenderSection("Scripts", required: false)

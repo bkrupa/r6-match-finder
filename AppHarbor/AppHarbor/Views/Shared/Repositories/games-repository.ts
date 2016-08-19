@@ -22,9 +22,14 @@
         private gamesResource: ng.resource.IResourceClass<any>;
 
         constructor($resource: ng.resource.IResourceService) {
-            this.gamesResource = $resource('/api/Games/:action/:id', { action: '@action', id: '@id' });
+            var that: GamesRepository = this;
+            this.gamesResource = $resource('/api/Games/:id/:action', { action: '@action', id: '@id' });
 
-            this.gamesResource.prototype.$join = () => {
+            this.gamesResource.prototype.$join = function () {
+                return that.gamesResource.save({
+                    action: 'Join',
+                    id: this.id
+                });
             };
         }
 

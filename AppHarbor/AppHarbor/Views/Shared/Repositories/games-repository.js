@@ -2,8 +2,13 @@ var app;
 (function (app) {
     var GamesRepository = (function () {
         function GamesRepository($resource) {
-            this.gamesResource = $resource('/api/Games/:action/:id', { action: '@action', id: '@id' });
+            var that = this;
+            this.gamesResource = $resource('/api/Games/:id/:action', { action: '@action', id: '@id' });
             this.gamesResource.prototype.$join = function () {
+                return that.gamesResource.save({
+                    action: 'Join',
+                    id: this.id
+                });
             };
         }
         GamesRepository.prototype.getAll = function () {

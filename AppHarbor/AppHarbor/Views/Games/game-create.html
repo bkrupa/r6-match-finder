@@ -17,6 +17,13 @@
                     <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                         <div style="display: inline-block; width: 35%; min-width: 150px;">
                             <div class="form-group">
+                                <label class="form-control-label">{{resolve('TIME')}} <button ng-click="vm.Test()" class="fa fa-plus" type="button"></button></label>
+                                <div>
+                                    <div datetimepicker ng-model="vm.game.date"></div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
                                 <label class="form-control-label">{{resolve('RULE_SET')}}</label>
                                 <div>
                                     <div enum-dropdown="RULE_SET" ng-model="vm.game.rules" class="form-control" />

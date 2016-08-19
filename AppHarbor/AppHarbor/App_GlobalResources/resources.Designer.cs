@@ -358,6 +358,16 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please allow one hour prior to a game&apos;s scheduled start time, and one hour after the scheduled start time before scheduling another game. This game conflicts with another..
+        /// </summary>
+        internal static string PLEASE_ALLOW_ONE_HOUR_PRIOR_TO_A_GAMES_SCHEDULED_START_AND_ONE_HOUR_AFTER_CURRENT_GAME_CONFLICTS {
+            get {
+                return ResourceManager.GetString("PLEASE_ALLOW_ONE_HOUR_PRIOR_TO_A_GAMES_SCHEDULED_START_AND_ONE_HOUR_AFTER_CURRENT" +
+                        "_GAME_CONFLICTS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pro League.
         /// </summary>
         internal static string PRO_LEAGUE {

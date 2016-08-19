@@ -35,6 +35,7 @@ namespace R6MatchFinder.Common.Database.Repository
         public async Task<IEnumerable<Game>> GetAllAsync()
         {
             return await _dbContext.Games
+                .Where(g => g.Date >= DateTimeOffset.UtcNow)
                 .Include(g => g.MatchSettings)
                 .Include(g => g.ModeSettings).ToListAsync();
         }
@@ -42,6 +43,7 @@ namespace R6MatchFinder.Common.Database.Repository
         public async Task<Game> GetAsync(Guid id)
         {
             return await _dbContext.Games
+                .Where(g => g.Date >= DateTimeOffset.UtcNow)
                 .Include(g => g.MatchSettings)
                 .Include(g => g.ModeSettings)
                 .FirstOrDefaultAsync(g => g.Id == id);
@@ -50,6 +52,7 @@ namespace R6MatchFinder.Common.Database.Repository
         public async Task<IEnumerable<Game>> GetForUserAsync(string userId)
         {
             return await _dbContext.Games
+                .Where(g => g.Date >= DateTimeOffset.UtcNow)
                 .Include(g => g.MatchSettings)
                 .Include(g => g.ModeSettings)
                 .Where(g => g.UserId == userId)

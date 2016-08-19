@@ -216,6 +216,9 @@
   <data name="PLAYERS_PER_TEAM" xml:space="preserve">
     <value>Players per Team</value>
   </data>
+  <data name="PLEASE_ALLOW_ONE_HOUR_PRIOR_TO_A_GAMES_SCHEDULED_START_AND_ONE_HOUR_AFTER_CURRENT_GAME_CONFLICTS" xml:space="preserve">
+    <value>Please allow one hour prior to a game's scheduled start time, and one hour after the scheduled start time before scheduling another game. This game conflicts with another.</value>
+  </data>
   <data name="PRO_LEAGUE" xml:space="preserve">
     <value>Pro League</value>
   </data>

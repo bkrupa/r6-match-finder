@@ -5,7 +5,9 @@ var app;
         'ngAnimate',
         'ui.bootstrap',
         'ui.router',
-        'angular.filter']);
+        'angular.filter',
+        'SignalR'
+    ]);
     //GLOBAL FUNCTIONS - pretty much a root/global controller.
     app.config(['$animateProvider', function ($animateProvider) {
             /* This is a fix.  The UI.Bootstrap carousel was broken when combined with ngAnimate */

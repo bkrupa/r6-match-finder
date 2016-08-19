@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using R6MatchFinder.Common.Database.Interfaces;
 using R6MatchFinder.Common.Web.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -29,6 +30,21 @@ namespace R6MatchFinder.Common.Configuration
 
                 Mapper.CreateMap(webModel, dbModel).IgnoreAllNonExisting(webModel, dbModel);
                 Mapper.CreateMap(dbModel, webModel).IgnoreAllNonExisting(dbModel, webModel);
+            }
+
+            types = typeof(Configuration).Assembly.GetTypes().Where(t => t.GetInterfaces().Any(i =>
+                                                    i.IsGenericType && i.GetGenericTypeDefinition() == typeof(MapTo<>)));
+
+            foreach (Type sourceType in types)
+            {
+                Type destType = sourceType.GetInterfaces().FirstOrDefault(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(MapTo<>));
+
+                if (destType == null)
+                    continue;
+
+                destType = destType.GetGenericArguments()[0];
+
+                Mapper.CreateMap(sourceType, destType).IgnoreAllNonExisting(sourceType, destType);
             }
 
             Mapper.AssertConfigurationIsValid();

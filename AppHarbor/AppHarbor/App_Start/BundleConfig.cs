@@ -7,11 +7,11 @@ namespace R6MatchFinder.App_Start
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/bundles/jquery").Include("~/Scripts/jquery-{version}.js"));
-            bundles.Add(new ScriptBundle("~/bundles/jquery-ui").Include("~/Scripts/jquery-ui-{version}.js"));
-            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                "~/Scripts/jquery.unobtrusive*",
-                "~/Scripts/jquery.validate*"));
+            bundles.Add(new ScriptBundle("~/bundles/jquery")
+                .Include("~/Scripts/jquery-{version}.js")
+                .Include("~/Scripts/jquery-ui-{version}.js")
+                .Include("~/Scripts/jquery.unobtrusive*", "~/Scripts/jquery.validate*")
+                .Include("~/Scripts/jquery.signalR-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                 "~/Scripts/angular.js",
@@ -20,7 +20,8 @@ namespace R6MatchFinder.App_Start
                 "~/Scripts/angular-animate.js",
                 "~/Scripts/angular-sanitize.js",
                 "~/Scripts/angular-resource.js",
-                "~/Scripts/angular-filter/angular-filter.js"));
+                "~/Scripts/angular-filter/angular-filter.js",
+                "~/Scripts/angular-signalr-hub.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/angular-ui").Include(
                 "~/Scripts/angular-ui/ui-bootstrap.js",

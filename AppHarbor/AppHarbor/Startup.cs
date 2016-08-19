@@ -10,6 +10,7 @@ namespace R6MatchFinder
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
+            app.MapSignalR();
         }
     }
 }
