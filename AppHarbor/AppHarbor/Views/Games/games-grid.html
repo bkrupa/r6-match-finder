@@ -2,21 +2,21 @@
 
 
     <ul class="nav nav-tabs">
-        <li class="nav-item" ng-click="vm.view = 'JoinGame'"><a ng-class="{active: vm.view=='JoinGame' || vm.view==''}" class="nav-link" href="#">Join Game</a></li>
-        <li class="nav-item" ng-click="vm.view = 'MyGames'"><a ng-class="{active: vm.view=='MyGames'}" class="nav-link" href="#">My Games</a></li>
-        <li class="nav-item" ng-click="vm.view = 'MyStats'"><a ng-class="{active: vm.view=='MyStats'}" class="nav-link" href="#">My Stats</a></li>
+        <li class="nav-item" ng-click="vm.view = 'JoinGame'"><a ng-class="{active: vm.view=='JoinGame' || vm.view==''}" class="nav-link" href="#">{{resolve('JOIN_GAME')}}</a></li>
+        <li class="nav-item" ng-click="vm.view = 'MyGames'"><a ng-class="{active: vm.view=='MyGames'}" class="nav-link" href="#">{{resolve('MY_GAMES')}}</a></li>
+        <li class="nav-item" ng-click="vm.view = 'MyStats'"><a ng-class="{active: vm.view=='MyStats'}" class="nav-link" href="#">{{resolve('MY_STATS')}}</a></li>
     </ul>
 
     <div ng-switch="vm.view" class="card card-block">
         <div ng-switch-default>
             <div class="text-right">
-                <button class="btn btn-success btn-sm" type="button" ng-click="vm.createGame()">Create</button>
+                <button class="btn btn-success btn-sm" type="button" ng-click="vm.createGame()" ng-if="!(vm.games | map:'userId' | contains:userInfo.id)">{{resolve('CREATE')}}</button>
             </div>
 
             <table class="table table-striped table-bordered table-hover">
                 <thead>
                     <tr>
-                        <th> GAMES </th>
+                        <th>{{resolve('GAMES')}}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -47,7 +47,38 @@
             </div>
         </div>
         <div ng-switch-when="MyGames">
-            MY GAMES
+            <table class="table table-striped table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>{{resolve('GAMES')}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="game in vm.myGames | orderBy:'-date' | startFrom: (vm.currentPage-1) * vm.pageSize | limitTo: vm.pageSize" ng-class="{'table-info': game.userId == userInfo.id}">
+                        <td ng-bind="game.id"></td>
+                        <td ng-bind="game.userId"></td>
+                        <td ng-bind="game.date | date:'medium'"></td>
+                        <td style="width: 130px;" class="text-center">
+                            <button class="fa fa-gears btn btn-link" type="button" ng-click="vm.showDetails(game)"></button>
+                            <button class="fa fa-trash-o btn btn-link" type="button" ng-if="game.userId == userInfo.id" ng-click="vm.deleteGame(game)"></button>
+                        </td>
+                    </tr>
+                    <tr ng-if="vm.games.length === 0 && vm.games.$resolved">
+                        <td>
+                            {{resolve('YOU_HAVE_NOT_SIGNED_UP_FOR_ANY_MATCHES')}}
+                        </td>
+                    </tr>
+                    <tr ng-if="!vm.games.$resolved">
+                        <td class="text-center">
+                            <span class="fa fa-spinner fa-spin"></span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="text-center" ng-if="vm.games.length > vm.pageSize">
+                <ul class="text-center" uib-pagination total-items="vm.games.length" ng-model="vm.currentPage" ng-change="pageChanged()"></ul>
+            </div>
         </div>
         <div ng-switch-when="MyStats">
             MY STATS

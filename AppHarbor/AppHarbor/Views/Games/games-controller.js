@@ -36,6 +36,7 @@ var app;
         };
         GamesController.prototype.bindGames = function () {
             this.games = this.repository.getAll();
+            this.myGames = this.repository.getMyGames();
         };
         GamesController.prototype.deleteGame = function (game) {
             var _this = this;
@@ -53,3 +54,4 @@ var app;
         .module('app')
         .controller(GamesController.Injection, GamesController);
 })(app || (app = {}));
+//# sourceMappingURL=games-controller.js.map

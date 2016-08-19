@@ -11,14 +11,15 @@ var app;
                 minValue: '=',
                 step: '='
             };
-            this.sliderId = 'Slider_' + BootstrapSliderDirective.sliderNumber++;
         }
         BootstrapSliderDirective.prototype.link = function (scope, element, attrs, ngModelCtrl) {
+            this.sliderId = 'Slider_' + BootstrapSliderDirective.sliderNumber++;
             element.attr('id', this.sliderId);
             var slider = new Slider('#' + this.sliderId, {
                 step: scope.step,
                 min: scope.minValue,
-                max: scope.maxValue
+                max: scope.maxValue,
+                tooltip: 'hide'
             });
             slider
                 .on('slideStop', function (newValue) { ngModelCtrl.$setViewValue(newValue); })
@@ -42,3 +43,4 @@ var app;
         .module('app')
         .directive(BootstrapSliderDirective.Injection, BootstrapSliderDirective.factory());
 })(app || (app = {}));
+//# sourceMappingURL=bootstrap-slider-directive.js.map

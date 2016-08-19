@@ -36,3 +36,4 @@ var app;
         .module('app')
         .directive(EnumDropdownDirective.Injection, EnumDropdownDirective.factory());
 })(app || (app = {}));
+//# sourceMappingURL=enum-dropdown-directive.js.map

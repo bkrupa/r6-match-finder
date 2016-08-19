@@ -1,5 +1,9 @@
 ﻿module app {
 
+    interface StringDeferredDictionary {
+        [resourceKey: string]: ng.IDeferred<string>;
+    }
+
     export class UtilityRepository {
         static Injection: string = 'utilityRepository';
 
@@ -10,7 +14,7 @@
         ];
 
         private resourceTimeout: number;
-        private requestedResources: any = {};
+        private requestedResources: StringDeferredDictionary = {};
 
         constructor(
             private $http: ng.IHttpService,
@@ -38,9 +42,9 @@
             return promise;
         }
 
-        public getResource(value: string) {
+        public getResource(value: string): ng.IPromise<string> {
             if (this.requestedResources.hasOwnProperty(value))
-                return this.requestedResources[value];
+                return this.requestedResources[value].promise;
 
             var that = this;
 

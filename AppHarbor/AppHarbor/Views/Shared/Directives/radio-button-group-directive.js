@@ -3,7 +3,7 @@ var app;
     var RadioButtonGroupDirective = (function () {
         function RadioButtonGroupDirective() {
             this.require = 'ngModel';
-            this.replace = true;
+            this.replace = false;
             this.restrict = 'A';
             this.template = '<div class="btn-group" data-toggle="buttons">' +
                 '<button type="button" class="btn btn-primary" ng-if="showNull" ng-class="{active: value == null}" ng-click="setValue(null)">{{nullText}}</button>' +
@@ -42,3 +42,4 @@ var app;
         .module('app')
         .directive(RadioButtonGroupDirective.Injection, RadioButtonGroupDirective.factory());
 })(app || (app = {}));
+//# sourceMappingURL=radio-button-group-directive.js.map

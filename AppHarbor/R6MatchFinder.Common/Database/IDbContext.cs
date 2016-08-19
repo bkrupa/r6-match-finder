@@ -1,5 +1,6 @@
 ﻿using R6MatchFinder.Common.Database.Model;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Threading.Tasks;
 
 namespace R6MatchFinder.Common.Database
@@ -15,5 +16,6 @@ namespace R6MatchFinder.Common.Database
         DbSet<UserStatistics> UserStatistics { get; }
 
         Task<int> SaveChangesAsync();
+        DbEntityEntry Entry(object entity);
     }
 }

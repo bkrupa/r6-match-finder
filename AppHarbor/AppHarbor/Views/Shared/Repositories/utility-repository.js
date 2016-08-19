@@ -23,7 +23,7 @@ var app;
         };
         UtilityRepository.prototype.getResource = function (value) {
             if (this.requestedResources.hasOwnProperty(value))
-                return this.requestedResources[value];
+                return this.requestedResources[value].promise;
             var that = this;
             clearTimeout(this.resourceTimeout);
             var deferred = this.$q.defer();
@@ -60,3 +60,4 @@ var app;
         .module('app')
         .factory(UtilityRepository.Injection, UtilityRepository.factory());
 })(app || (app = {}));
+//# sourceMappingURL=utility-repository.js.map

@@ -28,16 +28,18 @@
 
         constructor(
         ) {
-            this.sliderId = 'Slider_' + BootstrapSliderDirective.sliderNumber++;
+
         }
 
         public link(scope: BootstrapSliderScope, element: JQuery, attrs, ngModelCtrl: ng.INgModelController) {
+            this.sliderId = 'Slider_' + BootstrapSliderDirective.sliderNumber++;
             element.attr('id', this.sliderId);
 
             var slider: Slider = new Slider('#' + this.sliderId, {
                 step: scope.step,
                 min: scope.minValue,
-                max: scope.maxValue
+                max: scope.maxValue,
+                tooltip: 'hide'
             });
 
 

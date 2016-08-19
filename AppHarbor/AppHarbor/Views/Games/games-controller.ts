@@ -20,6 +20,7 @@
         ];
 
         private games: Array<any>;
+        private myGames: Array<any>;
         public pageSize: number = 10;
         public currentPage: number = 1;
         public view: string = '';
@@ -51,6 +52,7 @@
 
         public bindGames() {
             this.games = this.repository.getAll();
+            this.myGames = this.repository.getMyGames();
         }
 
         public deleteGame(game: any) {

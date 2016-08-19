@@ -70,11 +70,245 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Attacker Unique Spawn.
+        /// </summary>
+        internal static string ATTACKER_UNIQUE_SPAWN {
+            get {
+                return ResourceManager.GetString("ATTACKER_UNIQUE_SPAWN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bomb.
+        /// </summary>
+        internal static string BOMB {
+            get {
+                return ResourceManager.GetString("BOMB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create.
+        /// </summary>
+        internal static string CREATE {
+            get {
+                return ResourceManager.GetString("CREATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create a Game.
+        /// </summary>
+        internal static string CREATE_A_GAME {
+            get {
+                return ResourceManager.GetString("CREATE_A_GAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Damage Handicap.
+        /// </summary>
+        internal static string DAMAGE_HANDICAP {
+            get {
+                return ResourceManager.GetString("DAMAGE_HANDICAP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Day.
+        /// </summary>
+        internal static string DAY {
+            get {
+                return ResourceManager.GetString("DAY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Death Replay.
+        /// </summary>
+        internal static string DEATH_REPLAY {
+            get {
+                return ResourceManager.GetString("DEATH_REPLAY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Friendly Fire Damage.
+        /// </summary>
+        internal static string FRIENDLY_FIRE_DAMAGE {
+            get {
+                return ResourceManager.GetString("FRIENDLY_FIRE_DAMAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Games.
+        /// </summary>
+        internal static string GAMES {
+            get {
+                return ResourceManager.GetString("GAMES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Game Mode.
+        /// </summary>
+        internal static string GAME_MODE {
+            get {
+                return ResourceManager.GetString("GAME_MODE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Game Settings.
+        /// </summary>
+        internal static string GAME_SETTINGS {
+            get {
+                return ResourceManager.GetString("GAME_SETTINGS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Home.
         /// </summary>
         internal static string HOME {
             get {
                 return ResourceManager.GetString("HOME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hostage.
+        /// </summary>
+        internal static string HOSTAGE {
+            get {
+                return ResourceManager.GetString("HOSTAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HUD Settings.
+        /// </summary>
+        internal static string HUD_SETTINGS {
+            get {
+                return ResourceManager.GetString("HUD_SETTINGS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Injured Health.
+        /// </summary>
+        internal static string INJURED_HEALTH {
+            get {
+                return ResourceManager.GetString("INJURED_HEALTH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Join Game.
+        /// </summary>
+        internal static string JOIN_GAME {
+            get {
+                return ResourceManager.GetString("JOIN_GAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lean.
+        /// </summary>
+        internal static string LEAN {
+            get {
+                return ResourceManager.GetString("LEAN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Match Settings.
+        /// </summary>
+        internal static string MATCH_SETTINGS {
+            get {
+                return ResourceManager.GetString("MATCH_SETTINGS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mode Settings.
+        /// </summary>
+        internal static string MODE_SETTINGS {
+            get {
+                return ResourceManager.GetString("MODE_SETTINGS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to My Games.
+        /// </summary>
+        internal static string MY_GAMES {
+            get {
+                return ResourceManager.GetString("MY_GAMES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to My Stats.
+        /// </summary>
+        internal static string MY_STATS {
+            get {
+                return ResourceManager.GetString("MY_STATS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Night.
+        /// </summary>
+        internal static string NIGHT {
+            get {
+                return ResourceManager.GetString("NIGHT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        internal static string NO {
+            get {
+                return ResourceManager.GetString("NO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of Rounds.
+        /// </summary>
+        internal static string NUMBER_OF_ROUNDS {
+            get {
+                return ResourceManager.GetString("NUMBER_OF_ROUNDS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Objective Rotation Parameter.
+        /// </summary>
+        internal static string OBJECTIVE_ROTATION_PARAMETER {
+            get {
+                return ResourceManager.GetString("OBJECTIVE_ROTATION_PARAMETER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Off.
+        /// </summary>
+        internal static string OFF {
+            get {
+                return ResourceManager.GetString("OFF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to On.
+        /// </summary>
+        internal static string ON {
+            get {
+                return ResourceManager.GetString("ON", resourceCulture);
             }
         }
         
@@ -88,6 +322,78 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Overtime Role Change.
+        /// </summary>
+        internal static string OVERTIME_ROLE_CHANGE {
+            get {
+                return ResourceManager.GetString("OVERTIME_ROLE_CHANGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Overtime Rounds.
+        /// </summary>
+        internal static string OVERTIME_ROUNDS {
+            get {
+                return ResourceManager.GetString("OVERTIME_ROUNDS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Overtime Score Difference.
+        /// </summary>
+        internal static string OVERTIME_SCORE_DIFFERENCE {
+            get {
+                return ResourceManager.GetString("OVERTIME_SCORE_DIFFERENCE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Players per Team.
+        /// </summary>
+        internal static string PLAYERS_PER_TEAM {
+            get {
+                return ResourceManager.GetString("PLAYERS_PER_TEAM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pro League.
+        /// </summary>
+        internal static string PRO_LEAGUE {
+            get {
+                return ResourceManager.GetString("PRO_LEAGUE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Role Swap.
+        /// </summary>
+        internal static string ROLE_SWAP {
+            get {
+                return ResourceManager.GetString("ROLE_SWAP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rule Set.
+        /// </summary>
+        internal static string RULE_SET {
+            get {
+                return ResourceManager.GetString("RULE_SET", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Secure Area.
+        /// </summary>
+        internal static string SECURE_AREA {
+            get {
+                return ResourceManager.GetString("SECURE_AREA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sign Up.
         /// </summary>
         internal static string SIGN_UP {
@@ -97,11 +403,56 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sprint.
+        /// </summary>
+        internal static string SPRINT {
+            get {
+                return ResourceManager.GetString("SPRINT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Standard.
+        /// </summary>
+        internal static string STANDARD {
+            get {
+                return ResourceManager.GetString("STANDARD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tactical Realism.
+        /// </summary>
+        internal static string TACTICAL_REALISM {
+            get {
+                return ResourceManager.GetString("TACTICAL_REALISM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time of Day.
+        /// </summary>
+        internal static string TIME_OF_DAY {
+            get {
+                return ResourceManager.GetString("TIME_OF_DAY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User Image.
         /// </summary>
         internal static string USER_IMAGE {
             get {
                 return ResourceManager.GetString("USER_IMAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes.
+        /// </summary>
+        internal static string YES {
+            get {
+                return ResourceManager.GetString("YES", resourceCulture);
             }
         }
     }

@@ -9,7 +9,7 @@
         ];
 
         public require: string = 'ngModel';
-        public replace: boolean = true;
+        public replace: boolean = false;
         public restrict: string = 'A';
         public template: string = '<div class="btn-group" data-toggle="buttons">' +
         '<button type="button" class="btn btn-primary" ng-if="showNull" ng-class="{active: value == null}" ng-click="setValue(null)">{{nullText}}</button>' +

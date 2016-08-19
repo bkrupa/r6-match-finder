@@ -1,12 +1,6 @@
-﻿using R6MatchFinder.Common.Database.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using R6MatchFinder.Common.Utility;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using R6MatchFinder.Common.Database.Abstracts;
+using AutoMapper;
 
 namespace R6MatchFinder.Common.Database.Model
 {
@@ -17,5 +11,10 @@ namespace R6MatchFinder.Common.Database.Model
         public string ChallengerId { get; set; }
 
         public virtual User Challenger { get; set; }
+
+        public static ActiveGame FromGame(Game orig)
+        {
+            return Mapper.Map<Game, ActiveGame>(orig);
+        }
     }
 }

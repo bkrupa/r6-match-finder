@@ -1189,11 +1189,12 @@
     <TypeScriptCompile Include="scripts\typings\jquery\jquery.d.ts" />
     <TypeScriptCompile Include="scripts\typings\toastr\toastr.d.ts" />
     <TypeScriptCompile Include="Views\Games\games-controller.ts" />
-    <TypeScriptCompile Include="Views\Games\games-repository.ts" />
+    <TypeScriptCompile Include="Views\Shared\Repositories\games-repository.ts" />
     <TypeScriptCompile Include="Views\Shared\Classes\utility-classes.ts" />
     <TypeScriptCompile Include="Views\Shared\Directives\bootstrap-slider-directive.ts" />
     <TypeScriptCompile Include="Views\Shared\Directives\enum-dropdown-directive.ts" />
     <TypeScriptCompile Include="Views\Shared\Directives\radio-button-group-directive.ts" />
+    <TypeScriptCompile Include="Views\Shared\Directives\toggle-button-directive.ts" />
     <TypeScriptCompile Include="Views\Shared\Repositories\utility-repository.ts" />
     <TypeScriptCompile Include="Views\Shared\Services\resource-service.ts" />
     <TypeScriptCompile Include="Views\Shared\Startup\current-user.ts" />

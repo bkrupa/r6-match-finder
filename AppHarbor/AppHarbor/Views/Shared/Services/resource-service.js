@@ -1,8 +1,9 @@
 var app;
 (function (app) {
     var ResourceService = (function () {
-        function ResourceService(utilityRepository) {
+        function ResourceService(utilityRepository, $q) {
             this.utilityRepository = utilityRepository;
+            this.$q = $q;
             this.resources = {};
         }
         ResourceService.prototype.resolve = function (value, callback) {
@@ -17,19 +18,24 @@ var app;
                 if (callback)
                     callback(response);
             });
-            return this.resources[value] = '';
+            return ' ';
         };
-        ResourceService.prototype.load = function (value, callback) {
-            return this.resolve(value, callback);
+        ResourceService.prototype.load = function (value) {
+            var deferred = this.$q.defer();
+            this.resolve(value, function (result) {
+                deferred.resolve(result);
+            });
+            return deferred.promise;
         };
         ResourceService.factory = function () {
-            var repo = function (utilityRepository) { return new ResourceService(utilityRepository); };
+            var repo = function (utilityRepository, $q) { return new ResourceService(utilityRepository, $q); };
             repo.$inject = ResourceService.$inject;
             return repo;
         };
         ResourceService.Injection = '$resources';
         ResourceService.$inject = [
-            app.UtilityRepository.Injection
+            app.UtilityRepository.Injection,
+            '$q'
         ];
         return ResourceService;
     }());
@@ -38,3 +44,4 @@ var app;
         .module('app')
         .factory(ResourceService.Injection, ResourceService.factory());
 })(app || (app = {}));
+//# sourceMappingURL=resource-service.js.map

@@ -120,16 +120,133 @@
   <data name="APPLICATION_NAME" xml:space="preserve">
     <value>AppName</value>
   </data>
+  <data name="ATTACKER_UNIQUE_SPAWN" xml:space="preserve">
+    <value>Attacker Unique Spawn</value>
+  </data>
+  <data name="BOMB" xml:space="preserve">
+    <value>Bomb</value>
+  </data>
+  <data name="CREATE" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="CREATE_A_GAME" xml:space="preserve">
+    <value>Create a Game</value>
+  </data>
+  <data name="DAMAGE_HANDICAP" xml:space="preserve">
+    <value>Damage Handicap</value>
+  </data>
+  <data name="DAY" xml:space="preserve">
+    <value>Day</value>
+  </data>
+  <data name="DEATH_REPLAY" xml:space="preserve">
+    <value>Death Replay</value>
+  </data>
+  <data name="FRIENDLY_FIRE_DAMAGE" xml:space="preserve">
+    <value>Friendly Fire Damage</value>
+  </data>
+  <data name="GAMES" xml:space="preserve">
+    <value>Games</value>
+  </data>
+  <data name="GAME_MODE" xml:space="preserve">
+    <value>Game Mode</value>
+  </data>
+  <data name="GAME_SETTINGS" xml:space="preserve">
+    <value>Game Settings</value>
+  </data>
   <data name="HOME" xml:space="preserve">
     <value>Home</value>
+  </data>
+  <data name="HOSTAGE" xml:space="preserve">
+    <value>Hostage</value>
+  </data>
+  <data name="HUD_SETTINGS" xml:space="preserve">
+    <value>HUD Settings</value>
+  </data>
+  <data name="INJURED_HEALTH" xml:space="preserve">
+    <value>Injured Health</value>
+  </data>
+  <data name="JOIN_GAME" xml:space="preserve">
+    <value>Join Game</value>
+  </data>
+  <data name="LEAN" xml:space="preserve">
+    <value>Lean</value>
+  </data>
+  <data name="MATCH_SETTINGS" xml:space="preserve">
+    <value>Match Settings</value>
+  </data>
+  <data name="MODE_SETTINGS" xml:space="preserve">
+    <value>Mode Settings</value>
+  </data>
+  <data name="MY_GAMES" xml:space="preserve">
+    <value>My Games</value>
+  </data>
+  <data name="MY_STATS" xml:space="preserve">
+    <value>My Stats</value>
+  </data>
+  <data name="NIGHT" xml:space="preserve">
+    <value>Night</value>
+  </data>
+  <data name="NO" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="NUMBER_OF_ROUNDS" xml:space="preserve">
+    <value>Number of Rounds</value>
+  </data>
+  <data name="OBJECTIVE_ROTATION_PARAMETER" xml:space="preserve">
+    <value>Objective Rotation Parameter</value>
+  </data>
+  <data name="OFF" xml:space="preserve">
+    <value>Off</value>
+  </data>
+  <data name="ON" xml:space="preserve">
+    <value>On</value>
   </data>
   <data name="OR" xml:space="preserve">
     <value>or</value>
   </data>
+  <data name="OVERTIME_ROLE_CHANGE" xml:space="preserve">
+    <value>Overtime Role Change</value>
+  </data>
+  <data name="OVERTIME_ROUNDS" xml:space="preserve">
+    <value>Overtime Rounds</value>
+  </data>
+  <data name="OVERTIME_SCORE_DIFFERENCE" xml:space="preserve">
+    <value>Overtime Score Difference</value>
+  </data>
+  <data name="PLAYERS_PER_TEAM" xml:space="preserve">
+    <value>Players per Team</value>
+  </data>
+  <data name="PRO_LEAGUE" xml:space="preserve">
+    <value>Pro League</value>
+  </data>
+  <data name="ROLE_SWAP" xml:space="preserve">
+    <value>Role Swap</value>
+  </data>
+  <data name="RULE_SET" xml:space="preserve">
+    <value>Rule Set</value>
+  </data>
+  <data name="SECURE_AREA" xml:space="preserve">
+    <value>Secure Area</value>
+  </data>
   <data name="SIGN_UP" xml:space="preserve">
     <value>Sign Up</value>
   </data>
+  <data name="SPRINT" xml:space="preserve">
+    <value>Sprint</value>
+  </data>
+  <data name="STANDARD" xml:space="preserve">
+    <value>Standard</value>
+  </data>
+  <data name="TACTICAL_REALISM" xml:space="preserve">
+    <value>Tactical Realism</value>
+  </data>
+  <data name="TIME_OF_DAY" xml:space="preserve">
+    <value>Time of Day</value>
+  </data>
   <data name="USER_IMAGE" xml:space="preserve">
     <value>User Image</value>
+  </data>
+  <data name="YES" xml:space="preserve">
+    <value>Yes</value>
   </data>
 </root>

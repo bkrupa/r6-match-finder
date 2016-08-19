@@ -1,4 +1,16 @@
 ﻿module app {
+    export interface IGameResource extends ng.resource.IResource<any> {
+        id: string;
+        userId: string;
+        date: Date;
+        rules: number;
+        time: number;
+        hud: number;
+        mode: number;
+        playersPerTeam: number;
+
+        $join(): void;
+    }
 
 
     export class GamesRepository {
@@ -11,25 +23,28 @@
 
         constructor($resource: ng.resource.IResourceService) {
             this.gamesResource = $resource('/api/Games/:action/:id', { action: '@action', id: '@id' });
+
+            this.gamesResource.prototype.$join = () => {
+            };
         }
 
-        public getAll(): Array<any> {
+        public getAll(): Array<IGameResource> {
             return this.gamesResource.query();
         }
 
-        public get(id: string): any {
+        public get(id: string): IGameResource {
             return this.gamesResource.get({
                 id: id
             });
         }
 
-        public create(): any {
+        public create(): IGameResource {
             return this.gamesResource.get({
                 action: 'new'
             });
         }
 
-        public getMyGames(): any {
+        public getMyGames(): Array<IGameResource> {
             return this.gamesResource.query({
                 action: 'MyGames'
             });

@@ -4,10 +4,9 @@ using R6MatchFinder.Common.Web.Model.Abstract;
 
 namespace R6MatchFinder.Common.Web.Model
 {
-    public class WMGame : WMGameBase, IWebModel<Game>
+    public class WMActiveGame : WMGameBase, IWebModel<ActiveGame>
     {
-        public WMGameMatchSettings MatchSettings { get; set; }
-        public WMGameModeSettings ModeSettings { get; set; }
-
+        public WMUser Challenger { get; set; }
+        public string ChallengerId { get; set; }
     }
 }

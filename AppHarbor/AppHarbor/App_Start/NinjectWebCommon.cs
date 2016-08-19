@@ -1,5 +1,8 @@
+using System.Reflection;
+
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(R6MatchFinder.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethod(typeof(R6MatchFinder.App_Start.NinjectWebCommon), "Stop")]
+
 
 namespace R6MatchFinder.App_Start
 {
@@ -11,6 +14,9 @@ namespace R6MatchFinder.App_Start
     using Ninject;
     using Ninject.Web.Common;
     using Common.Database;
+    using System.Linq;
+    using Common.Database.Repository;
+    using System.Collections.Generic;
 
     public static class NinjectWebCommon
     {
@@ -63,6 +69,36 @@ namespace R6MatchFinder.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<IDbContext>().To<R6Context>().InRequestScope();
+
+            IEnumerable<Type> allTypes = Assembly.GetAssembly(typeof(R6Context)).GetTypes();
+
+            // Iterate over all types in the Common DLL.
+            foreach (Type type in allTypes)
+            {
+                IEnumerable<Type> repoInterfaceTypes = type.GetInterfaces().Where(i =>
+                                                i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IAsyncRepository<>));
+
+                // For any types that implement IAsyncRepository, bind IAsyncRepository<T> to the type.
+                foreach (Type repoInterfaceType in repoInterfaceTypes)
+                {
+                    Type genericArg = repoInterfaceType.GetGenericArguments()[0];
+                    Type repoType = typeof(IAsyncRepository<>).MakeGenericType(genericArg);
+
+                    kernel.Bind(repoType).To(type);
+                }
+
+                // Do the same thing for IOwnedAsyncRepositories
+                repoInterfaceTypes = type.GetInterfaces().Where(i =>
+                                                i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IOwnedAsyncRepository<>));
+
+                foreach (Type repoInterfaceType in repoInterfaceTypes)
+                {
+                    Type genericArg = repoInterfaceType.GetGenericArguments()[0];
+                    Type repoType = typeof(IOwnedAsyncRepository<>).MakeGenericType(genericArg);
+
+                    kernel.Bind(repoType).To(type);
+                }
+            }
         }
     }
 }

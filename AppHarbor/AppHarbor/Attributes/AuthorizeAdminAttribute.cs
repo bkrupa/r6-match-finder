@@ -1,4 +1,5 @@
-﻿using R6MatchFinder.Common.Utility;
+﻿using Microsoft.AspNet.Identity;
+using R6MatchFinder.Common.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,12 +24,14 @@ namespace R6MatchFinder.Attributes
 
             try
             {
-                IEnumerable<Roles> roles = (await ApplicationUserManager.Current.GetRolesAsync(ApplicationUserManager.GetUserId())).Select(r => (Roles)Enum.Parse(typeof(Roles), r));
+                string userId = HttpContext.Current.User.Identity.GetUserId();
+
+                IEnumerable<Roles> roles = (await ApplicationUserManager.Current.GetRolesAsync(userId)).Select(r => (Roles)Enum.Parse(typeof(Roles), r));
 
                 if (!roles.Contains(Common.Utility.Roles.Administrator))
                     throw new UnauthorizedAccessException();
             }
-            catch
+            catch (Exception ex)
             {
                 throw new UnauthorizedAccessException();
             }

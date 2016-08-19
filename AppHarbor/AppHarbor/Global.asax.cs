@@ -2,7 +2,6 @@
 using R6MatchFinder;
 using R6MatchFinder.App_Start;
 using R6MatchFinder.Common.Configuration;
-using R6MatchFinder.Common.Database;
 using R6MatchFinder.Common.Database.Model;
 using R6MatchFinder.Common.Utilities;
 using R6MatchFinder.Jobs;
