@@ -147,6 +147,9 @@
   <data name="GAMES" xml:space="preserve">
     <value>Games</value>
   </data>
+  <data name="GAME_DETAILS" xml:space="preserve">
+    <value>Game Details</value>
+  </data>
   <data name="GAME_MODE" xml:space="preserve">
     <value>Game Mode</value>
   </data>
@@ -240,8 +243,14 @@
   <data name="STANDARD" xml:space="preserve">
     <value>Standard</value>
   </data>
+  <data name="START_TIME_IS_LIMITED_TO_WITHIN_SIX_HOURS_FROM_NOW" xml:space="preserve">
+    <value>Start time is limited to within six hours from now.</value>
+  </data>
   <data name="TACTICAL_REALISM" xml:space="preserve">
     <value>Tactical Realism</value>
+  </data>
+  <data name="TIME" xml:space="preserve">
+    <value>Time</value>
   </data>
   <data name="TIME_OF_DAY" xml:space="preserve">
     <value>Time of Day</value>

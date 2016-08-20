@@ -38,7 +38,7 @@
                     callback(response);
             });
 
-            return ' ';
+            return '\xa0';
         }
 
         public load(value: string): ng.IPromise<string> {

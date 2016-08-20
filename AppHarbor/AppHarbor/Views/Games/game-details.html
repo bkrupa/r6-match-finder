@@ -6,11 +6,88 @@
         </div>
     </div>
     <div class="modal-body">
-        These are the details of my game
+        <div class="row">
+            <div class="col-md-6">
+                <h4>{{resolve('GAME_SETTINGS')}}</h4>
+                <div class="form-group">
+                    <label style="font-weight: bold;">{{resolve('TIME')}}</label> &nbsp;
+                    <span class="text-muted" ng-bind="vm.game.date | date:'medium'" />
+                    <br />
+                    <label style="font-weight: bold;">{{resolve('PLAYERS_PER_TEAM')}}</label> &nbsp;
+                    <span class="text-muted" ng-bind="vm.game.playersPerTeam | number" />
+                    <br />
+                    <label style="font-weight: bold;">{{resolve('RULE_SET')}}</label>&nbsp;
+                    <div class="text-muted" enum-text="RULE_SET" value="vm.game.rules" />
+                    <br />
+                    <label style="font-weight: bold;">{{resolve('TIME_OF_DAY')}}</label>&nbsp;
+                    <div class="text-muted" enum-text="TIME_OF_DAY" value="vm.game.time" />
+                    <br />
+                    <label style="font-weight: bold;">{{resolve('HUD_SETTINGS')}}</label>&nbsp;
+                    <div class="text-muted" enum-text="HUD_SETTINGS" value="vm.game.hud" />
+                </div>
+
+                <h4>{{resolve('MODE_SETTINGS')}}</h4>
+                <div class="form-group">
+                    <label style="font-weight: bold;">{{resolve('GAME_MODE')}}</label> &nbsp;
+                    <div class="text-muted" enum-text="GAME_MODE" value="vm.game.mode" />
+                    <br />
+                </div>
+            </div>
+            <div class="col-md-6">
+
+                <h4>{{resolve('MATCH_SETTINGS')}}</h4>
+                <div class="form-group">
+                    <label style="font-weight: bold;">{{resolve('NUMBER_OF_ROUNDS')}}</label> &nbsp;
+                    <span class="text-muted" ng-bind="vm.game.matchSettings.numberOfRounds | number" />
+                    <br />
+                    <label style="font-weight: bold;">{{resolve('ROLE_SWAP')}}</label> &nbsp;
+                    <span class="text-muted" ng-bind="vm.game.matchSettings.roleSwap| number" />
+                    <br />
+                    <label style="font-weight: bold;">{{resolve('OBJECTIVE_ROTATION_PARAMETER')}}</label> &nbsp;
+                    <span ng-if="vm.game.matchSettings.objectiveRotationParameter | isNull" class="text-muted">{{resolve('OFF')}}</span>
+                    <span ng-if="!(vm.game.matchSettings.objectiveRotationParameter | isNull)" class="text-muted" ng-bind="vm.game.matchSettings.objectiveRotationParameter | number" />
+                    <br />
+                    <label style="font-weight: bold;">{{resolve('OVERTIME_ROUNDS')}}</label> &nbsp;
+                    <span class="text-muted" ng-bind="vm.game.matchSettings.overtimeRounds | number" />
+                    <br />
+                    <label style="font-weight: bold;">{{resolve('OVERTIME_ROLE_CHANGE')}}</label> &nbsp;
+                    <span class="text-muted" ng-bind="vm.game.matchSettings.overtimeRoleChange | number" />
+                    <br />
+                    <label style="font-weight: bold;">{{resolve('OVERTIME_SCORE_DIFFERENCE')}}</label> &nbsp;
+                    <span class="text-muted" ng-bind="vm.game.matchSettings.overtimeScoreDifference | number" />
+                    <br />
+                    <label style="font-weight: bold;">{{resolve('DAMAGE_HANDICAP')}}</label> &nbsp;
+                    <span class="text-muted" ng-bind="vm.game.matchSettings.damageHandicap | number" />
+                    <br />
+                    <label style="font-weight: bold;">{{resolve('FRIENDLY_FIRE_DAMAGE')}}</label> &nbsp;
+                    <span class="text-muted" ng-bind="vm.game.matchSettings.friendlyFireDamage | number" />
+                    <br />
+                    <label style="font-weight: bold;">{{resolve('INJURED_HEALTH')}}</label> &nbsp;
+                    <span class="text-muted" ng-bind="vm.game.matchSettings.injuredHealth | number" />
+                    <br />
+                    <label style="font-weight: bold;">{{resolve('SPRINT')}}</label> &nbsp;
+                    <span ng-if="vm.game.matchSettings.sprint" class="text-muted">{{resolve('ON')}}</span>
+                    <span ng-if="!vm.game.matchSettings.sprint" class="text-muted">{{resolve('OFF')}}</span>
+                    <br />
+                    <label style="font-weight: bold;">{{resolve('LEAN')}}</label> &nbsp;
+                    <span ng-if="vm.game.matchSettings.lean" class="text-muted">{{resolve('ON')}}</span>
+                    <span ng-if="!vm.game.matchSettings.lean" class="text-muted">{{resolve('OFF')}}</span>
+                    <br />
+                    <label style="font-weight: bold;">{{resolve('DEATH_REPLAY')}}</label> &nbsp;
+                    <span ng-if="vm.game.matchSettings.deathReplay" class="text-muted">{{resolve('ON')}}</span>
+                    <span ng-if="!vm.game.matchSettings.deathReplay" class="text-muted">{{resolve('OFF')}}</span>
+                    <br />
+                    <label style="font-weight: bold;">{{resolve('ATTACKER_UNIQUE_SPAWN')}}</label> &nbsp;
+                    <span ng-if="vm.game.matchSettings.attackerUniqueSpawn" class="text-muted">{{resolve('ON')}}</span>
+                    <span ng-if="!vm.game.matchSettings.attackerUniqueSpawn" class="text-muted">{{resolve('OFF')}}</span>
+                    <br />
+                </div>
+            </div>
+        </div>
     </div>
     <div class="modal-footer text-center">
         <button type="button" class="btn btn-secondary-outline" ng-click="$dismiss()">Close</button>
-        <button type="button" class="btn btn-primary" ng-if="vm.game.userId != userInfo.userId" ng-click="vm.game.$join(); $close()">Join</button>
+        <button type="button" class="btn btn-primary" ng-if="!vm.game.challengerId && vm.game.userId != userInfo.id" ng-click="vm.game.$join(); $close()">Join</button>
     </div>
 
 </div>

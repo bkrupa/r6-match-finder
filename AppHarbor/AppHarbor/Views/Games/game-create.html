@@ -6,7 +6,7 @@
                 <button type="button" class="btn btn-secondary fa fa-times" ng-click="$dismiss()"></button>
             </div>
         </div>
-        <div class="modal-body" style="height: 550px;">
+        <div class="modal-body" style="height: 560px;">
             <div id="accordion" role="tablist" aria-multiselectable="true">
                 <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="headingOne">
@@ -15,39 +15,47 @@
                         </h4>
                     </div>
                     <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                        <div style="display: inline-block; width: 35%; min-width: 150px;">
-                            <div class="form-group">
-                                <label class="form-control-label">{{resolve('TIME')}} <button ng-click="vm.Test()" class="fa fa-plus" type="button"></button></label>
-                                <div>
-                                    <div datetimepicker ng-model="vm.game.date"></div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-control-label">{{resolve('TIME')}}</label>
+                                    <div>
+                                        <div datetimepicker ng-model="vm.game.date"></div>
+                                    </div>
+                                    <div class="text-info">
+                                        <small>{{resolve('START_TIME_IS_LIMITED_TO_WITHIN_SIX_HOURS_FROM_NOW')}}</small>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-control-label">{{resolve('PLAYERS_PER_TEAM')}}</label>
+                                    <div>
+                                        <div radio-button-group ng-model="vm.game.playersPerTeam" count="3" start="3"></div>
+                                    </div>
                                 </div>
                             </div>
-
-                            <div class="form-group">
-                                <label class="form-control-label">{{resolve('RULE_SET')}}</label>
-                                <div>
-                                    <div enum-dropdown="RULE_SET" ng-model="vm.game.rules" class="form-control" />
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-control-label">{{resolve('RULE_SET')}}</label>
+                                    <div>
+                                        <div enum-dropdown="RULE_SET" ng-model="vm.game.rules" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-control-label">{{resolve('HUD_SETTINGS')}}</label>
+                                    <div>
+                                        <div enum-dropdown="HUD_SETTINGS" ng-model="vm.game.hud" class="form-control" />
+                                    </div>
                                 </div>
                             </div>
-
-                            <div class="form-group">
-                                <label class="form-control-label">{{resolve('TIME_OF_DAY')}}</label>
-                                <div>
-                                    <div enum-dropdown="TIME_OF_DAY" ng-model="vm.game.time" class="form-control" />
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-control-label">{{resolve('HUD_SETTINGS')}}</label>
-                                <div>
-                                    <div enum-dropdown="HUD_SETTINGS" ng-model="vm.game.hud" class="form-control" />
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-control-label">{{resolve('PLAYERS_PER_TEAM')}}</label>
-                                <div>
-                                    <div radio-button-group ng-model="vm.game.playersPerTeam" count="3" start="3"></div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-control-label">{{resolve('TIME_OF_DAY')}}</label>
+                                    <div>
+                                        <div enum-dropdown="TIME_OF_DAY" ng-model="vm.game.time" class="form-control" />
+                                    </div>
                                 </div>
                             </div>
                         </div>

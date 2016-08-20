@@ -18,7 +18,7 @@ var app;
                 if (callback)
                     callback(response);
             });
-            return ' ';
+            return '\xa0';
         };
         ResourceService.prototype.load = function (value) {
             var deferred = this.$q.defer();

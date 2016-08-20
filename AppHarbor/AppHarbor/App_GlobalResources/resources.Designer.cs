@@ -151,6 +151,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Game Details.
+        /// </summary>
+        internal static string GAME_DETAILS {
+            get {
+                return ResourceManager.GetString("GAME_DETAILS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Game Mode.
         /// </summary>
         internal static string GAME_MODE {
@@ -431,11 +440,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Start time is limited to within six hours from now..
+        /// </summary>
+        internal static string START_TIME_IS_LIMITED_TO_WITHIN_SIX_HOURS_FROM_NOW {
+            get {
+                return ResourceManager.GetString("START_TIME_IS_LIMITED_TO_WITHIN_SIX_HOURS_FROM_NOW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tactical Realism.
         /// </summary>
         internal static string TACTICAL_REALISM {
             get {
                 return ResourceManager.GetString("TACTICAL_REALISM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time.
+        /// </summary>
+        internal static string TIME {
+            get {
+                return ResourceManager.GetString("TIME", resourceCulture);
             }
         }
         

@@ -10,5 +10,14 @@ namespace R6MatchFinder.Common.Database.Model
         public string Id { get; set; }
 
         public virtual User User { get; set; }
+
+        [Required, Range(0, int.MaxValue)]
+        public int GamesCreated { get; set; }
+        [Required, Range(0, int.MaxValue)]
+        public int GamesPlayed { get; set; }
+
+        [Required, Range(0, int.MaxValue)]
+        public int ChallengesAccepted { get; set; }
+
     }
 }
