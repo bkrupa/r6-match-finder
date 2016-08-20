@@ -1,23 +1,59 @@
 var app;
 (function (app) {
+    var GameRateController = (function () {
+        function GameRateController($scope, game) {
+            this.$scope = $scope;
+            this.game = game;
+            this.rating = 5;
+        }
+        GameRateController.prototype.RateGame = function () {
+            var _this = this;
+            this.game.$rate(this.rating).$promise.finally(function () {
+                _this.$scope.$close();
+            });
+        };
+        GameRateController.Injection = 'gameRateController';
+        GameRateController.$inject = ['$scope', 'game'];
+        return GameRateController;
+    }());
+    app.GameRateController = GameRateController;
+    var GameCompleteController = (function () {
+        function GameCompleteController($scope, game) {
+            this.$scope = $scope;
+            this.game = game;
+            this.rating = 5;
+        }
+        GameCompleteController.prototype.RateGame = function () {
+            var _this = this;
+            this.game.$complete(this.rating).$promise.finally(function () {
+                _this.$scope.$close();
+            });
+        };
+        GameCompleteController.Injection = 'gameCompleteController';
+        GameCompleteController.$inject = ['$scope', 'game'];
+        return GameCompleteController;
+    }());
+    app.GameCompleteController = GameCompleteController;
     var GameDetailsController = (function () {
-        function GameDetailsController(game) {
+        function GameDetailsController($scope, game) {
+            this.$scope = $scope;
             this.game = game;
         }
+        GameDetailsController.prototype.JoinGame = function () {
+            var _this = this;
+            this.game.$join().$promise.finally(function () {
+                console.log('here');
+                _this.$scope.$close();
+            });
+        };
         GameDetailsController.Injection = 'gameDetailsController';
-        GameDetailsController.$inject = ['game'];
+        GameDetailsController.$inject = ['$scope', 'game'];
         return GameDetailsController;
     }());
     app.GameDetailsController = GameDetailsController;
     var CreateGameController = (function () {
         function CreateGameController(game) {
             this.game = game;
-            this.minDate = new Date();
-            this.hourStep = 1;
-            this.dateOptions = {
-                startingDay: 1,
-                showWeeks: false
-            };
         }
         CreateGameController.Injection = 'createGameController';
         CreateGameController.$inject = [
@@ -27,13 +63,14 @@ var app;
     }());
     app.CreateGameController = CreateGameController;
     var GamesController = (function () {
-        function GamesController($scope, $rootScope, repository, userRepository, $uibModal, Hub) {
+        function GamesController($scope, $rootScope, repository, userRepository, $uibModal, $timeout, Hub) {
             var _this = this;
             this.$scope = $scope;
             this.$rootScope = $rootScope;
             this.repository = repository;
             this.userRepository = userRepository;
             this.$uibModal = $uibModal;
+            this.$timeout = $timeout;
             this.Hub = Hub;
             this.games = [];
             this.myGames = [];
@@ -44,7 +81,7 @@ var app;
             this.options = {
                 listeners: {
                     refreshGamesList: function () {
-                        _this.bindGames();
+                        _this.bindGames(false);
                     }
                 },
                 errorHandler: this.onSignalRError,
@@ -66,7 +103,7 @@ var app;
                 }
             };
             this.generalHub = new Hub('generalHub', this.options);
-            this.bindGames();
+            this.bindGames(true);
         }
         GamesController.prototype.onSignalRError = function (error) {
             console.error(error);
@@ -82,7 +119,7 @@ var app;
                 resolve: { game: function () { return _this.repository.create(); } }
             });
             modal.result.then(function (game) {
-                game.$save().then(function () { _this.bindGames(); });
+                game.$save().then(function () { _this.bindGames(true); });
             });
         };
         GamesController.prototype.showDetails = function (game) {
@@ -96,26 +133,55 @@ var app;
                 resolve: { game: function () { return game; } }
             });
             modal.result.then(function () {
-                _this.bindGames();
+                _this.bindGames(true);
+                _this.view = 'MyGames';
             });
         };
         GamesController.prototype.completeGame = function (game) {
-        };
-        GamesController.prototype.bindGames = function () {
             var _this = this;
-            if (this.games.$resolved !== false)
-                this.games = this.repository.getAll();
-            if (this.myGames.$resolved !== false)
-                this.myGames = this.repository.getMyGames();
-            if (this.myStatistics.$resolved !== false)
-                this.$rootScope.userInfo.$promise.then(function (userInfo) {
-                    _this.myStatistics = _this.userRepository.getUserStatistics(userInfo.id);
-                });
-            console.log(this.$rootScope.userInfo);
+            var modal = this.$uibModal.open({
+                backdrop: 'static',
+                size: 'lg',
+                templateUrl: '/Views/Games/game-rate.html',
+                controllerAs: 'vm',
+                controller: GameCompleteController,
+                resolve: { game: function () { return game; } }
+            });
+            modal.result.then(function (rating) {
+                _this.bindGames(true);
+            });
+        };
+        GamesController.prototype.rateGame = function (game) {
+            var _this = this;
+            var modal = this.$uibModal.open({
+                backdrop: 'static',
+                size: 'lg',
+                templateUrl: '/Views/Games/game-rate.html',
+                controllerAs: 'vm',
+                controller: GameRateController,
+                resolve: { game: function () { return game; } }
+            });
+            modal.result.then(function (rating) {
+                _this.bindGames(true);
+            });
+        };
+        GamesController.prototype.bindGames = function (immediate) {
+            var _this = this;
+            this.$timeout.cancel(this.bindTimeout);
+            this.bindTimeout = this.$timeout(function () {
+                if (_this.games.$resolved !== false)
+                    _this.games = _this.repository.getAll();
+                if (_this.myGames.$resolved !== false)
+                    _this.myGames = _this.repository.getMyGames();
+                if (_this.myStatistics.$resolved !== false)
+                    _this.$rootScope.userInfo.$promise.then(function (userInfo) {
+                        _this.myStatistics = _this.userRepository.getUserStatistics(userInfo.id);
+                    });
+            }, immediate ? 0 : 500, true);
         };
         GamesController.prototype.deleteGame = function (game) {
             var _this = this;
-            game.$delete().then(function () { _this.bindGames(); });
+            game.$delete().then(function () { _this.bindGames(true); });
         };
         GamesController.Injection = 'gamesController';
         GamesController.$inject = [
@@ -124,6 +190,7 @@ var app;
             app.GamesRepository.Injection,
             app.AccountRepository.Injection,
             '$uibModal',
+            '$timeout',
             'Hub'
         ];
         return GamesController;

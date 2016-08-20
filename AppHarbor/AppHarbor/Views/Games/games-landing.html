@@ -1,0 +1,22 @@
+﻿<div class="container" style="margin-top: 25px;">
+
+
+    <ul class="nav nav-tabs">
+        <li class="nav-item" ng-click="vm.view = 'JoinGame'"><a ng-class="{active: vm.view=='JoinGame' || vm.view==''}" class="nav-link" href="#">{{resolve('JOIN_GAME')}}</a></li>
+        <li class="nav-item" ng-click="vm.view = 'MyGames'"><a ng-class="{active: vm.view=='MyGames'}" class="nav-link" href="#">{{resolve('MY_GAMES')}}</a></li>
+        <li class="nav-item" ng-click="vm.view = 'MyStats'"><a ng-class="{active: vm.view=='MyStats'}" class="nav-link" href="#">{{resolve('MY_STATS')}}</a></li>
+    </ul>
+
+    <div ng-switch="vm.view" class="card card-block">
+        <div ng-switch-default>
+            <ng-include src="'/Views/Games/upcoming-games-grid.html'"></ng-include>
+        </div>
+        <div ng-switch-when="MyGames">
+            <ng-include src="'/Views/Games/my-games-grid.html'"></ng-include>
+        </div>
+        <div ng-switch-when="MyStats">
+            <ng-include src="'/Views/Games/my-statistics.html'"></ng-include>
+        </div>
+    </div>
+
+</div>

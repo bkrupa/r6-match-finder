@@ -10,6 +10,7 @@ using R6MatchFinder.Common.Web.Model.Abstract;
 using R6MatchFinder.Hubs;
 using Resources;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -51,7 +52,7 @@ namespace R6MatchFinder.Controllers
         }
 
         [HttpGet, Route("MyGames")]
-        public async Task<IEnumerable<WMGameBase>> GetMyGames()
+        public async Task<IEnumerable> GetMyGames()
         {
             IEnumerable<Game> games = await _gameRepository.GetForUserAsync(User.Identity.GetUserId());
             IEnumerable<ActiveGame> activeGames = await _activeGameRepository.GetForUserAsync(User.Identity.GetUserId());
@@ -66,9 +67,9 @@ namespace R6MatchFinder.Controllers
         }
 
         [HttpGet, Route("{id}")]
-        public async Task<WMGame> Get(string id)
+        public async Task<WMGame> Get(Guid id)
         {
-            Game game = await _gameRepository.GetAsync(Guid.Parse(id));
+            Game game = await _gameRepository.GetAsync(id);
 
             if (game == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
@@ -89,13 +90,13 @@ namespace R6MatchFinder.Controllers
                 Rules = RuleSet.Standard,
                 Time = TimeOfDay.Day,
                 PlayersPerTeam = 5,
-                ModeSettings = new WMGameModeSettings(),
-                MatchSettings = WMGameMatchSettings.DefaultSettings,
+                ModeSettings = new WMBaseGameModeSettings(),
+                MatchSettings = WMBaseGameMatchSettings.DefaultSettings,
             };
         }
 
-        [HttpPost, Route("{id}")]
-        public async Task<WMGame> Post(string id, WMGame webModel)
+        [HttpPost, Route(Common.Utility.Constants.NEW_ID)]
+        public async Task<WMGame> CreateGame(WMGame webModel)
         {
             webModel.UserId = User.Identity.GetUserId();
 
@@ -116,9 +117,9 @@ namespace R6MatchFinder.Controllers
             if (dbModel == null)
                 throw new HttpResponseException(HttpStatusCode.NotAcceptable);
 
-            IEnumerable<WMGameBase> myGames = await GetMyGames();
+            IEnumerable<WMGameBase> myGames = (await GetMyGames()).Cast<WMGameBase>();
 
-            if (myGames.Any(g => g.Date.Subtract(dbModel.Date).Duration().TotalHours < 1))
+            if (myGames.Any(g => !(g is WMCompleteGame) && g.Date.Subtract(dbModel.Date).Duration().TotalHours < 1))
             {
                 HttpResponseMessage resp = new HttpResponseMessage(HttpStatusCode.NotAcceptable);
                 resp.Content = new StringContent(resources.PLEASE_ALLOW_ONE_HOUR_PRIOR_TO_A_GAMES_SCHEDULED_START_AND_ONE_HOUR_AFTER_CURRENT_GAME_CONFLICTS);
@@ -129,14 +130,14 @@ namespace R6MatchFinder.Controllers
             await _statsService.AddGameCreated(Guid.Parse(User.Identity.GetUserId()));
 
             GeneralHub.GameStateChanged();
-            return await Get(dbModel.Id.ToString());
+            return await Get(dbModel.Id);
         }
 
         [HttpPost, Route("{id}/Join")]
-        public async Task JoinGame(string id)
+        public async Task<WMActiveGame> JoinGame(Guid id)
         {
             string userId = User.Identity.GetUserId();
-            Game dbModel = await _gameRepository.GetAsync(Guid.Parse(id));
+            Game dbModel = await _gameRepository.GetAsync(id);
 
             if (dbModel == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
@@ -144,9 +145,9 @@ namespace R6MatchFinder.Controllers
             if (dbModel.UserId == userId)
                 throw new HttpResponseException(HttpStatusCode.PreconditionFailed);
 
-            IEnumerable<WMGameBase> myGames = await GetMyGames();
+            IEnumerable<WMGameBase> myGames = (await GetMyGames()).Cast<WMGameBase>();
 
-            if (myGames.Any(g => g.Date.Subtract(dbModel.Date).Duration().TotalHours < 1))
+            if (myGames.Any(g => !(g is WMCompleteGame) && g.Date.Subtract(dbModel.Date).Duration().TotalHours < 1))
             {
                 HttpResponseMessage resp = new HttpResponseMessage(HttpStatusCode.NotAcceptable);
                 resp.Content = new StringContent(resources.PLEASE_ALLOW_ONE_HOUR_PRIOR_TO_A_GAMES_SCHEDULED_START_AND_ONE_HOUR_AFTER_CURRENT_GAME_CONFLICTS);
@@ -159,16 +160,18 @@ namespace R6MatchFinder.Controllers
             activeGame = await _activeGameRepository.CreateAsync(activeGame);
             await _gameRepository.DeleteAsync(dbModel);
 
-            await _statsService.AddChallengeAccepted(Guid.Parse(dbModel.UserId));
+            await _statsService.AddChallengeAccepted(Guid.Parse(activeGame.UserId));
             await _statsService.AddChallengeTaken(Guid.Parse(User.Identity.GetUserId()));
             GeneralHub.GameStateChanged();
+
+            return activeGame.ToWebModel<ActiveGame, WMActiveGame>();
         }
 
         [HttpPost, Route("{id}/Complete")]
-        public async Task CompleteActiveGame(string id, int rating)
+        public async Task<WMCompleteGame> CompleteActiveGame(Guid id, [FromBody]int rating)
         {
             string userId = User.Identity.GetUserId();
-            ActiveGame dbModel = await _activeGameRepository.GetAsync(Guid.Parse(id));
+            ActiveGame dbModel = await _activeGameRepository.GetAsync(id);
 
             if (dbModel == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
@@ -199,18 +202,49 @@ namespace R6MatchFinder.Controllers
                 await _statsService.UpdateRating(Guid.Parse(completeGame.UserId), rating);
 
             GeneralHub.GameStateChanged();
+
+            return completeGame.ToWebModel<CompleteGame, WMCompleteGame>();
         }
 
         [HttpPost, Route("{id}/Rate")]
-        public async Task RateCompleteGame(string id, int rating)
+        public async Task<WMCompleteGame> RateCompleteGame(Guid id, [FromBody] int rating)
         {
-            throw new NotImplementedException();
+            string userId = User.Identity.GetUserId();
+            CompleteGame dbModel = await _completeGameRepository.GetAsync(id);
+
+            if (dbModel == null)
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+
+            if (dbModel.UserId != userId && dbModel.ChallengerId != userId)
+                throw new HttpResponseException(HttpStatusCode.PreconditionFailed);
+
+            if (rating < 1 || rating > 5)
+                throw new HttpResponseException(HttpStatusCode.NotAcceptable);
+
+            if (dbModel.UserId == userId)
+            {
+                if (dbModel.CreatorRating.HasValue)
+                    throw new HttpResponseException(HttpStatusCode.Conflict);
+                dbModel.CreatorRating = rating;
+                await _statsService.UpdateRating(Guid.Parse(dbModel.ChallengerId), rating);
+            }
+            else if (dbModel.ChallengerId == userId)
+            {
+                if (dbModel.ChallengerRating.HasValue)
+                    throw new HttpResponseException(HttpStatusCode.Conflict);
+                dbModel.ChallengerRating = rating;
+                await _statsService.UpdateRating(Guid.Parse(dbModel.UserId), rating);
+            }
+
+            dbModel = await _completeGameRepository.UpdateAsync(id, dbModel);
+
+            return dbModel.ToWebModel<CompleteGame, WMCompleteGame>();
         }
 
         [HttpDelete, Route("{id}")]
-        public async Task Delete(string id)
+        public async Task Delete(Guid id)
         {
-            Game dbModel = await _gameRepository.GetAsync(Guid.Parse(id));
+            Game dbModel = await _gameRepository.GetAsync(id);
 
             if (dbModel == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);

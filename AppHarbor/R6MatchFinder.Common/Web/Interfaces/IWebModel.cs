@@ -12,6 +12,11 @@ namespace R6MatchFinder.Common.Web.Interfaces
     {
     }
 
+    public interface OnModelCreated<T, G> where T : IWebModel<G> where G : class
+    {
+        void OnModelCreated(T webModel, G dbModel);
+    }
+
     public static class WebModelExtensions
     {
         public static T ToDbModel<T>(this IWebModel<T> webModel) where T : class
@@ -23,7 +28,14 @@ namespace R6MatchFinder.Common.Web.Interfaces
             where T : class
             where WebModelType : IWebModel<T>
         {
-            return Mapper.Map<WebModelType>(obj);
+            WebModelType webModel = Mapper.Map<WebModelType>(obj);
+
+            if (webModel is OnModelCreated<WebModelType, T>)
+            {
+                ((OnModelCreated<WebModelType, T>)webModel).OnModelCreated(webModel, obj);
+            }
+
+            return webModel;
         }
 
         public static IEnumerable<WebModelType> ToWebModels<T, WebModelType>(this IEnumerable<T> list)

@@ -102,6 +102,20 @@ namespace R6MatchFinder
         {
             throw new NotImplementedException();
         }
+
+        public override async Task<IdentityResult> CreateAsync(User user)
+        {
+            if (user.Statistics == null)
+                user.Statistics = new UserStatistics();
+            return await base.CreateAsync(user);
+        }
+
+        public override async Task<IdentityResult> CreateAsync(User user, string password)
+        {
+            if (user.Statistics == null)
+                user.Statistics = new UserStatistics();
+            return await base.CreateAsync(user, password);
+        }
     }
 
     // Configure the application sign-in manager which is used in this application.  

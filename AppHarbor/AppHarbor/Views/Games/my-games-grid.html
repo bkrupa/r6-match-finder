@@ -1,0 +1,47 @@
+﻿<h3>{{resolve('MY_GAMES')}}</h3>
+<table class="table table-bordered table-striped">
+    <thead ng-if="vm.myGames.length > 0">
+        <tr>
+            <th>{{resolve('CREATOR')}}</th>
+            <th>{{resolve('CHALLENGER')}}</th>
+            <th>{{resolve('PLATFORM')}}</th>
+            <th>{{resolve('TIME')}}</th>
+            <th>{{resolve('RULE_SET')}}</th>
+            <th>{{resolve('MODE')}}</th>
+            <th>{{resolve('PLAYERS')}}</th>
+            <th style="width: 130px;"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="game in vm.myGames | orderBy:'-date' | startFrom: (vm.currentPage-1) * vm.pageSize | limitTo: vm.pageSize"
+            ng-class="{'table-info': !game.isActive && !game.isComplete && game.userId == userInfo.id, 'table-success': game.isComplete, 'table-warning': game.isActive}">
+            <td ng-bind="game.creator.username"></td>
+            <td ng-bind="game.challenger.username"></td>
+            <td><span enum-text="PLATFORM" value="game.platform" /></td>
+            <td ng-bind="game.date | date:'medium'"></td>
+            <td><span enum-text="RULE_SET" value="game.rules" /></td>
+            <td><span enum-text="GAME_MODE" value="game.mode" /></td>
+            <td ng-bind="game.playersPerTeam"></td>
+            <td style="width: 130px;" class="text-center">
+                <button class="fa fa-check-circle btn btn-link" ng-if="game.isActive" type="button" ng-click="vm.completeGame(game)"></button>
+                <button class="fa fa-star fa-star-half-full btn btn-link" ng-if="game.isComplete && game.canRate" type="button" ng-click="vm.rateGame(game)"></button>
+                <button class="fa fa-gears btn btn-link" type="button" ng-click="vm.showDetails(game)"></button>
+                <button class="fa fa-trash-o btn btn-link" type="button" ng-if="!game.isActive && !game.isComplete && game.userId == userInfo.id" ng-click="vm.deleteGame(game)"></button>
+            </td>
+        </tr>
+        <tr ng-if="vm.myGames.length === 0 && vm.myGames.$resolved">
+            <td colspan="8">
+                {{resolve('YOU_HAVE_NOT_SIGNED_UP_FOR_ANY_MATCHES')}}
+            </td>
+        </tr>
+        <tr ng-if="!vm.myGames.$resolved">
+            <td class="text-center" colspan="8">
+                <span class="fa fa-spinner fa-spin"></span>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="text-center" ng-if="vm.myGames.length > vm.pageSize">
+    <ul class="text-center" uib-pagination total-items="vm.games.length" ng-model="vm.currentPage" ng-change="pageChanged()"></ul>
+</div>

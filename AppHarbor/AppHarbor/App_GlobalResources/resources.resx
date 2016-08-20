@@ -126,6 +126,9 @@
   <data name="BOMB" xml:space="preserve">
     <value>Bomb</value>
   </data>
+  <data name="CHALLENGER" xml:space="preserve">
+    <value>Challenger</value>
+  </data>
   <data name="CHALLENGES_ACCEPTED" xml:space="preserve">
     <value>Challenges Accepted</value>
   </data>
@@ -137,6 +140,9 @@
   </data>
   <data name="CREATE_A_GAME" xml:space="preserve">
     <value>Create a Game</value>
+  </data>
+  <data name="CREATOR" xml:space="preserve">
+    <value>Creator</value>
   </data>
   <data name="DAMAGE_HANDICAP" xml:space="preserve">
     <value>Damage Handicap</value>
@@ -192,6 +198,9 @@
   <data name="MATCH_SETTINGS" xml:space="preserve">
     <value>Match Settings</value>
   </data>
+  <data name="MODE" xml:space="preserve">
+    <value>Mode</value>
+  </data>
   <data name="MODE_SETTINGS" xml:space="preserve">
     <value>Mode Settings</value>
   </data>
@@ -206,6 +215,9 @@
   </data>
   <data name="NO" xml:space="preserve">
     <value>No</value>
+  </data>
+  <data name="NOT_APPLICABLE_ABBREVIATION" xml:space="preserve">
+    <value>N/A</value>
   </data>
   <data name="NUMBER_OF_ROUNDS" xml:space="preserve">
     <value>Number of Rounds</value>
@@ -231,14 +243,29 @@
   <data name="OVERTIME_SCORE_DIFFERENCE" xml:space="preserve">
     <value>Overtime Score Difference</value>
   </data>
+  <data name="PLATFORM" xml:space="preserve">
+    <value>Platform</value>
+  </data>
+  <data name="PLAYERS" xml:space="preserve">
+    <value>Players</value>
+  </data>
   <data name="PLAYERS_PER_TEAM" xml:space="preserve">
     <value>Players per Team</value>
+  </data>
+  <data name="PLAYSTATION4" xml:space="preserve">
+    <value>Playstation 4</value>
   </data>
   <data name="PLEASE_ALLOW_ONE_HOUR_PRIOR_TO_A_GAMES_SCHEDULED_START_AND_ONE_HOUR_AFTER_CURRENT_GAME_CONFLICTS" xml:space="preserve">
     <value>Please allow one hour prior to a game's scheduled start time, and one hour after the scheduled start time before scheduling another game. This game conflicts with another.</value>
   </data>
   <data name="PRO_LEAGUE" xml:space="preserve">
     <value>Pro League</value>
+  </data>
+  <data name="RATE_THIS_GAME" xml:space="preserve">
+    <value>Rate This Game</value>
+  </data>
+  <data name="RELIABILITY" xml:space="preserve">
+    <value>Reliability</value>
   </data>
   <data name="ROLE_SWAP" xml:space="preserve">
     <value>Role Swap</value>
@@ -272,6 +299,12 @@
   </data>
   <data name="USER_IMAGE" xml:space="preserve">
     <value>User Image</value>
+  </data>
+  <data name="U_PLAY" xml:space="preserve">
+    <value>UPlay</value>
+  </data>
+  <data name="XBOX_ONE" xml:space="preserve">
+    <value>Xbox One</value>
   </data>
   <data name="YES" xml:space="preserve">
     <value>Yes</value>

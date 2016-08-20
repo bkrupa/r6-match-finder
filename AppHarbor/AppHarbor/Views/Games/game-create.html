@@ -26,17 +26,17 @@
                                         <small>{{resolve('START_TIME_IS_LIMITED_TO_WITHIN_SIX_HOURS_FROM_NOW')}}</small>
                                     </div>
                                 </div>
-
-                                <div class="form-group">
-                                    <label class="form-control-label">{{resolve('PLAYERS_PER_TEAM')}}</label>
-                                    <div>
-                                        <div radio-button-group ng-model="vm.game.playersPerTeam" count="3" start="3"></div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-control-label">{{resolve('PLATFORM')}}</label>
+                                    <div>
+                                        <div enum-dropdown="PLATFORM" ng-model="vm.game.platform" class="form-control" />
+                                    </div>
+                                </div>
+
                                 <div class="form-group">
                                     <label class="form-control-label">{{resolve('RULE_SET')}}</label>
                                     <div>
@@ -51,6 +51,13 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-control-label">{{resolve('PLAYERS_PER_TEAM')}}</label>
+                                    <div>
+                                        <div radio-button-group ng-model="vm.game.playersPerTeam" count="3" start="3"></div>
+                                    </div>
+                                </div>
+
                                 <div class="form-group">
                                     <label class="form-control-label">{{resolve('TIME_OF_DAY')}}</label>
                                     <div>

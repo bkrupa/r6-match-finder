@@ -1,9 +1,9 @@
 ﻿using R6MatchFinder.Common.Database.Model;
 using R6MatchFinder.Common.Web.Interfaces;
 
-namespace R6MatchFinder.Common.Web.Model
+namespace R6MatchFinder.Common.Web.Model.Abstract
 {
-    public class WMGameMatchSettings : IWebModel<GameMatchSettings>, IWebModel<ActiveGameMatchSettings>
+    public class WMBaseGameMatchSettings : IWebModel<GameMatchSettings>, IWebModel<ActiveGameMatchSettings>, IWebModel<CompleteGameMatchSettings>
     {
         public string Id { get; set; }
 
@@ -21,13 +21,13 @@ namespace R6MatchFinder.Common.Web.Model
         public bool Lean { get; set; }
         public bool DeathReplay { get; set; }
 
-        public static WMGameMatchSettings DefaultSettings
+        public static WMBaseGameMatchSettings DefaultSettings
         {
             get
             {
-                return new WMGameMatchSettings
+                return new WMBaseGameMatchSettings
                 {
-                    NumberOfRounds= 4,
+                    NumberOfRounds = 4,
                     RoleSwap = 1,
                     OvertimeRounds = 1,
                     OvertimeScoreDifference = 2,
@@ -44,11 +44,11 @@ namespace R6MatchFinder.Common.Web.Model
             }
         }
 
-        public static WMGameMatchSettings Ranked
+        public static WMBaseGameMatchSettings Ranked
         {
             get
             {
-                return new WMGameMatchSettings
+                return new WMBaseGameMatchSettings
                 {
                     NumberOfRounds = 6,
                     RoleSwap = 1,
@@ -67,11 +67,11 @@ namespace R6MatchFinder.Common.Web.Model
             }
         }
 
-        public static WMGameMatchSettings ESL
+        public static WMBaseGameMatchSettings ESL
         {
             get
             {
-                return new WMGameMatchSettings
+                return new WMBaseGameMatchSettings
                 {
                     NumberOfRounds = 8,
                     RoleSwap = 1,

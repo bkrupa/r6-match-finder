@@ -8,5 +8,7 @@ namespace R6MatchFinder.Common.Web.Model
         public string Id { get; set; }
         public string Username { get; set; }
         public string Email { get; set; }
+
+        public WMUserStatistics Statistics { get; set; }
     }
 }

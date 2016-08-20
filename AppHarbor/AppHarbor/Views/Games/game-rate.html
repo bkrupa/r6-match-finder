@@ -1,0 +1,19 @@
+﻿<div>
+    <div class="modal-header">
+        <h3 class="col-md-11">{{resolve('RATE_THIS_GAME')}}</h3>
+        <div class="col-md-1 pull-right">
+            <button type="button" class="btn btn-secondary fa fa-times" ng-click="$dismiss()"></button>
+        </div>
+    </div>
+    <div class="modal-body">
+        <div class="text-center" style="font-size: 28px;">
+
+            <uib-rating ng-model="vm.rating" enable-reset="false"></uib-rating>
+
+        </div>
+    </div>
+    <div class="modal-footer text-center">
+        <button type="button" class="btn btn-secondary-outline" ng-click="$dismiss()">Cancel</button>
+        <button type="submit" class="btn btn-success" ng-click="vm.RateGame()">Submit</button>
+    </div>
+</div>

@@ -1,0 +1,55 @@
+﻿<h3 class="col-md-11">{{resolve('GAMES')}}</h3>
+<div class="col-md-1 pull-right">
+    <button class="btn btn-success btn-sm" type="button" ng-click="vm.createGame()" style="margin-bottom: 10px;"
+            ng-if="vm.games.$resolved && !(vm.games | map:'userId' | contains:userInfo.id)">
+        {{resolve('CREATE')}}
+    </button>
+</div>
+<table class="table table-bordered table-striped">
+    <thead ng-if="vm.games.length > 0">
+        <tr>
+            <th>{{resolve('RELIABILITY')}}</th>
+            <th>{{resolve('PLATFORM')}}</th>
+            <th>{{resolve('TIME')}}</th>
+            <th>{{resolve('RULE_SET')}}</th>
+            <th>{{resolve('GAME_MODE')}}</th>
+            <th>{{resolve('PLAYERS')}}</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="game in vm.games | orderBy:'date' | startFrom: (vm.currentPage-1) * vm.pageSize | limitTo: vm.pageSize" ng-class="{'table-info': game.userId == userInfo.id}">
+            <td>
+                <span ng-if="game.creator.statistics.gamesPlayed > 5">
+                    {{(100 * game.creator.statistics.gamesPlayed / (game.creator.statistics.challengesTaken + game.creator.statistics.challengesAccepted) || 100 ) | number:2}}%
+                </span>
+                <span ng-if="game.creator.statistics.gamesPlayed <= 5">
+                    {{resolve('NOT_APPLICABLE_ABBREVIATION')}}
+                </span>
+            </td>
+            <td><span enum-text="PLATFORM" value="game.platform" /></td>
+            <td ng-bind="game.date | date:'medium'"></td>
+            <td><span enum-text="RULE_SET" value="game.rules" /></td>
+            <td><span enum-text="GAME_MODE" value="game.mode" /></td>
+            <td ng-bind="game.playersPerTeam"></td>
+            <td style="width: 130px;" class="text-center">
+                <button class="fa fa-gears btn btn-link" type="button" ng-click="vm.showDetails(game)"></button>
+                <button class="fa fa-trash-o btn btn-link" type="button" ng-if="game.userId == userInfo.id" ng-click="vm.deleteGame(game)"></button>
+            </td>
+        </tr>
+        <tr ng-if="vm.games.length === 0 && vm.games.$resolved">
+            <td colspan="7">
+                No Games Were Found!
+            </td>
+        </tr>
+        <tr ng-if="!vm.games.$resolved">
+            <td class="text-center" colspan="7">
+                <span class="fa fa-spinner fa-spin"></span>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="text-center" ng-if="vm.games.length > vm.pageSize">
+    <ul class="text-center" uib-pagination total-items="vm.games.length" ng-model="vm.currentPage" ng-change="pageChanged()"></ul>
+</div>

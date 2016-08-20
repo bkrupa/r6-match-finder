@@ -6,6 +6,14 @@
     }
 
     [PublicEnum]
+    public enum Platform
+    {
+        XboxOne,
+        Playstation4,
+        UPlay
+    }
+
+    [PublicEnum]
     public enum Gender
     {
         Male,

@@ -88,6 +88,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Challenger.
+        /// </summary>
+        internal static string CHALLENGER {
+            get {
+                return ResourceManager.GetString("CHALLENGER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Challenges Accepted.
         /// </summary>
         internal static string CHALLENGES_ACCEPTED {
@@ -120,6 +129,15 @@ namespace Resources {
         internal static string CREATE_A_GAME {
             get {
                 return ResourceManager.GetString("CREATE_A_GAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Creator.
+        /// </summary>
+        internal static string CREATOR {
+            get {
+                return ResourceManager.GetString("CREATOR", resourceCulture);
             }
         }
         
@@ -286,6 +304,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mode.
+        /// </summary>
+        internal static string MODE {
+            get {
+                return ResourceManager.GetString("MODE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mode Settings.
         /// </summary>
         internal static string MODE_SETTINGS {
@@ -327,6 +354,15 @@ namespace Resources {
         internal static string NO {
             get {
                 return ResourceManager.GetString("NO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to N/A.
+        /// </summary>
+        internal static string NOT_APPLICABLE_ABBREVIATION {
+            get {
+                return ResourceManager.GetString("NOT_APPLICABLE_ABBREVIATION", resourceCulture);
             }
         }
         
@@ -403,11 +439,38 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Platform.
+        /// </summary>
+        internal static string PLATFORM {
+            get {
+                return ResourceManager.GetString("PLATFORM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Players.
+        /// </summary>
+        internal static string PLAYERS {
+            get {
+                return ResourceManager.GetString("PLAYERS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Players per Team.
         /// </summary>
         internal static string PLAYERS_PER_TEAM {
             get {
                 return ResourceManager.GetString("PLAYERS_PER_TEAM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Playstation 4.
+        /// </summary>
+        internal static string PLAYSTATION4 {
+            get {
+                return ResourceManager.GetString("PLAYSTATION4", resourceCulture);
             }
         }
         
@@ -427,6 +490,24 @@ namespace Resources {
         internal static string PRO_LEAGUE {
             get {
                 return ResourceManager.GetString("PRO_LEAGUE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rate This Game.
+        /// </summary>
+        internal static string RATE_THIS_GAME {
+            get {
+                return ResourceManager.GetString("RATE_THIS_GAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reliability.
+        /// </summary>
+        internal static string RELIABILITY {
+            get {
+                return ResourceManager.GetString("RELIABILITY", resourceCulture);
             }
         }
         
@@ -526,6 +607,24 @@ namespace Resources {
         internal static string USER_IMAGE {
             get {
                 return ResourceManager.GetString("USER_IMAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UPlay.
+        /// </summary>
+        internal static string U_PLAY {
+            get {
+                return ResourceManager.GetString("U_PLAY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Xbox One.
+        /// </summary>
+        internal static string XBOX_ONE {
+            get {
+                return ResourceManager.GetString("XBOX_ONE", resourceCulture);
             }
         }
         

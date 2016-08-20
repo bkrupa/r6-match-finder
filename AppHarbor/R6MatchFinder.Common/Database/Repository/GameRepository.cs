@@ -57,13 +57,17 @@ namespace R6MatchFinder.Common.Database.Repository
                 .Where(g => g.Date >= DateTimeOffset.UtcNow)
                 .Include(g => g.MatchSettings)
                 .Include(g => g.ModeSettings)
+                .Include(g => g.Creator.Statistics)
                 .Where(g => g.UserId == userId)
                 .ToListAsync();
         }
 
         public IQueryable<Game> GetQueryable()
         {
-            return _dbContext.Games;
+            return _dbContext.Games
+                .Include(g => g.MatchSettings)
+                .Include(g => g.ModeSettings)
+                .Include(g => g.Creator.Statistics);
         }
 
         public async Task<Game> UpdateAsync(Guid id, Game dbModel)

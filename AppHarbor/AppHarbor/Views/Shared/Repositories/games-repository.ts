@@ -25,21 +25,21 @@
             var that: GamesRepository = this;
             this.gamesResource = $resource('/api/Games/:id/:action', { action: '@action', id: '@id' });
 
-            this.gamesResource.prototype.$join = function () {
+            this.gamesResource.prototype.$join = function (): ng.resource.IResource<any> {
                 return that.gamesResource.save({
                     action: 'Join',
                     id: this.id
                 });
             };
 
-            this.gamesResource.prototype.$complete = function (rating) {
+            this.gamesResource.prototype.$complete = function (rating): ng.resource.IResource<any> {
                 return that.gamesResource.save({
                     action: 'Complete',
                     id: this.id
                 }, rating);
             };
 
-            this.gamesResource.prototype.$rate = function (rating) {
+            this.gamesResource.prototype.$rate = function (rating): ng.resource.IResource<any> {
                 return that.gamesResource.save({
                     action: 'Rate',
                     id: this.id

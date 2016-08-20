@@ -15,7 +15,7 @@ var app;
                 // because we've returned nothing, no state change occurs
             });
             $stateProvider
-                .state('home', { url: '/games', templateUrl: 'Views/Games/games-grid.html', controller: app.GamesController.Injection, controllerAs: 'vm' });
+                .state('home', { url: '/games', templateUrl: 'Views/Games/games-landing.html', controller: app.GamesController.Injection, controllerAs: 'vm' });
             //.otherwise({ redirectTo: function () { return redirectFn.apply(this, arguments) || '/'; } });
             $urlRouterProvider.otherwise('/games');
             $locationProvider.html5Mode(true);

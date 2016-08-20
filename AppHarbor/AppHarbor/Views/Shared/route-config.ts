@@ -25,7 +25,7 @@
 
 
             $stateProvider
-                .state('home', { url: '/games', templateUrl: 'Views/Games/games-grid.html', controller: GamesController.Injection, controllerAs: 'vm' })
+                .state('home', { url: '/games', templateUrl: 'Views/Games/games-landing.html', controller: GamesController.Injection, controllerAs: 'vm' })
                 ;
 
 

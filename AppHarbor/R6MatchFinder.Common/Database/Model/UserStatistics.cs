@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace R6MatchFinder.Common.Database.Model
@@ -6,6 +7,11 @@ namespace R6MatchFinder.Common.Database.Model
     [Table("UserStatistics")]
     public class UserStatistics
     {
+        public UserStatistics()
+        {
+            Id = Guid.NewGuid().ToString();
+        }
+
         [Key, Required, ForeignKey("User")]
         public string Id { get; set; }
 

@@ -118,6 +118,7 @@
     <Compile Include="Database\Model\LoginLog.cs" />
     <Compile Include="Database\Model\Role.cs" />
     <Compile Include="Database\Model\User.cs" />
+    <Compile Include="Database\Model\UserAccounts.cs" />
     <Compile Include="Database\Model\UserStatistics.cs" />
     <Compile Include="Database\R6Context.cs" />
     <Compile Include="Database\Repository\ActiveGameRepository.cs" />
@@ -138,8 +139,8 @@
     <Compile Include="Web\Model\WMCompleteGame.cs" />
     <Compile Include="Web\Model\WMGame.cs" />
     <Compile Include="Web\Model\Abstract\WMGameBase.cs" />
-    <Compile Include="Web\Model\WMGameMatchSettings.cs" />
-    <Compile Include="Web\Model\WMGameModeSettings.cs" />
+    <Compile Include="Web\Model\Abstract\WMBaseGameMatchSettings.cs" />
+    <Compile Include="Web\Model\Abstract\WMBaseGameModeSettings.cs" />
     <Compile Include="Web\Model\WMUser.cs" />
     <Compile Include="Web\Model\WMUserStatistics.cs" />
   </ItemGroup>

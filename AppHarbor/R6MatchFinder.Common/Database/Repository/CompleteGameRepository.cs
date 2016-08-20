@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace R6MatchFinder.Common.Database.Repository
 {
-    public class CompleteGameRepository : IAsyncRepository<CompleteGame>
+    public class CompleteGameRepository : IOwnedAsyncRepository<CompleteGame>
     {
         private IDbContext _dbContext;
 

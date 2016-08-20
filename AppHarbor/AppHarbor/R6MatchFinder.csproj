@@ -339,7 +339,11 @@
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="Views\Games\game-create.html" />
     <Content Include="Views\Games\game-details.html" />
-    <Content Include="Views\Games\games-grid.html" />
+    <Content Include="Views\Games\game-rate.html" />
+    <Content Include="Views\Games\games-landing.html" />
+    <Content Include="Views\Games\my-games-grid.html" />
+    <Content Include="Views\Games\my-statistics.html" />
+    <Content Include="Views\Games\upcoming-games-grid.html" />
     <Content Include="Views\Shared\Directives\templates\datetimepicker-template.html" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />

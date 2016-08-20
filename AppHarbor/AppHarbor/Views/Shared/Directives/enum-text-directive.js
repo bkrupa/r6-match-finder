@@ -23,7 +23,6 @@ var app;
                     if (enumObj[key] == newVal) {
                         that.$resources.resolve(key, function (val) {
                             scope.text = val;
-                            console.log(val);
                         });
                         return;
                     }

@@ -38,6 +38,9 @@ namespace R6MatchFinder.Common.Database.Abstracts
         [Required]
         public GameMode Mode { get; set; }
 
+        [Required]
+        public Platform Platform { get; set; }
+
         [Required, Range(3, 5)]
         public int PlayersPerTeam { get; set; }
 

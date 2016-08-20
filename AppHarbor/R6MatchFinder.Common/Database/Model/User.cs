@@ -4,6 +4,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Linq;
@@ -15,6 +16,10 @@ namespace R6MatchFinder.Common.Database.Model
     [Table("Users")]
     public class User : IdentityUser
     {
+        public User()
+        {
+        }
+
         [InverseProperty("User")]
         public IEnumerable<Game> CreatedGames { get; set; }
 

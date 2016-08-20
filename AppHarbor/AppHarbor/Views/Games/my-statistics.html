@@ -1,0 +1,36 @@
+﻿<div class="row">
+    <div class="col-md-6">
+        <table class="table">
+            <tr>
+                <td>{{resolve('RELIABILITY')}}</td>
+                <td>{{(100 * vm.myStatistics.gamesPlayed / (vm.myStatistics.challengesTaken + vm.myStatistics.challengesAccepted) || 100 ) | number:2}}%</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>{{resolve('GAMES_CREATED')}}</td>
+                <td ng-bind="vm.myStatistics.gamesCreated"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>{{resolve('GAMES_ABANDONED')}}</td>
+                <td ng-bind="vm.myStatistics.gamesAbandoned"></td>
+                <td>{{(100 * vm.myStatistics.gamesAbandoned / vm.myStatistics.gamesCreated || 0) | number: 2}}%</td>
+            </tr>
+            <tr>
+                <td>{{resolve('CHALLENGES_ACCEPTED')}}</td>
+                <td ng-bind="vm.myStatistics.challengesAccepted"></td>
+                <td>{{(100 * vm.myStatistics.challengesAccepted / vm.myStatistics.gamesCreated || 100) | number: 2}}%</td>
+            </tr>
+            <tr>
+                <td>{{resolve('CHALLENGES_TAKEN')}}</td>
+                <td ng-bind="vm.myStatistics.challengesTaken"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>{{resolve('GAMES_PLAYED')}}</td>
+                <td ng-bind="vm.myStatistics.gamesPlayed"></td>
+                <td>{{(100 * vm.myStatistics.gamesPlayed / (vm.myStatistics.challengesTaken + vm.myStatistics.gamesCreated - vm.myStatistics.gamesAbandoned) || 100 ) | number:2}}%</td>
+            </tr>
+        </table>
+    </div>
+</div>
