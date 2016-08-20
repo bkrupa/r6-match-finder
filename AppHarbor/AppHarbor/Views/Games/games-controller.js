@@ -19,9 +19,6 @@ var app;
                 showWeeks: false
             };
         }
-        CreateGameController.prototype.Test = function () {
-            console.log(this.game.date);
-        };
         CreateGameController.Injection = 'createGameController';
         CreateGameController.$inject = [
             'game'
@@ -30,14 +27,17 @@ var app;
     }());
     app.CreateGameController = CreateGameController;
     var GamesController = (function () {
-        function GamesController($scope, repository, $uibModal, Hub) {
+        function GamesController($scope, $rootScope, repository, userRepository, $uibModal, Hub) {
             var _this = this;
             this.$scope = $scope;
+            this.$rootScope = $rootScope;
             this.repository = repository;
+            this.userRepository = userRepository;
             this.$uibModal = $uibModal;
             this.Hub = Hub;
             this.games = [];
             this.myGames = [];
+            this.myStatistics = {};
             this.pageSize = 10;
             this.currentPage = 1;
             this.view = '';
@@ -99,11 +99,19 @@ var app;
                 _this.bindGames();
             });
         };
+        GamesController.prototype.completeGame = function (game) {
+        };
         GamesController.prototype.bindGames = function () {
+            var _this = this;
             if (this.games.$resolved !== false)
                 this.games = this.repository.getAll();
             if (this.myGames.$resolved !== false)
                 this.myGames = this.repository.getMyGames();
+            if (this.myStatistics.$resolved !== false)
+                this.$rootScope.userInfo.$promise.then(function (userInfo) {
+                    _this.myStatistics = _this.userRepository.getUserStatistics(userInfo.id);
+                });
+            console.log(this.$rootScope.userInfo);
         };
         GamesController.prototype.deleteGame = function (game) {
             var _this = this;
@@ -112,7 +120,9 @@ var app;
         GamesController.Injection = 'gamesController';
         GamesController.$inject = [
             '$scope',
+            '$rootScope',
             app.GamesRepository.Injection,
+            app.AccountRepository.Injection,
             '$uibModal',
             'Hub'
         ];

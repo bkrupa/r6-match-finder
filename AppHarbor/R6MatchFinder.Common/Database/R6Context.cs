@@ -25,6 +25,10 @@ namespace R6MatchFinder.Common.Database
         public DbSet<ActiveGameMatchSettings> ActiveGameMatchSettings { get; set; }
         public DbSet<ActiveGameModeSettings> ActiveGameModeSettings { get; set; }
 
+        public DbSet<CompleteGame> CompleteGames { get; set; }
+        public DbSet<CompleteGameMatchSettings> CompleteGameMatchSettings { get; set; }
+        public DbSet<CompleteGameModeSettings> CompleteGameModeSettings { get; set; }
+
         public DbSet<UserStatistics> UserStatistics { get; set; }
         public DbSet<ExceptionLog> Exceptions { get; set; }
         public DbSet<LoginLog> LoginLog { get; set; }

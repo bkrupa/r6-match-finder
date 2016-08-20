@@ -22,10 +22,6 @@
             showWeeks: false
         };
 
-        public Test() {
-            console.log(this.game.date);
-        }
-
         constructor(public game: any) { }
     }
 
@@ -33,13 +29,16 @@
         static Injection: string = 'gamesController';
         static $inject = [
             '$scope',
+            '$rootScope',
             GamesRepository.Injection,
+            AccountRepository.Injection,
             '$uibModal',
             'Hub'
         ];
 
         private games: Array<any> = [];
         private myGames: Array<any> = [];
+        private myStatistics: any = {};
         public pageSize: number = 10;
         public currentPage: number = 1;
         public view: string = '';
@@ -77,7 +76,9 @@
 
         constructor(
             private $scope: ng.IScope,
+            private $rootScope: IAppRootScope,
             private repository: GamesRepository,
+            private userRepository: AccountRepository,
             private $uibModal: ng.ui.bootstrap.IModalService,
             private Hub: ngSignalr.HubFactory
         ) {
@@ -115,11 +116,25 @@
             });
         }
 
+        public completeGame(game) {
+
+        }
+
         public bindGames() {
             if (this.games.$resolved !== false)
                 this.games = this.repository.getAll();
             if (this.myGames.$resolved !== false)
                 this.myGames = this.repository.getMyGames();
+
+
+
+            if (this.myStatistics.$resolved !== false)
+                this.$rootScope.userInfo.$promise.then((userInfo) => {
+                    this.myStatistics = this.userRepository.getUserStatistics(userInfo.id);
+                });
+
+
+            console.log(this.$rootScope.userInfo);
         }
 
         public deleteGame(game: any) {

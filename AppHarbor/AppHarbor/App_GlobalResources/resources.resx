@@ -118,13 +118,19 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="APPLICATION_NAME" xml:space="preserve">
-    <value>AppName</value>
+    <value>MatchFinder</value>
   </data>
   <data name="ATTACKER_UNIQUE_SPAWN" xml:space="preserve">
     <value>Attacker Unique Spawn</value>
   </data>
   <data name="BOMB" xml:space="preserve">
     <value>Bomb</value>
+  </data>
+  <data name="CHALLENGES_ACCEPTED" xml:space="preserve">
+    <value>Challenges Accepted</value>
+  </data>
+  <data name="CHALLENGES_TAKEN" xml:space="preserve">
+    <value>Challenges Taken</value>
   </data>
   <data name="CREATE" xml:space="preserve">
     <value>Create</value>
@@ -146,6 +152,15 @@
   </data>
   <data name="GAMES" xml:space="preserve">
     <value>Games</value>
+  </data>
+  <data name="GAMES_ABANDONED" xml:space="preserve">
+    <value>Games Abandoned</value>
+  </data>
+  <data name="GAMES_CREATED" xml:space="preserve">
+    <value>Games Created</value>
+  </data>
+  <data name="GAMES_PLAYED" xml:space="preserve">
+    <value>Games Played</value>
   </data>
   <data name="GAME_DETAILS" xml:space="preserve">
     <value>Game Details</value>
@@ -260,5 +275,8 @@
   </data>
   <data name="YES" xml:space="preserve">
     <value>Yes</value>
+  </data>
+  <data name="YOU_HAVE_NOT_SIGNED_UP_FOR_ANY_MATCHES" xml:space="preserve">
+    <value>You have not signed up for any matches</value>
   </data>
 </root>

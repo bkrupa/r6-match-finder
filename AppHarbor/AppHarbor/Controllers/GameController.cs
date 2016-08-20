@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using R6MatchFinder.Common.Database.Model;
 using R6MatchFinder.Common.Database.Repository;
+using R6MatchFinder.Common.Database.Services;
 using R6MatchFinder.Common.Utilities;
 using R6MatchFinder.Common.Utility;
 using R6MatchFinder.Common.Web.Interfaces;
@@ -24,11 +25,16 @@ namespace R6MatchFinder.Controllers
     {
         private readonly IOwnedAsyncRepository<Game> _gameRepository;
         private readonly IOwnedAsyncRepository<ActiveGame> _activeGameRepository;
+        private readonly IOwnedAsyncRepository<CompleteGame> _completeGameRepository;
+        private readonly UserStatisticsService _statsService;
 
-        public GameController(IOwnedAsyncRepository<Game> repo, IOwnedAsyncRepository<ActiveGame> activeGameRepo)
+        public GameController(IOwnedAsyncRepository<Game> repo, IOwnedAsyncRepository<ActiveGame> activeGameRepo,
+            IOwnedAsyncRepository<CompleteGame> completeGameRepo, UserStatisticsService statsService)
         {
             _gameRepository = repo;
             _activeGameRepository = activeGameRepo;
+            _completeGameRepository = completeGameRepo;
+            _statsService = statsService;
         }
 
         [HttpGet, Route("")]
@@ -49,10 +55,12 @@ namespace R6MatchFinder.Controllers
         {
             IEnumerable<Game> games = await _gameRepository.GetForUserAsync(User.Identity.GetUserId());
             IEnumerable<ActiveGame> activeGames = await _activeGameRepository.GetForUserAsync(User.Identity.GetUserId());
+            IEnumerable<CompleteGame> completeGames = await _completeGameRepository.GetForUserAsync(User.Identity.GetUserId());
 
             List<WMGameBase> rtn = new List<WMGameBase>();
             rtn.AddRange(games.ToWebModels<Game, WMGame>());
             rtn.AddRange(activeGames.ToWebModels<ActiveGame, WMActiveGame>());
+            rtn.AddRange(completeGames.ToWebModels<CompleteGame, WMCompleteGame>());
 
             return rtn;
         }
@@ -118,6 +126,7 @@ namespace R6MatchFinder.Controllers
             }
 
             dbModel = await _gameRepository.CreateAsync(dbModel);
+            await _statsService.AddGameCreated(Guid.Parse(User.Identity.GetUserId()));
 
             GeneralHub.GameStateChanged();
             return await Get(dbModel.Id.ToString());
@@ -149,7 +158,53 @@ namespace R6MatchFinder.Controllers
 
             activeGame = await _activeGameRepository.CreateAsync(activeGame);
             await _gameRepository.DeleteAsync(dbModel);
+
+            await _statsService.AddChallengeAccepted(Guid.Parse(dbModel.UserId));
+            await _statsService.AddChallengeTaken(Guid.Parse(User.Identity.GetUserId()));
             GeneralHub.GameStateChanged();
+        }
+
+        [HttpPost, Route("{id}/Complete")]
+        public async Task CompleteActiveGame(string id, int rating)
+        {
+            string userId = User.Identity.GetUserId();
+            ActiveGame dbModel = await _activeGameRepository.GetAsync(Guid.Parse(id));
+
+            if (dbModel == null)
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+
+            if (dbModel.UserId != userId && dbModel.ChallengerId != userId)
+                throw new HttpResponseException(HttpStatusCode.PreconditionFailed);
+
+            if (rating < 1 || rating > 5)
+                throw new HttpResponseException(HttpStatusCode.NotAcceptable);
+
+            CompleteGame completeGame = CompleteGame.FromActiveGame(dbModel);
+
+            if (completeGame.UserId == userId)
+                completeGame.CreatorRating = rating;
+            else if (completeGame.ChallengerId == userId)
+                completeGame.ChallengerRating = rating;
+
+            completeGame = await _completeGameRepository.CreateAsync(completeGame);
+            await _activeGameRepository.DeleteAsync(dbModel);
+
+            await _statsService.AddGamePlayed(Guid.Parse(completeGame.ChallengerId));
+            await _statsService.AddGamePlayed(Guid.Parse(completeGame.UserId));
+
+            // Make sure the ratings go toward the person on the other team.
+            if (completeGame.UserId == userId)
+                await _statsService.UpdateRating(Guid.Parse(completeGame.ChallengerId), rating);
+            else if (completeGame.ChallengerId == userId)
+                await _statsService.UpdateRating(Guid.Parse(completeGame.UserId), rating);
+
+            GeneralHub.GameStateChanged();
+        }
+
+        [HttpPost, Route("{id}/Rate")]
+        public async Task RateCompleteGame(string id, int rating)
+        {
+            throw new NotImplementedException();
         }
 
         [HttpDelete, Route("{id}")]
@@ -164,6 +219,8 @@ namespace R6MatchFinder.Controllers
                 throw new HttpResponseException(HttpStatusCode.Forbidden);
 
             await _gameRepository.DeleteAsync(dbModel);
+
+            await _statsService.AddGameAbandoned(Guid.Parse(User.Identity.GetUserId()));
 
             GeneralHub.GameStateChanged();
         }

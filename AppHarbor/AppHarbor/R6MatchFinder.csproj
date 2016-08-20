@@ -1205,6 +1205,7 @@
     <TypeScriptCompile Include="scripts\typings\signalr\signalr.d.ts" />
     <TypeScriptCompile Include="scripts\typings\toastr\toastr.d.ts" />
     <TypeScriptCompile Include="Views\Games\games-controller.ts" />
+    <TypeScriptCompile Include="Views\Shared\Classes\root-scope-interface.ts" />
     <TypeScriptCompile Include="Views\Shared\Directives\datetimepicker-directive.ts" />
     <TypeScriptCompile Include="Views\Shared\Directives\enum-text-directive.ts" />
     <TypeScriptCompile Include="Views\Shared\Interceptors\error-interceptor.ts" />

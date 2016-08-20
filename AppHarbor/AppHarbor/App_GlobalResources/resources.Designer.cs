@@ -61,7 +61,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AppName.
+        ///   Looks up a localized string similar to MatchFinder.
         /// </summary>
         internal static string APPLICATION_NAME {
             get {
@@ -84,6 +84,24 @@ namespace Resources {
         internal static string BOMB {
             get {
                 return ResourceManager.GetString("BOMB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Challenges Accepted.
+        /// </summary>
+        internal static string CHALLENGES_ACCEPTED {
+            get {
+                return ResourceManager.GetString("CHALLENGES_ACCEPTED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Challenges Taken.
+        /// </summary>
+        internal static string CHALLENGES_TAKEN {
+            get {
+                return ResourceManager.GetString("CHALLENGES_TAKEN", resourceCulture);
             }
         }
         
@@ -147,6 +165,33 @@ namespace Resources {
         internal static string GAMES {
             get {
                 return ResourceManager.GetString("GAMES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Games Abandoned.
+        /// </summary>
+        internal static string GAMES_ABANDONED {
+            get {
+                return ResourceManager.GetString("GAMES_ABANDONED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Games Created.
+        /// </summary>
+        internal static string GAMES_CREATED {
+            get {
+                return ResourceManager.GetString("GAMES_CREATED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Games Played.
+        /// </summary>
+        internal static string GAMES_PLAYED {
+            get {
+                return ResourceManager.GetString("GAMES_PLAYED", resourceCulture);
             }
         }
         
@@ -490,6 +535,15 @@ namespace Resources {
         internal static string YES {
             get {
                 return ResourceManager.GetString("YES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have not signed up for any matches.
+        /// </summary>
+        internal static string YOU_HAVE_NOT_SIGNED_UP_FOR_ANY_MATCHES {
+            get {
+                return ResourceManager.GetString("YOU_HAVE_NOT_SIGNED_UP_FOR_ANY_MATCHES", resourceCulture);
             }
         }
     }

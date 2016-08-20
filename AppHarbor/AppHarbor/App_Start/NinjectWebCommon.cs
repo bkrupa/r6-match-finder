@@ -17,6 +17,7 @@ namespace R6MatchFinder.App_Start
     using System.Linq;
     using Common.Database.Repository;
     using System.Collections.Generic;
+    using Common.Database.Services;
 
     public static class NinjectWebCommon
     {
@@ -97,6 +98,14 @@ namespace R6MatchFinder.App_Start
                     Type repoType = typeof(IOwnedAsyncRepository<>).MakeGenericType(genericArg);
 
                     kernel.Bind(repoType).To(type);
+                }
+
+                // Do the same thing for IOwnedAsyncRepositories
+                IEnumerable<Type> serviceTypes = type.GetInterfaces().Where(i => i == typeof(IService));
+
+                if (serviceTypes.Any())
+                {
+                    kernel.Bind(type).ToSelf();
                 }
             }
         }

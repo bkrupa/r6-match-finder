@@ -2,10 +2,16 @@ var app;
 (function (app) {
     var AccountRepository = (function () {
         function AccountRepository($resource) {
-            this.resource = $resource('/api/Users');
+            this.resource = $resource('/api/Users/:id/:action');
         }
         AccountRepository.prototype.getCurrentUserInfo = function () {
             return this.resource.get();
+        };
+        AccountRepository.prototype.getUserStatistics = function (id) {
+            return this.resource.get({
+                id: id,
+                action: 'Statistics'
+            });
         };
         AccountRepository.Injection = 'accountRepository';
         AccountRepository.$inject = [

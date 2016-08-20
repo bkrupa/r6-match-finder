@@ -10,6 +10,18 @@ var app;
                     id: this.id
                 });
             };
+            this.gamesResource.prototype.$complete = function (rating) {
+                return that.gamesResource.save({
+                    action: 'Complete',
+                    id: this.id
+                }, rating);
+            };
+            this.gamesResource.prototype.$rate = function (rating) {
+                return that.gamesResource.save({
+                    action: 'Rate',
+                    id: this.id
+                }, rating);
+            };
         }
         GamesRepository.prototype.getAll = function () {
             return this.gamesResource.query();

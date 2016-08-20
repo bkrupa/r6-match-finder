@@ -108,6 +108,9 @@
     <Compile Include="Database\Model\ActiveGame.cs" />
     <Compile Include="Database\Model\ActiveGameModeSettings.cs" />
     <Compile Include="Database\Model\ActiveGameMatchSettings.cs" />
+    <Compile Include="Database\Model\CompleteGame.cs" />
+    <Compile Include="Database\Model\CompleteGameMatchSettings.cs" />
+    <Compile Include="Database\Model\CompleteGameModeSettings.cs" />
     <Compile Include="Database\Model\ExceptionLog.cs" />
     <Compile Include="Database\Model\Game.cs" />
     <Compile Include="Database\Model\GameMatchSettings.cs" />
@@ -118,9 +121,13 @@
     <Compile Include="Database\Model\UserStatistics.cs" />
     <Compile Include="Database\R6Context.cs" />
     <Compile Include="Database\Repository\ActiveGameRepository.cs" />
+    <Compile Include="Database\Repository\CompleteGameRepository.cs" />
     <Compile Include="Database\Repository\GameRepository.cs" />
     <Compile Include="Database\Repository\IAsyncRepository.cs" />
     <Compile Include="Database\Repository\IOwnedAsyncRepository.cs" />
+    <Compile Include="Database\Repository\UserStatisticsRepository.cs" />
+    <Compile Include="Database\Services\IService.cs" />
+    <Compile Include="Database\Services\UserStatisticsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\Attributes.cs" />
     <Compile Include="Utility\Constants.cs" />
@@ -128,11 +135,13 @@
     <Compile Include="Utility\Utilities.cs" />
     <Compile Include="Web\Interfaces\IWebModel.cs" />
     <Compile Include="Web\Model\WMActiveGame.cs" />
+    <Compile Include="Web\Model\WMCompleteGame.cs" />
     <Compile Include="Web\Model\WMGame.cs" />
     <Compile Include="Web\Model\Abstract\WMGameBase.cs" />
     <Compile Include="Web\Model\WMGameMatchSettings.cs" />
     <Compile Include="Web\Model\WMGameModeSettings.cs" />
     <Compile Include="Web\Model\WMUser.cs" />
+    <Compile Include="Web\Model\WMUserStatistics.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

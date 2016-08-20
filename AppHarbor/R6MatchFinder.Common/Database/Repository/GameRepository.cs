@@ -37,7 +37,9 @@ namespace R6MatchFinder.Common.Database.Repository
             return await _dbContext.Games
                 .Where(g => g.Date >= DateTimeOffset.UtcNow)
                 .Include(g => g.MatchSettings)
-                .Include(g => g.ModeSettings).ToListAsync();
+                .Include(g => g.ModeSettings)
+                .Include(g => g.Creator.Statistics)
+                .ToListAsync();
         }
 
         public async Task<Game> GetAsync(Guid id)

@@ -9,6 +9,7 @@ namespace R6MatchFinder.Common.Database
     {
         DbSet<Game> Games { get; }
         DbSet<ActiveGame> ActiveGames { get; }
+        DbSet<CompleteGame> CompleteGames { get; set; }
         DbSet<ExceptionLog> Exceptions { get; }
         DbSet<LoginLog> LoginLog { get; }
         DbSet<GameMatchSettings> MatchSettings { get; }

@@ -14,19 +14,16 @@ namespace R6MatchFinder.Common.Database.Model
     {
         public IEnumerable<DbValidationError> Validate(DbEntityEntry entityEntry)
         {
-            List<DbValidationError> rtn = new List<DbValidationError>();
             Game dbModel = entityEntry.Entity as Game;
 
             if (dbModel == null)
-                rtn.Add(new DbValidationError("*", "Invalid Model Supplied"));
+                yield return new DbValidationError("*", "Invalid Model Supplied");
 
             if (entityEntry.State == EntityState.Modified)
-                rtn.Add(new DbValidationError("*", "Modifying existing games is not supported at this time!"));
+                yield return new DbValidationError("*", "Modifying existing games is not supported at this time!");
 
             if (dbModel.Date <= DateTimeOffset.UtcNow)
-                rtn.Add(new DbValidationError("Date", "Supplied date must be in the future."));
-
-            return rtn;
+                yield return new DbValidationError("Date", "Supplied date must be in the future.");
         }
     }
 }
