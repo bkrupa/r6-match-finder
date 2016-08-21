@@ -72,6 +72,7 @@
     <Compile Include="Attributes\ScheduledJobAttribute.cs" />
     <Compile Include="CleanUpMatches.cs" />
     <Compile Include="JobConfig.cs" />
+    <Compile Include="LogEveryMinute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
