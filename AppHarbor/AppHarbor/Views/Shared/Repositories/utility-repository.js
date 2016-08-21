@@ -42,11 +42,6 @@ var app;
             }, 100);
             return deferred.promise;
         };
-        UtilityRepository.factory = function () {
-            var repo = function ($http, $q, Enums) { return new UtilityRepository($http, $q, Enums); };
-            repo.$inject = UtilityRepository.$inject;
-            return repo;
-        };
         UtilityRepository.Injection = 'utilityRepository';
         UtilityRepository.$inject = [
             '$http',
@@ -58,6 +53,6 @@ var app;
     app.UtilityRepository = UtilityRepository;
     angular
         .module('app')
-        .factory(UtilityRepository.Injection, UtilityRepository.factory());
+        .factory(UtilityRepository.Injection, app.Activator.CreateFactory(UtilityRepository));
 })(app || (app = {}));
 //# sourceMappingURL=utility-repository.js.map

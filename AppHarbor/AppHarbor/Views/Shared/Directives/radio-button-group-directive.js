@@ -28,11 +28,6 @@ var app;
                 scope.value = ngModelCtrl.$viewValue;
             };
         };
-        RadioButtonGroupDirective.factory = function () {
-            var directive = function () { return new RadioButtonGroupDirective(); };
-            directive.$inject = RadioButtonGroupDirective.$inject;
-            return directive;
-        };
         RadioButtonGroupDirective.Injection = 'radioButtonGroup';
         RadioButtonGroupDirective.$inject = [];
         return RadioButtonGroupDirective;
@@ -40,6 +35,6 @@ var app;
     app.RadioButtonGroupDirective = RadioButtonGroupDirective;
     angular
         .module('app')
-        .directive(RadioButtonGroupDirective.Injection, RadioButtonGroupDirective.factory());
+        .directive(RadioButtonGroupDirective.Injection, app.Activator.CreateFactory(RadioButtonGroupDirective));
 })(app || (app = {}));
 //# sourceMappingURL=radio-button-group-directive.js.map

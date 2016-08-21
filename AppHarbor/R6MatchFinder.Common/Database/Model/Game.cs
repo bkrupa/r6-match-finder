@@ -12,6 +12,9 @@ namespace R6MatchFinder.Common.Database.Model
     [Table("Games")]
     public class Game : AbstractGame<GameMatchSettings, GameModeSettings>, IValidateEntity, MapTo<ActiveGame>
     {
+        [ForeignKey("UserId")]
+        public User Creator { get; set; }
+
         public IEnumerable<DbValidationError> Validate(DbEntityEntry entityEntry)
         {
             Game dbModel = entityEntry.Entity as Game;

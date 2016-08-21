@@ -1170,7 +1170,10 @@
     </Compile>
     <Compile Include="Handlers\ApiExceptionFilterAttribute.cs" />
     <Compile Include="Handlers\ErrorHandlerAttribute.cs" />
+    <Compile Include="Hubs\AbstractHub.cs" />
+    <Compile Include="Hubs\ActiveGameHub.cs" />
     <Compile Include="Hubs\GeneralHub.cs" />
+    <Compile Include="IoC\NinjectSignalRDependencyResolver.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ExternalViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1209,9 +1212,13 @@
     <TypeScriptCompile Include="scripts\typings\signalr\signalr.d.ts" />
     <TypeScriptCompile Include="scripts\typings\toastr\toastr.d.ts" />
     <TypeScriptCompile Include="Views\Games\games-controller.ts" />
+    <TypeScriptCompile Include="Views\Shared\Classes\activator-classes.ts" />
     <TypeScriptCompile Include="Views\Shared\Classes\root-scope-interface.ts" />
     <TypeScriptCompile Include="Views\Shared\Directives\datetimepicker-directive.ts" />
     <TypeScriptCompile Include="Views\Shared\Directives\enum-text-directive.ts" />
+    <TypeScriptCompile Include="Views\Shared\Classes\base-hub-classes.ts" />
+    <TypeScriptCompile Include="Views\Shared\Hubs\active-game-hub-service.ts" />
+    <TypeScriptCompile Include="Views\Shared\Hubs\general-hub-service.ts" />
     <TypeScriptCompile Include="Views\Shared\Interceptors\error-interceptor.ts" />
     <TypeScriptCompile Include="Views\Shared\Repositories\games-repository.ts" />
     <TypeScriptCompile Include="Views\Shared\Classes\utility-classes.ts" />

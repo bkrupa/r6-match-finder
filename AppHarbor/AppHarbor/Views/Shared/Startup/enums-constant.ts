@@ -9,6 +9,7 @@
             utilityRepository: UtilityRepository
         ) {
             utilityRepository.bindEnums();
+
         }
     }
 

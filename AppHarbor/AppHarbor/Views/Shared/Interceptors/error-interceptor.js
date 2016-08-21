@@ -15,11 +15,6 @@ var app;
             }
             return this.$q.reject(response);
         };
-        ErrorInterceptor.factory = function () {
-            var interceptor = function ($q) { return new ErrorInterceptor($q); };
-            interceptor.$inject = ErrorInterceptor.$inject;
-            return interceptor;
-        };
         ErrorInterceptor.Injection = 'errorInterceptor';
         ErrorInterceptor.$inject = [
             '$q'
@@ -29,9 +24,9 @@ var app;
     app.ErrorInterceptor = ErrorInterceptor;
     angular
         .module('app')
-        .factory(ErrorInterceptor.Injection, ErrorInterceptor.factory())
+        .factory(ErrorInterceptor.Injection, app.Activator.CreateFactory(ErrorInterceptor))
         .config(['$httpProvider', function ($httpProvider) {
-            $httpProvider.interceptors.push(ErrorInterceptor.factory());
+            $httpProvider.interceptors.push(app.Activator.CreateFactory(ErrorInterceptor));
         }]);
 })(app || (app = {}));
 //# sourceMappingURL=error-interceptor.js.map

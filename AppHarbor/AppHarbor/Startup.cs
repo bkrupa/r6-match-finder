@@ -1,5 +1,8 @@
-﻿using Microsoft.Owin;
+﻿using Microsoft.AspNet.SignalR;
+using Microsoft.Owin;
 using Owin;
+using R6MatchFinder.App_Start;
+using R6MatchFinder.IoC;
 
 [assembly: OwinStartup(typeof(R6MatchFinder.Startup))]
 
@@ -10,7 +13,10 @@ namespace R6MatchFinder
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
-            app.MapSignalR();
+
+            var config = new HubConfiguration();
+            config.EnableDetailedErrors = true;
+            app.MapSignalR(config);
         }
     }
 }

@@ -52,18 +52,9 @@
             };
 
         }
-
-
-
-
-        public static factory(): any {
-            var directive = () => new BootstrapSliderDirective();
-            directive.$inject = BootstrapSliderDirective.$inject;
-            return directive;
-        }
     }
 
     angular
         .module('app')
-        .directive(BootstrapSliderDirective.Injection, BootstrapSliderDirective.factory());
+        .directive(BootstrapSliderDirective.Injection, Activator.CreateFactory(BootstrapSliderDirective));
 }

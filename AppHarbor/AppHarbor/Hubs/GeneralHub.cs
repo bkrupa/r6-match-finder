@@ -8,41 +8,21 @@ using Microsoft.AspNet.SignalR;
 using System.Threading.Tasks;
 
 using System.Net;
+using R6MatchFinder.Common.Database;
+using R6MatchFinder.Common.Database.Model;
 
 namespace R6MatchFinder.Hubs
 {
     [HubName("generalHub")]
-    public class GeneralHub : Hub
+    public class GeneralHub : AbstractHub
     {
-        private string UserId { get { return ApplicationUserManager.GetUserId(); } }
-        private readonly ConcurrentDictionary<string, string> ConnectedUsers = new ConcurrentDictionary<string, string>();
-
-        #region Connect/Disconnect
-        public void Connect()
+        public GeneralHub()
         {
-            ConnectedUsers.AddOrUpdate(Context.ConnectionId, UserId, (Cid, Uid) => UserId);
-            Groups.Add(Context.ConnectionId, UserId);
         }
-
-        public void Disconnect()
-        {
-            string Uid;
-
-            if (ConnectedUsers.TryGetValue(Context.ConnectionId, out Uid))
-                Groups.Remove(Context.ConnectionId, Uid);
-        }
-
-        public override Task OnDisconnected(bool stopCalled)
-        {
-            Disconnect();
-            return base.OnDisconnected(stopCalled);
-        }
-        #endregion
 
         public static void GameStateChanged()
         {
-            IHubContext context = GlobalHost.ConnectionManager.GetHubContext<GeneralHub>();
-            context.Clients.All.RefreshGamesList();
+            GlobalHost.ConnectionManager.GetHubContext<GeneralHub>().Clients.All.RefreshGamesList();
         }
     }
 }

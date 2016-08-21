@@ -43,18 +43,9 @@
             };
 
         }
-
-
-
-
-        public static factory(): any {
-            var directive = () => new RadioButtonGroupDirective();
-            directive.$inject = RadioButtonGroupDirective.$inject;
-            return directive;
-        }
     }
 
     angular
         .module('app')
-        .directive(RadioButtonGroupDirective.Injection, RadioButtonGroupDirective.factory());
+        .directive(RadioButtonGroupDirective.Injection, Activator.CreateFactory(RadioButtonGroupDirective));
 }

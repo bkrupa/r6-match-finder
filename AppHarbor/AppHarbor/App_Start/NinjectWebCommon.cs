@@ -18,10 +18,17 @@ namespace R6MatchFinder.App_Start
     using Common.Database.Repository;
     using System.Collections.Generic;
     using Common.Database.Services;
+    using Hubs;
+    using Microsoft.AspNet.SignalR.Hubs;
+    using Microsoft.AspNet.SignalR.Infrastructure;
+    using IoC;
+    using Microsoft.AspNet.SignalR;
 
     public static class NinjectWebCommon
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
+
+        public static DefaultDependencyResolver Resolver { get; private set; }
 
         /// <summary>
         /// Starts the application
@@ -54,6 +61,7 @@ namespace R6MatchFinder.App_Start
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
 
                 RegisterServices(kernel);
+                Resolver = new NinjectSignalRDependencyResolver(kernel);
                 return kernel;
             }
             catch

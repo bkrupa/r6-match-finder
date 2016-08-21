@@ -24,20 +24,14 @@
             return this.$q.reject(response);
 
         }
-
-        public static factory() {
-            var interceptor = ($q: ng.IQService) => new ErrorInterceptor($q);
-            interceptor.$inject = ErrorInterceptor.$inject;
-            return interceptor;
-        }
     }
 
 
     angular
         .module('app')
-        .factory(ErrorInterceptor.Injection, ErrorInterceptor.factory())
+        .factory(ErrorInterceptor.Injection, Activator.CreateFactory(ErrorInterceptor))
         .config(['$httpProvider', ($httpProvider: ng.IHttpProvider) => {
-            $httpProvider.interceptors.push(ErrorInterceptor.factory());
+            $httpProvider.interceptors.push(Activator.CreateFactory(ErrorInterceptor));
         }]);
 
 }

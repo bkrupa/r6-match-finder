@@ -50,15 +50,9 @@
                 scope.value = ngModelCtrl.$viewValue || false;
             };
         }
-
-        public static factory(): any {
-            var directive = ($resources: ResourceService) => new ToggleButtonDirective($resources);
-            directive.$inject = ToggleButtonDirective.$inject;
-            return directive;
-        }
     }
 
     angular
         .module('app')
-        .directive(ToggleButtonDirective.Injection, ToggleButtonDirective.factory());
+        .directive(ToggleButtonDirective.Injection, Activator.CreateFactory(ToggleButtonDirective));
 }

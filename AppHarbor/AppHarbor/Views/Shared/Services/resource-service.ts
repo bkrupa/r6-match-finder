@@ -1,8 +1,6 @@
 ﻿module app {
 
-    interface StringStringDictionary {
-        [resourceKey: string]: string;
-    }
+
 
     export class ResourceService {
 
@@ -50,17 +48,10 @@
 
             return deferred.promise;
         }
-
-        public static factory() {
-            var repo = (utilityRepository: UtilityRepository, $q: ng.IQService) => new ResourceService(utilityRepository, $q);
-            repo.$inject = ResourceService.$inject;
-            return repo;
-        }
-
     }
 
 
     angular
         .module('app')
-        .factory(ResourceService.Injection, ResourceService.factory());
+        .factory(ResourceService.Injection, Activator.CreateFactory(ResourceService));
 }

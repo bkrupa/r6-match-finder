@@ -46,9 +46,10 @@
         ) { }
 
         public JoinGame() {
-            this.game.$join().$promise.finally(() => {
-                console.log('here');
+            this.game.$join().$promise.then(() => {
                 this.$scope.$close();
+            }, () => {
+                this.$scope.$dismiss();
             });
         }
     }
@@ -71,7 +72,8 @@
             AccountRepository.Injection,
             '$uibModal',
             '$timeout',
-            'Hub'
+            GeneralHubService.Injection,
+            ActiveGameHubService.Injection
         ];
 
         private games: Array<any> = [];
@@ -82,37 +84,6 @@
         public view: string = '';
         private bindTimeout: ng.IPromise<void>;
 
-        private generalHub: any;
-
-        private options: ngSignalr.HubOptions = {
-            listeners: {
-                refreshGamesList: () => {
-                    this.bindGames(false);
-                }
-            },
-            errorHandler: this.onSignalRError,
-            stateChanged: function (state) {
-                switch (state.newState) {
-                    case $.signalR.connectionState.connecting:
-                        //your code here
-                        break;
-                    case $.signalR.connectionState.connected:
-                        //your code here
-                        break;
-                    case $.signalR.connectionState.reconnecting:
-                        //your code here
-                        break;
-                    case $.signalR.connectionState.disconnected:
-                        //your code here
-                        break;
-                }
-            }
-        };
-
-        private onSignalRError(error) {
-            console.error(error);
-        }
-
         constructor(
             private $scope: ng.IScope,
             private $rootScope: IAppRootScope,
@@ -120,10 +91,14 @@
             private userRepository: AccountRepository,
             private $uibModal: ng.ui.bootstrap.IModalService,
             private $timeout: ng.ITimeoutService,
-            private Hub: ngSignalr.HubFactory
+            private generalHub: GeneralHubService
         ) {
-            this.generalHub = new Hub('generalHub', this.options);
             this.bindGames(true);
+
+            generalHub.$on(GeneralHubService.$events.RefreshGameList, () => {
+                this.bindGames(false);
+            });
+
         }
 
         public createGame() {

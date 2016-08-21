@@ -78,17 +78,12 @@ var app;
                 scope.time = new Date(0, 0, 0, value.getHours(), value.getMinutes(), value.getSeconds(), value.getMilliseconds());
             }
         };
-        DateTimePickerDirective.factory = function () {
-            var directive = function ($timeout) { return new DateTimePickerDirective($timeout); };
-            directive.$inject = DateTimePickerDirective.$inject;
-            return directive;
-        };
         DateTimePickerDirective.Injection = 'datetimepicker';
         DateTimePickerDirective.$inject = ['$timeout'];
         return DateTimePickerDirective;
     }());
     app.DateTimePickerDirective = DateTimePickerDirective;
     angular.module('app')
-        .directive(DateTimePickerDirective.Injection, DateTimePickerDirective.factory());
+        .directive(DateTimePickerDirective.Injection, app.Activator.CreateFactory(DateTimePickerDirective));
 })(app || (app = {}));
 //# sourceMappingURL=datetimepicker-directive.js.map

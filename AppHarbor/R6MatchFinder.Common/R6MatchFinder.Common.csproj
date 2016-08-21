@@ -113,8 +113,10 @@
     <Compile Include="Database\Model\CompleteGameModeSettings.cs" />
     <Compile Include="Database\Model\ExceptionLog.cs" />
     <Compile Include="Database\Model\Game.cs" />
+    <Compile Include="Database\Model\GameChat.cs" />
     <Compile Include="Database\Model\GameMatchSettings.cs" />
     <Compile Include="Database\Model\GameModeSettings.cs" />
+    <Compile Include="Database\Model\Log.cs" />
     <Compile Include="Database\Model\LoginLog.cs" />
     <Compile Include="Database\Model\Role.cs" />
     <Compile Include="Database\Model\User.cs" />
@@ -123,6 +125,7 @@
     <Compile Include="Database\R6Context.cs" />
     <Compile Include="Database\Repository\ActiveGameRepository.cs" />
     <Compile Include="Database\Repository\CompleteGameRepository.cs" />
+    <Compile Include="Database\Repository\GameChatRepository.cs" />
     <Compile Include="Database\Repository\GameRepository.cs" />
     <Compile Include="Database\Repository\IAsyncRepository.cs" />
     <Compile Include="Database\Repository\IOwnedAsyncRepository.cs" />
@@ -141,6 +144,7 @@
     <Compile Include="Web\Model\Abstract\WMGameBase.cs" />
     <Compile Include="Web\Model\Abstract\WMBaseGameMatchSettings.cs" />
     <Compile Include="Web\Model\Abstract\WMBaseGameModeSettings.cs" />
+    <Compile Include="Web\Model\WMGameChat.cs" />
     <Compile Include="Web\Model\WMUser.cs" />
     <Compile Include="Web\Model\WMUserStatistics.cs" />
   </ItemGroup>

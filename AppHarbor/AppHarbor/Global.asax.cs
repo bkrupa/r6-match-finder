@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.SignalR;
 using R6MatchFinder;
 using R6MatchFinder.App_Start;
 using R6MatchFinder.Common.Configuration;
@@ -27,6 +28,11 @@ namespace AppHarbor
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             Configuration.ConfigureAutoMapper();
+
+            // This has to be done from global.asax and not in the rest of the signalR config
+            // otherwise GlobalHost.ConnectionManager.GetHubContext<T> won't return the right client set
+            // http://stackoverflow.com/questions/20561196/signalr-calling-client-method-from-outside-hub-using-globalhost-connectionmanage
+            GlobalHost.DependencyResolver = NinjectWebCommon.Resolver;
 
             JobConfig.Start();
         }

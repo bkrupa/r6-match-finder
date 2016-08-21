@@ -70,15 +70,9 @@
 
             return deferred.promise;
         }
-
-        public static factory() {
-            var repo = ($http: ng.IHttpService, $q: ng.IQService, Enums: any) => new UtilityRepository($http, $q, Enums);
-            repo.$inject = UtilityRepository.$inject;
-            return repo;
-        }
     }
 
     angular
         .module('app')
-        .factory(UtilityRepository.Injection, UtilityRepository.factory());
+        .factory(UtilityRepository.Injection, Activator.CreateFactory(UtilityRepository));
 }

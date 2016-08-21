@@ -20,8 +20,12 @@ namespace R6MatchFinder.Common.Database.Model
         {
         }
 
-        [InverseProperty("User")]
-        public IEnumerable<Game> CreatedGames { get; set; }
+        [InverseProperty("Creator")]
+        public ICollection<Game> CreatedGames { get; set; }
+        [InverseProperty("Creator")]
+        public ICollection<ActiveGame> ActiveGames { get; set; }
+        [InverseProperty("Creator")]
+        public ICollection<CompleteGame> CompleteGames { get; set; }
 
         public bool Disabled { get; set; }
 

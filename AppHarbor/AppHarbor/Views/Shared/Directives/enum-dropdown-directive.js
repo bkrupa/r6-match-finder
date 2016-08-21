@@ -19,11 +19,6 @@ var app;
                 return that.$resources.resolve(val, undefined);
             };
         };
-        EnumDropdownDirective.factory = function () {
-            var directive = function ($resources, Enums) { return new EnumDropdownDirective($resources, Enums); };
-            directive.$inject = EnumDropdownDirective.$inject;
-            return directive;
-        };
         EnumDropdownDirective.Injection = 'enumDropdown';
         EnumDropdownDirective.$inject = [
             app.ResourceService.Injection,
@@ -34,6 +29,6 @@ var app;
     app.EnumDropdownDirective = EnumDropdownDirective;
     angular
         .module('app')
-        .directive(EnumDropdownDirective.Injection, EnumDropdownDirective.factory());
+        .directive(EnumDropdownDirective.Injection, app.Activator.CreateFactory(EnumDropdownDirective));
 })(app || (app = {}));
 //# sourceMappingURL=enum-dropdown-directive.js.map

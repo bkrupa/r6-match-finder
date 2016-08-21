@@ -44,16 +44,10 @@
                 scope.text = "";
             });
         }
-
-        public static factory() {
-            var directive = ($resources, Enums) => new EnumTextDirective($resources, Enums);
-            directive.$inject = EnumTextDirective.$inject;
-            return directive;
-        }
     }
 
     angular
         .module('app')
-        .directive(EnumTextDirective.Injection, EnumTextDirective.factory());
+        .directive(EnumTextDirective.Injection, Activator.CreateFactory(EnumTextDirective));
 
 }

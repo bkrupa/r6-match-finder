@@ -41,9 +41,10 @@ var app;
         }
         GameDetailsController.prototype.JoinGame = function () {
             var _this = this;
-            this.game.$join().$promise.finally(function () {
-                console.log('here');
+            this.game.$join().$promise.then(function () {
                 _this.$scope.$close();
+            }, function () {
+                _this.$scope.$dismiss();
             });
         };
         GameDetailsController.Injection = 'gameDetailsController';
@@ -63,7 +64,7 @@ var app;
     }());
     app.CreateGameController = CreateGameController;
     var GamesController = (function () {
-        function GamesController($scope, $rootScope, repository, userRepository, $uibModal, $timeout, Hub) {
+        function GamesController($scope, $rootScope, repository, userRepository, $uibModal, $timeout, generalHub) {
             var _this = this;
             this.$scope = $scope;
             this.$rootScope = $rootScope;
@@ -71,43 +72,18 @@ var app;
             this.userRepository = userRepository;
             this.$uibModal = $uibModal;
             this.$timeout = $timeout;
-            this.Hub = Hub;
+            this.generalHub = generalHub;
             this.games = [];
             this.myGames = [];
             this.myStatistics = {};
             this.pageSize = 10;
             this.currentPage = 1;
             this.view = '';
-            this.options = {
-                listeners: {
-                    refreshGamesList: function () {
-                        _this.bindGames(false);
-                    }
-                },
-                errorHandler: this.onSignalRError,
-                stateChanged: function (state) {
-                    switch (state.newState) {
-                        case $.signalR.connectionState.connecting:
-                            //your code here
-                            break;
-                        case $.signalR.connectionState.connected:
-                            //your code here
-                            break;
-                        case $.signalR.connectionState.reconnecting:
-                            //your code here
-                            break;
-                        case $.signalR.connectionState.disconnected:
-                            //your code here
-                            break;
-                    }
-                }
-            };
-            this.generalHub = new Hub('generalHub', this.options);
             this.bindGames(true);
+            generalHub.$on(app.GeneralHubService.$events.RefreshGameList, function () {
+                _this.bindGames(false);
+            });
         }
-        GamesController.prototype.onSignalRError = function (error) {
-            console.error(error);
-        };
         GamesController.prototype.createGame = function () {
             var _this = this;
             var modal = this.$uibModal.open({
@@ -191,7 +167,8 @@ var app;
             app.AccountRepository.Injection,
             '$uibModal',
             '$timeout',
-            'Hub'
+            app.GeneralHubService.Injection,
+            app.ActiveGameHubService.Injection
         ];
         return GamesController;
     }());

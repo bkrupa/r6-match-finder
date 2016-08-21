@@ -11,6 +11,7 @@ namespace R6MatchFinder.Common.Database.Abstracts
         public AbstractGame()
         {
             Id = Guid.NewGuid();
+            DateCreated = DateTimeOffset.UtcNow;
         }
 
 
@@ -19,9 +20,6 @@ namespace R6MatchFinder.Common.Database.Abstracts
 
         [Required]
         public string UserId { get; set; }
-
-        [ForeignKey("UserId")]
-        public User Creator { get; set; }
 
         [Required]
         public DateTimeOffset Date { get; set; }
@@ -44,7 +42,8 @@ namespace R6MatchFinder.Common.Database.Abstracts
         [Required, Range(3, 5)]
         public int PlayersPerTeam { get; set; }
 
-
+        [Required]
+        public DateTimeOffset DateCreated { get; set; }
     }
 
     public abstract class AbstractGame<T, G> : AbstractGame

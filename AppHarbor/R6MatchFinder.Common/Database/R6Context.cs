@@ -29,11 +29,14 @@ namespace R6MatchFinder.Common.Database
         public DbSet<CompleteGameMatchSettings> CompleteGameMatchSettings { get; set; }
         public DbSet<CompleteGameModeSettings> CompleteGameModeSettings { get; set; }
 
+        public DbSet<GameChat> GameChat { get; set; }
+
         public DbSet<UserStatistics> UserStatistics { get; set; }
         public DbSet<UserAccounts> UserAccounts { get; set; }
 
         public DbSet<ExceptionLog> Exceptions { get; set; }
         public DbSet<LoginLog> LoginLog { get; set; }
+        public DbSet<Log> Log { get; set; }
 
         public R6Context() : base(ConfigurationManager.AppSettings["SQLSERVER_CONNECTION_STRING"])
         {

@@ -30,18 +30,9 @@
                 return that.$resources.resolve(val, undefined);
             };
         }
-
-
-
-
-        public static factory(): any {
-            var directive = ($resources: ResourceService, Enums: any) => new EnumDropdownDirective($resources, Enums);
-            directive.$inject = EnumDropdownDirective.$inject;
-            return directive;
-        }
     }
 
     angular
         .module('app')
-        .directive(EnumDropdownDirective.Injection, EnumDropdownDirective.factory());
+        .directive(EnumDropdownDirective.Injection, Activator.CreateFactory(EnumDropdownDirective));
 }

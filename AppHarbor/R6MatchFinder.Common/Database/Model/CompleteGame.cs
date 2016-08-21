@@ -16,6 +16,9 @@ namespace R6MatchFinder.Common.Database.Model
     [Table("CompleteGames")]
     public class CompleteGame : AbstractGame<CompleteGameMatchSettings, CompleteGameModeSettings>, IValidateEntity
     {
+        [ForeignKey("UserId")]
+        public User Creator { get; set; }
+
         [ForeignKey("Challenger")]
         public string ChallengerId { get; set; }
 
@@ -26,6 +29,8 @@ namespace R6MatchFinder.Common.Database.Model
 
         [Range(1, 5)]
         public int? ChallengerRating { get; set; }
+
+        public ICollection<GameChat> Chat { get; set; }
 
         public static CompleteGame FromActiveGame(ActiveGame orig)
         {

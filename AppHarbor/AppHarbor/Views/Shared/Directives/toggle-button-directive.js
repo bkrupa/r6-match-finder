@@ -34,11 +34,6 @@ var app;
                 scope.value = ngModelCtrl.$viewValue || false;
             };
         };
-        ToggleButtonDirective.factory = function () {
-            var directive = function ($resources) { return new ToggleButtonDirective($resources); };
-            directive.$inject = ToggleButtonDirective.$inject;
-            return directive;
-        };
         ToggleButtonDirective.Injection = 'toggleButton';
         ToggleButtonDirective.$inject = [
             app.ResourceService.Injection
@@ -48,6 +43,6 @@ var app;
     app.ToggleButtonDirective = ToggleButtonDirective;
     angular
         .module('app')
-        .directive(ToggleButtonDirective.Injection, ToggleButtonDirective.factory());
+        .directive(ToggleButtonDirective.Injection, app.Activator.CreateFactory(ToggleButtonDirective));
 })(app || (app = {}));
 //# sourceMappingURL=toggle-button-directive.js.map

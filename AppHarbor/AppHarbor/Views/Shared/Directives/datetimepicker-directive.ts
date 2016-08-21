@@ -112,16 +112,9 @@
                 scope.time = new Date(0, 0, 0, value.getHours(), value.getMinutes(), value.getSeconds(), value.getMilliseconds());
             }
         }
-
-
-        public static factory() {
-            var directive = ($timeout) => new DateTimePickerDirective($timeout);
-            directive.$inject = DateTimePickerDirective.$inject;
-            return directive;
-        }
     }
 
     angular.module('app')
-        .directive(DateTimePickerDirective.Injection, DateTimePickerDirective.factory());
+        .directive(DateTimePickerDirective.Injection, Activator.CreateFactory(DateTimePickerDirective));
 
 }

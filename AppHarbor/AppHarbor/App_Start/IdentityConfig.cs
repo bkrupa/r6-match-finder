@@ -100,7 +100,7 @@ namespace R6MatchFinder
 
         internal static string GetUserId()
         {
-            throw new NotImplementedException();
+            return HttpContext.Current.User.Identity.GetUserId();
         }
 
         public override async Task<IdentityResult> CreateAsync(User user)

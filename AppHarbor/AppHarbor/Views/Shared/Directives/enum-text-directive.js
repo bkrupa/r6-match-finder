@@ -29,11 +29,6 @@ var app;
                 scope.text = "";
             });
         };
-        EnumTextDirective.factory = function () {
-            var directive = function ($resources, Enums) { return new EnumTextDirective($resources, Enums); };
-            directive.$inject = EnumTextDirective.$inject;
-            return directive;
-        };
         EnumTextDirective.Injection = 'enumText';
         EnumTextDirective.$inject = [
             '$resources',
@@ -44,6 +39,6 @@ var app;
     app.EnumTextDirective = EnumTextDirective;
     angular
         .module('app')
-        .directive(EnumTextDirective.Injection, EnumTextDirective.factory());
+        .directive(EnumTextDirective.Injection, app.Activator.CreateFactory(EnumTextDirective));
 })(app || (app = {}));
 //# sourceMappingURL=enum-text-directive.js.map

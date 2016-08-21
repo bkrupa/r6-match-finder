@@ -27,11 +27,6 @@ var app;
             });
             return deferred.promise;
         };
-        ResourceService.factory = function () {
-            var repo = function (utilityRepository, $q) { return new ResourceService(utilityRepository, $q); };
-            repo.$inject = ResourceService.$inject;
-            return repo;
-        };
         ResourceService.Injection = '$resources';
         ResourceService.$inject = [
             app.UtilityRepository.Injection,
@@ -42,6 +37,6 @@ var app;
     app.ResourceService = ResourceService;
     angular
         .module('app')
-        .factory(ResourceService.Injection, ResourceService.factory());
+        .factory(ResourceService.Injection, app.Activator.CreateFactory(ResourceService));
 })(app || (app = {}));
 //# sourceMappingURL=resource-service.js.map

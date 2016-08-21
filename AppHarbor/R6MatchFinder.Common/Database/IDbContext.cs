@@ -16,6 +16,9 @@ namespace R6MatchFinder.Common.Database
         DbSet<GameModeSettings> ModeSettings { get; }
         DbSet<UserStatistics> UserStatistics { get; }
         DbSet<UserAccounts> UserAccounts { get; }
+        DbSet<GameChat> GameChat { get; }
+
+        DbSet<Log> Log { get; set; }
 
         Task<int> SaveChangesAsync();
         DbEntityEntry Entry(object entity);

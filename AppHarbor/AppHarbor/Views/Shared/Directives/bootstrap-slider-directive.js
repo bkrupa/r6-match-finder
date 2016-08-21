@@ -28,11 +28,6 @@ var app;
                 slider.setValue(parseInt(ngModelCtrl.$viewValue), false, false);
             };
         };
-        BootstrapSliderDirective.factory = function () {
-            var directive = function () { return new BootstrapSliderDirective(); };
-            directive.$inject = BootstrapSliderDirective.$inject;
-            return directive;
-        };
         BootstrapSliderDirective.Injection = 'bootstrapSlider';
         BootstrapSliderDirective.$inject = [];
         BootstrapSliderDirective.sliderNumber = 0;
@@ -41,6 +36,6 @@ var app;
     app.BootstrapSliderDirective = BootstrapSliderDirective;
     angular
         .module('app')
-        .directive(BootstrapSliderDirective.Injection, BootstrapSliderDirective.factory());
+        .directive(BootstrapSliderDirective.Injection, app.Activator.CreateFactory(BootstrapSliderDirective));
 })(app || (app = {}));
 //# sourceMappingURL=bootstrap-slider-directive.js.map
