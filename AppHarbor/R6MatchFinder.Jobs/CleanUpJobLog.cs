@@ -1,6 +1,6 @@
 ﻿using Quartz;
 using R6MatchFinder.Common.Database;
-using R6MatchFinder.Common.Utilities;
+using R6MatchFinder.Common.Database.Model;
 using R6MatchFinder.Jobs.Attributes;
 using System;
 using System.Collections.Generic;
@@ -10,8 +10,8 @@ using System.Threading.Tasks;
 
 namespace R6MatchFinder.Jobs
 {
-    [ScheduledJob(1)]
-    public class LogEveryMinute : IJob
+    [ScheduledJob(60)]
+    public class CleanUpJobLog : IJob
     {
         public void Execute(IJobExecutionContext context)
         {
@@ -19,18 +19,21 @@ namespace R6MatchFinder.Jobs
             {
                 using (R6Context dbContext = R6Context.New)
                 {
-                    dbContext.Log.Add(new Common.Database.Model.Log
-                    {
-                        Message = "Logged At " + DateTimeOffset.UtcNow
-                    });
+                    Utilities.LogJob(this, dbContext, false);
+
+                    IEnumerable<JobLog> records = dbContext.JobLog.Where(l => l.Date < DateTimeOffset.UtcNow.AddHours(-10));
+
+                    foreach (JobLog log in records)
+                        dbContext.JobLog.Remove(log);
 
                     dbContext.SaveChanges();
-                }
 
+                    Utilities.LogJob(this, dbContext, true);
+                }
             }
             catch (Exception ex)
             {
-                Utilities.HandleException(ex);
+                Common.Utilities.Utilities.HandleException(ex);
             }
         }
     }

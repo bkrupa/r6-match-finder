@@ -62,7 +62,7 @@ namespace AppHarbor
         protected void Application_Error(object sender, EventArgs e)
         {
             Exception ex = HttpContext.Current.Server.GetLastError();
-            Utilities.HandleException(ex);
+            R6MatchFinder.Common.Utilities.Utilities.HandleException(ex);
         }
 
         protected void Session_Start(object sender, EventArgs e)

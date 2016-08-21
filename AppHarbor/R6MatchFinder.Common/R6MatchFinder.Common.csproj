@@ -116,6 +116,7 @@
     <Compile Include="Database\Model\GameChat.cs" />
     <Compile Include="Database\Model\GameMatchSettings.cs" />
     <Compile Include="Database\Model\GameModeSettings.cs" />
+    <Compile Include="Database\Model\JobLog.cs" />
     <Compile Include="Database\Model\Log.cs" />
     <Compile Include="Database\Model\LoginLog.cs" />
     <Compile Include="Database\Model\Role.cs" />

@@ -38,6 +38,8 @@ namespace R6MatchFinder.Common.Database
         public DbSet<LoginLog> LoginLog { get; set; }
         public DbSet<Log> Log { get; set; }
 
+        public DbSet<JobLog> JobLog { get; set; }
+
         public R6Context() : base(ConfigurationManager.AppSettings["SQLSERVER_CONNECTION_STRING"])
         {
             System.Data.Entity.Database.SetInitializer<R6Context>(null);
