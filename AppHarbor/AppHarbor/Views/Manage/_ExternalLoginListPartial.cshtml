@@ -1,0 +1,66 @@
+﻿@using Microsoft.Owin.Security
+@model R6MatchFinder.Models.ManageLoginsViewModel
+
+
+@{
+    var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
+    if (loginProviders.Count() == 0)
+    {
+        <div>
+            <p>
+                There are no external authentication services configured. See <a href="http://go.microsoft.com/fwlink/?LinkId=313242">this article</a>
+                for details on setting up this ASP.NET application to support logging in via external services.
+            </p>
+        </div>
+    }
+    else
+    {
+        if (Model.CurrentLogins.Count > 0)
+        {
+            foreach (var account in Model.CurrentLogins)
+            {
+                <div class="text-center">
+
+                    @using (Html.BeginForm("RemoveLogin", "Manage"))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div style="position: relative; display: inline-block; width: 100px;" class="text-left">
+                            @if (ViewBag.ShowRemoveButton)
+                            {
+                                <button type="submit" class="btn btn-link text-danger" title="Remove this @account.LoginProvider login from your account" style="position: absolute; left: -20px; top:0; padding:0;">
+                                    <span class="fa fa-times-circle"></span>
+                                </button>
+                            }
+                            else
+                            {
+                                <span class="fa fa-times-circle text-muted"></span>
+                            }
+                            <span>@account.LoginProvider</span>
+                            @Html.Hidden("loginProvider", account.LoginProvider)
+                            @Html.Hidden("providerKey", account.ProviderKey)
+                        </div>
+                    }
+
+                </div>
+            }
+        }
+        if (Model.OtherLogins.Count > 0)
+        {
+            using (Html.BeginForm("LinkLogin", "Manage"))
+            {
+                @Html.AntiForgeryToken()
+                <div id="socialLoginList">
+                    <p>
+                        @foreach (AuthenticationDescription p in Model.OtherLogins)
+                        {
+                            <div style="margin: 5px;">
+                                <button type="submit" style="width: 50%;" class="zocial btn @p.AuthenticationType.ToLower()" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account">@p.AuthenticationType</button>
+                            </div>
+
+                        }
+                    </p>
+                </div>
+            }
+        }
+    }
+}

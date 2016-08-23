@@ -70,6 +70,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        internal static string ADD {
+            get {
+                return ResourceManager.GetString("ADD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to MatchFinder.
         /// </summary>
         internal static string APPLICATION_NAME {
@@ -124,6 +133,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Change.
+        /// </summary>
+        internal static string CHANGE {
+            get {
+                return ResourceManager.GetString("CHANGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Your Password.
+        /// </summary>
+        internal static string CHANGE_YOUR_PASSWORD {
+            get {
+                return ResourceManager.GetString("CHANGE_YOUR_PASSWORD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create.
         /// </summary>
         internal static string CREATE {
@@ -174,6 +201,15 @@ namespace Resources {
         internal static string DEATH_REPLAY {
             get {
                 return ResourceManager.GetString("DEATH_REPLAY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to External Logins.
+        /// </summary>
+        internal static string EXTERNAL_LOGINS {
+            get {
+                return ResourceManager.GetString("EXTERNAL_LOGINS", resourceCulture);
             }
         }
         
@@ -300,6 +336,15 @@ namespace Resources {
         internal static string LEAN {
             get {
                 return ResourceManager.GetString("LEAN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage.
+        /// </summary>
+        internal static string MANAGE {
+            get {
+                return ResourceManager.GetString("MANAGE", resourceCulture);
             }
         }
         
@@ -457,6 +502,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Password.
+        /// </summary>
+        internal static string PASSWORD {
+            get {
+                return ResourceManager.GetString("PASSWORD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone Number.
+        /// </summary>
+        internal static string PHONE_NUMBER {
+            get {
+                return ResourceManager.GetString("PHONE_NUMBER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Platform.
         /// </summary>
         internal static string PLATFORM {
@@ -530,6 +593,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Remove.
+        /// </summary>
+        internal static string REMOVE {
+            get {
+                return ResourceManager.GetString("REMOVE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Role Swap.
         /// </summary>
         internal static string ROLE_SWAP {
@@ -548,11 +620,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        internal static string SAVE {
+            get {
+                return ResourceManager.GetString("SAVE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Secure Area.
         /// </summary>
         internal static string SECURE_AREA {
             get {
                 return ResourceManager.GetString("SECURE_AREA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set.
+        /// </summary>
+        internal static string SET {
+            get {
+                return ResourceManager.GetString("SET", resourceCulture);
             }
         }
         
@@ -616,6 +706,15 @@ namespace Resources {
         internal static string TIME_OF_DAY {
             get {
                 return ResourceManager.GetString("TIME_OF_DAY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Username.
+        /// </summary>
+        internal static string USERNAME {
+            get {
+                return ResourceManager.GetString("USERNAME", resourceCulture);
             }
         }
         

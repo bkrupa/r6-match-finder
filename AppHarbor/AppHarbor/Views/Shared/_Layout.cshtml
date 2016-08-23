@@ -1,11 +1,7 @@
 ﻿@using Microsoft.AspNet.Identity
 @using Microsoft.AspNet.Identity;
-@using Microsoft.Owin.Security;
-@using System;
 @using System.Linq;
-@using System.Web;
 @using System.Web.Mvc;
-@using Microsoft.AspNet.Identity.Owin;
 @using System.Security.Claims;
 @using System.Web.Optimization;
 
@@ -23,7 +19,7 @@
     @RenderSection("styles", false)
 </head>
 <body>
-    <header class="navbar navbar-dark navbar-static-top bg-inverse" role="banner">
+    <header class="navbar navbar-dark navbar-static-top bg-inverse" role="banner" style="margin-bottom: 25px;">
         <div class="collapse navbar-toggleable-xs">
 
             @Html.ActionLink(Resources.resources.APPLICATION_NAME, "Home", "Home", new { area = "" }, new { @class = "navbar-brand" })
@@ -39,7 +35,7 @@
                     Claim PictureClaim = ((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(c => c.Type.Equals("picture"));
 
                     <li class="dropdown nav-item" style="min-width: 200px;">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="max-width: 250px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
 
                             @if (PictureClaim != null)
                             {
@@ -78,13 +74,13 @@
 
                                 @if (DisplayClaim != null)
                                 {
-                                    <div class="dropdown-header">
+                                    <div class="dropdown-header" style="width:170px;text-overflow: ellipsis;overflow: hidden;">
                                         @DisplayClaim.Value
                                     </div>
                                 }
                                 else
                                 {
-                                    <div class="dropdown-header">
+                                    <div class="dropdown-header" style="width: 170px;text-overflow: ellipsis;overflow: hidden;">
                                         @User.Identity.GetUserName()
                                     </div>
                                 }
@@ -120,7 +116,6 @@
             </ul>
         </div>
     </header>
-
 
     @RenderBody()
 

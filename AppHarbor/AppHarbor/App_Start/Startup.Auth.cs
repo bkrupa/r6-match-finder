@@ -14,8 +14,10 @@ using R6MatchFinder.Common.Database.Model;
 using R6MatchFinder.Models;
 using System.Configuration;
 using Microsoft.Owin.Security.Facebook;
-using System.Threading.Tasks;
 using Facebook;
+using Microsoft.Owin.Security.MicrosoftAccount;
+using Microsoft.Owin.Security.Twitter;
+using System.Linq;
 
 namespace R6MatchFinder
 {
@@ -76,14 +78,54 @@ namespace R6MatchFinder
             // Enable the application to use bearer tokens to authenticate users
             app.UseOAuthBearerTokens(OAuthOptions);
 
-            // Uncomment the following lines to enable logging in with third party login providers
-            app.UseMicrosoftAccountAuthentication(
-                clientId: ConfigurationManager.AppSettings["MSClientId"],
-                clientSecret: ConfigurationManager.AppSettings["MSClientSecret"]);
+            #region Microsoft
 
-            app.UseTwitterAuthentication(
-                consumerKey: ConfigurationManager.AppSettings["TwitterClientId"],
-                consumerSecret: ConfigurationManager.AppSettings["TwitterClientSecret"]);
+            // Uncomment the following lines to enable logging in with third party login providers
+            var microsoftOptions = new MicrosoftAccountAuthenticationOptions
+            {
+                ClientId = ConfigurationManager.AppSettings["MSClientId"],
+                ClientSecret = ConfigurationManager.AppSettings["MSClientSecret"],
+                Provider = new MicrosoftAccountAuthenticationProvider
+                {
+                    OnAuthenticated = (context) =>
+                    {
+                        context.Identity.AddClaim(new Claim(ClaimTypes.Name, context.Identity.FindFirstValue(ClaimTypes.Name)));
+                        return System.Threading.Tasks.Task.FromResult(0);
+                    }
+                }
+            };
+            microsoftOptions.Scope.Add("wl.basic");
+            microsoftOptions.Scope.Add("wl.emails");
+            app.UseMicrosoftAccountAuthentication(microsoftOptions);
+
+            #endregion
+
+
+            var twitterOptions = new TwitterAuthenticationOptions
+            {
+                ConsumerKey = ConfigurationManager.AppSettings["TwitterClientId"],
+                ConsumerSecret = ConfigurationManager.AppSettings["TwitterClientSecret"],
+                BackchannelCertificateValidator = new Microsoft.Owin.Security.CertificateSubjectKeyIdentifierValidator(new[]
+                    {
+                        "A5EF0B11CEC04103A34A659048B21CE0572D7D47", // VeriSign Class 3 Secure Server CA - G2
+                        "0D445C165344C1827E1D20AB25F40163D8BE79A5", // VeriSign Class 3 Secure Server CA - G3
+                        "7FD365A7C2DDECBBF03009F34339FA02AF333133", // VeriSign Class 3 Public Primary Certification Authority - G5
+                        "39A55D933676616E73A761DFA16A7E59CDE66FAD", // Symantec Class 3 Secure Server CA - G4
+                        "‎add53f6680fe66e383cbac3e60922e3b4c412bed", // Symantec Class 3 EV SSL CA - G3
+                        "4eb6d578499b1ccf5f581ead56be3d9b6744a5e5", // VeriSign Class 3 Primary CA - G5
+                        "5168FF90AF0207753CCCD9656462A212B859723B", // DigiCert SHA2 High Assurance Server C‎A 
+                        "B13EC36903F8BF4701D498261A0802EF63642BC3" // DigiCert High Assurance EV Root CA
+                    }),
+                Provider = new TwitterAuthenticationProvider
+                {
+                    OnAuthenticated = async context =>
+                    {
+                        context.Identity.AddClaim(new Claim(ClaimTypes.Name, context.ScreenName));
+                        context.Identity.AddClaim(new Claim(ClaimTypes.Email, context.ScreenName + "@twitter.com"));
+                    }
+                }
+            };
+            app.UseTwitterAuthentication(twitterOptions);
 
 
             app.UseFacebookAuthentication(new FacebookAuthenticationOptions
@@ -103,6 +145,7 @@ namespace R6MatchFinder
 
                         info.email = info.email ?? (info.id + "@facebook.com");
 
+                        context.Identity.AddClaim(new Claim(ClaimTypes.Name, info.id));
                         context.Identity.AddClaim(new Claim(ClaimTypes.Email, info.email));
                         context.Identity.AddClaim(new Claim("profile", info.picture.data.url));
                     }
@@ -121,9 +164,10 @@ namespace R6MatchFinder
                     {
                         GoogleAccountInfo info = JsonConvert.DeserializeObject<GoogleAccountInfo>(context.User.ToString());
 
-
+                        context.Identity.AddClaim(new Claim(ClaimTypes.Name, info.emails.FirstOrDefault().value));
+                        context.Identity.AddClaim(new Claim(ClaimTypes.Email, info.emails.FirstOrDefault().value));
                         context.Identity.AddClaim(new Claim("picture", info.image.url));
-                        context.Identity.AddClaim(new Claim("profile", info.url));
+                        context.Identity.AddClaim(new Claim("profile", info.url ?? ""));
                     }
                 },
             };

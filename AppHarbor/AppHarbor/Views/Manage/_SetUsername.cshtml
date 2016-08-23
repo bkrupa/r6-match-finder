@@ -1,0 +1,24 @@
+﻿
+@using Resources;
+@model R6MatchFinder.Models.SetUsernameViewModel
+
+
+
+@using (Html.BeginForm("SetUsername", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+
+    <div class="form-group">
+
+        @Html.TextBoxFor(m => m.Username, new { @class = "form-control" })
+
+    </div>
+    <div class="text-center">
+        <button class="btn btn-success" type="submit">@resources.SET</button>
+    </div>
+}
+
+@section Scripts {
+
+}

@@ -17,7 +17,7 @@ using System.Web.SessionState;
 
 namespace AppHarbor
 {
-    public class Global : System.Web.HttpApplication
+    public class Global : HttpApplication
     {
 
         protected void Application_Start()
@@ -33,7 +33,6 @@ namespace AppHarbor
             // otherwise GlobalHost.ConnectionManager.GetHubContext<T> won't return the right client set
             // http://stackoverflow.com/questions/20561196/signalr-calling-client-method-from-outside-hub-using-globalhost-connectionmanage
             GlobalHost.DependencyResolver = NinjectWebCommon.Resolver;
-            //            NinjectWebCommon.Kernel.Bind<JsonSerializer>().ToConstant(JsonSerializer.Create(GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings));
 
             JobConfig.Start();
         }
