@@ -211,3 +211,4 @@ var app;
         .module('app')
         .controller(GamesController.Injection, GamesController);
 })(app || (app = {}));
+//# sourceMappingURL=games-controller.js.map

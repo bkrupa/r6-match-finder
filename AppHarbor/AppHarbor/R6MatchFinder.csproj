@@ -344,6 +344,7 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="Views\Contact\contact.html" />
     <Content Include="Views\Games\game-create.html" />
     <Content Include="Views\Games\game-details.html" />
     <Content Include="Views\Games\game-rate.html" />
@@ -363,6 +364,12 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\_ExternalLoginListPartial.cshtml" />
     <Content Include="scripts\jquery-2.2.4.min.map" />
+    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1169,6 +1176,7 @@
     <Compile Include="Controllers\DiscoveryController.cs" />
     <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MapController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\UtilityController.cs" />
@@ -1183,6 +1191,7 @@
     <Compile Include="Hubs\AbstractHub.cs" />
     <Compile Include="Hubs\ActiveGameHub.cs" />
     <Compile Include="Hubs\GeneralHub.cs" />
+    <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="SignalR\NinjectSignalRDependencyResolver.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ExternalViewModels.cs" />

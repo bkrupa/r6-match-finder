@@ -15,6 +15,10 @@ var app;
                 // because we've returned nothing, no state change occurs
             });
             $stateProvider
+                .state(RouteConfig.$routes.Contact, {
+                url: '/contact',
+                templateUrl: 'Views/Contact/contact.html'
+            })
                 .state(RouteConfig.$routes.Home, {
                 url: '/games',
                 templateUrl: 'Views/Games/games-landing.html',
@@ -36,7 +40,8 @@ var app;
         ];
         RouteConfig.$routes = {
             Home: 'home',
-            GameDetails: 'home.details'
+            GameDetails: 'home.details',
+            Contact: 'contact'
         };
         return RouteConfig;
     }());
@@ -45,3 +50,4 @@ var app;
         .module('app')
         .config(RouteConfig);
 })(app || (app = {}));
+//# sourceMappingURL=route-config.js.map

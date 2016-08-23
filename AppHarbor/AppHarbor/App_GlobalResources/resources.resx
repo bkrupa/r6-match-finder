@@ -318,4 +318,7 @@
   <data name="YOU_HAVE_NOT_SIGNED_UP_FOR_ANY_MATCHES" xml:space="preserve">
     <value>You have not signed up for any matches</value>
   </data>
+  <data name="YOU_HAVE_NO_ACTIVE_GAMES" xml:space="preserve">
+    <value>You have no active games.</value>
+  </data>
 </root>

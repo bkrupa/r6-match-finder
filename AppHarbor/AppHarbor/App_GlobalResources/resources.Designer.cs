@@ -663,5 +663,14 @@ namespace Resources {
                 return ResourceManager.GetString("YOU_HAVE_NOT_SIGNED_UP_FOR_ANY_MATCHES", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have no active games..
+        /// </summary>
+        internal static string YOU_HAVE_NO_ACTIVE_GAMES {
+            get {
+                return ResourceManager.GetString("YOU_HAVE_NO_ACTIVE_GAMES", resourceCulture);
+            }
+        }
     }
 }

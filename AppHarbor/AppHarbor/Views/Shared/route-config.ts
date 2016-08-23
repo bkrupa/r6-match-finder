@@ -3,6 +3,7 @@
     export interface Routes {
         Home: string;
         GameDetails: string;
+        Contact: string;
     }
 
     export class RouteConfig {
@@ -14,7 +15,8 @@
 
         static $routes: Routes = {
             Home: 'home',
-            GameDetails: 'home.details'
+            GameDetails: 'home.details',
+            Contact: 'contact'
         };
 
         constructor(
@@ -35,6 +37,10 @@
 
 
             $stateProvider
+                .state(RouteConfig.$routes.Contact, {
+                    url: '/contact',
+                    templateUrl: 'Views/Contact/contact.html'
+                })
                 .state(RouteConfig.$routes.Home, {
                     url: '/games',
                     templateUrl: 'Views/Games/games-landing.html',

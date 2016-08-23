@@ -16,6 +16,12 @@ namespace R6MatchFinder.App_Start
             );
 
             routes.MapRoute(
+                name: "ManageRoute",
+                url: "Manage/{action}",
+                defaults: new { controller = "Manage", action = "Index" }
+            );
+
+            routes.MapRoute(
                 name: "Join",
                 url: "Join",
                 defaults: new { controller = "Action", action = "Join" }

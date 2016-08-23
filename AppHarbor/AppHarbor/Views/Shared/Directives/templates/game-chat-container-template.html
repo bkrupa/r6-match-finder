@@ -10,6 +10,9 @@
                     <span class="fa fa-spin fa-spinner" style="color: white;"></span>
                 </div>
                 <div class="scroll-container" style="height: 255px;">
+                    <div class="text-center" ng-if="vm.games.$resolved && vm.games.length === 0">
+                        <span localize="YOU_HAVE_NO_ACTIVE_GAMES" style="color: white; font-size: 10px;"></span>
+                    </div>
                     <div ng-repeat="game in vm.games | orderBy: 'date'" class="chat-title" style="padding-left: 10px; padding-right: 5px; border: solid 1px #ccc;" ng-click="vm.openGameChat(game)">
                         <h1 class="text-center">{{game.challenger.username}}</h1>
                         <h1 class="text-center text-lowercase">v</h1>
