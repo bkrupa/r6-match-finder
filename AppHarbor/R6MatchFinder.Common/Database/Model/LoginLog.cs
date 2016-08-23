@@ -43,7 +43,7 @@ namespace R6MatchFinder.Common.Database.Model
             {
                 LoginLog log = new LoginLog
                 {
-                    UserName = username,
+                    UserName = username ?? "[UNKNOWN]",
                     Status = result,
                     IPAddress = request.UserHostAddress
                 };

@@ -13,6 +13,9 @@ using R6MatchFinder.Common.Database;
 using R6MatchFinder.Common.Database.Model;
 using R6MatchFinder.Models;
 using System.Configuration;
+using Microsoft.Owin.Security.Facebook;
+using System.Threading.Tasks;
+using Facebook;
 
 namespace R6MatchFinder
 {
@@ -74,17 +77,37 @@ namespace R6MatchFinder
             app.UseOAuthBearerTokens(OAuthOptions);
 
             // Uncomment the following lines to enable logging in with third party login providers
-            //app.UseMicrosoftAccountAuthentication(
-            //    clientId: ConfigurationManager.AppSettings["MSClientId"],
-            //    clientSecret: ConfigurationManager.AppSettings["MSClientSecret"]);
+            app.UseMicrosoftAccountAuthentication(
+                clientId: ConfigurationManager.AppSettings["MSClientId"],
+                clientSecret: ConfigurationManager.AppSettings["MSClientSecret"]);
 
-            //app.UseTwitterAuthentication(
-            //    consumerKey: ConfigurationManager.AppSettings["TwitterClientId"],
-            //    consumerSecret: ConfigurationManager.AppSettings["TwitterClientSecret"]);
+            app.UseTwitterAuthentication(
+                consumerKey: ConfigurationManager.AppSettings["TwitterClientId"],
+                consumerSecret: ConfigurationManager.AppSettings["TwitterClientSecret"]);
 
-            //app.UseFacebookAuthentication(
-            //    appId: ConfigurationManager.AppSettings["FacebookClientId"],
-            //    appSecret: ConfigurationManager.AppSettings["FacebookClientSecret"]);
+
+            app.UseFacebookAuthentication(new FacebookAuthenticationOptions
+            {
+                AppId = ConfigurationManager.AppSettings["FacebookAppId"],
+                AppSecret = ConfigurationManager.AppSettings["FacebookAppSecret"],
+                Scope = { "email" },
+                Provider = new FacebookAuthenticationProvider
+                {
+                    OnAuthenticated = async context =>
+                    {
+                        context.Identity.AddClaim(new Claim("FacebookAccessToken", context.AccessToken));
+                        var fb = new FacebookClient(context.AccessToken);
+
+                        object myInfo = fb.Get("/me?fields=name,id,email,first_name,last_name,gender,picture");
+                        FacebookAccountInfo info = JsonConvert.DeserializeObject<FacebookAccountInfo>(myInfo.ToString());
+
+                        info.email = info.email ?? (info.id + "@facebook.com");
+
+                        context.Identity.AddClaim(new Claim(ClaimTypes.Email, info.email));
+                        context.Identity.AddClaim(new Claim("profile", info.picture.data.url));
+                    }
+                }
+            });
 
             #region Google
 
