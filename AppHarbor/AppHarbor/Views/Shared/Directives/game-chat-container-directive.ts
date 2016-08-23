@@ -2,9 +2,10 @@
 
     class GameChatContainerController {
         static Injection: string = 'gameChatContainerController'
-        static $inject = ['$timeout', GeneralHubService.Injection, ActiveGameHubService.Injection, GamesRepository.Injection];
+        static $inject = ['$rootScope', '$timeout', GeneralHubService.Injection, ActiveGameHubService.Injection, GamesRepository.Injection];
 
         constructor(
+            private $rootScope: ng.IRootScopeService,
             private $timeout: ng.ITimeoutService,
             private generalHub: GeneralHubService,
             private gameHub: ActiveGameHubService,
@@ -12,6 +13,13 @@
         ) {
             generalHub.$on(GeneralHubService.$events.RefreshGameList, () => {
                 this.bindGames(false);
+            });
+
+            $rootScope.$on('openGameChat', (event: ng.IAngularEvent, gameId: string) => {
+                var myGames = this.games.filter((g) => g.id == gameId);
+
+                if (myGames.length)
+                    this.openGameChat(myGames[0]);
             });
 
             this.bindGames(true);

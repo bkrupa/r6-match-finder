@@ -24,4 +24,3 @@ var app;
         .module('app')
         .factory(AccountRepository.Injection, ['$resource', function ($resource) { return new AccountRepository($resource); }]);
 })(app || (app = {}));
-//# sourceMappingURL=account-repository.js.map

@@ -37,4 +37,3 @@ var app;
         .module('app')
         .directive(RadioButtonGroupDirective.Injection, app.Activator.CreateFactory(RadioButtonGroupDirective));
 })(app || (app = {}));
-//# sourceMappingURL=radio-button-group-directive.js.map

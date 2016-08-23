@@ -55,4 +55,3 @@ var app;
         .module('app')
         .factory(UtilityRepository.Injection, app.Activator.CreateFactory(UtilityRepository));
 })(app || (app = {}));
-//# sourceMappingURL=utility-repository.js.map

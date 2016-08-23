@@ -1,8 +1,9 @@
 var app;
 (function (app) {
     var GameChatContainerController = (function () {
-        function GameChatContainerController($timeout, generalHub, gameHub, gamesRepository) {
+        function GameChatContainerController($rootScope, $timeout, generalHub, gameHub, gamesRepository) {
             var _this = this;
+            this.$rootScope = $rootScope;
             this.$timeout = $timeout;
             this.generalHub = generalHub;
             this.gameHub = gameHub;
@@ -11,6 +12,11 @@ var app;
             this.openGames = [];
             generalHub.$on(app.GeneralHubService.$events.RefreshGameList, function () {
                 _this.bindGames(false);
+            });
+            $rootScope.$on('openGameChat', function (event, gameId) {
+                var myGames = _this.games.filter(function (g) { return g.id == gameId; });
+                if (myGames.length)
+                    _this.openGameChat(myGames[0]);
             });
             this.bindGames(true);
         }
@@ -32,7 +38,7 @@ var app;
                 this.openGames.splice(idx, 1);
         };
         GameChatContainerController.Injection = 'gameChatContainerController';
-        GameChatContainerController.$inject = ['$timeout', app.GeneralHubService.Injection, app.ActiveGameHubService.Injection, app.GamesRepository.Injection];
+        GameChatContainerController.$inject = ['$rootScope', '$timeout', app.GeneralHubService.Injection, app.ActiveGameHubService.Injection, app.GamesRepository.Injection];
         return GameChatContainerController;
     }());
     var GameChatContainerDirective = (function () {
@@ -57,4 +63,3 @@ var app;
         .module('app')
         .directive(GameChatContainerDirective.Injection, app.Activator.CreateFactory(GameChatContainerDirective));
 })(app || (app = {}));
-//# sourceMappingURL=game-chat-container-directive.js.map

@@ -25,10 +25,11 @@
             <td><span ng-bind="game.map.name"></span></td>
             <td ng-bind="game.playersPerTeam"></td>
             <td style="width: 130px;" class="text-center">
-                <button class="fa fa-check-circle btn btn-link" ng-if="game.isActive" type="button" ng-click="vm.completeGame(game)"></button>
-                <button class="fa fa-star fa-star-half-full btn btn-link" ng-if="game.isComplete && game.canRate" type="button" ng-click="vm.rateGame(game)"></button>
-                <button class="fa fa-gears btn btn-link" type="button" ng-click="vm.showDetails(game)"></button>
-                <button class="fa fa-trash-o btn btn-link" type="button" ng-if="!game.isActive && !game.isComplete && game.userId == userInfo.id" ng-click="vm.deleteGame(game)"></button>
+                <a href="#" class="fa fa-commenting " ng-if="game.isActive" style="margin: 3px;" ng-click="vm.openChat(game)"></a>
+                <a href="#" class="fa fa-check-circle " ng-if="game.isActive" style="margin: 3px;" ng-click="vm.completeGame(game)"></a>
+                <a href="#" class="fa fa-star fa-star-half-full " ng-if="game.isComplete && game.canRate" style="margin: 3px;" ng-click="vm.rateGame(game)"></a>
+                <a href="#" class="fa fa-gears" style="margin: 3px;" ng-click="vm.showDetails(game)"></a>
+                <a href="#" class="fa fa-trash-o" style="margin: 3px;" ng-if="!game.isActive && !game.isComplete && game.userId == userInfo.id" ng-click="vm.deleteGame(game)"></a>
             </td>
         </tr>
         <tr ng-if="vm.myGames.length === 0 && vm.myGames.$resolved">

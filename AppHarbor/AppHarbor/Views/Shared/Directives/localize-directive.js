@@ -26,4 +26,3 @@ var app;
         .module('app')
         .directive(LocalizeDirective.Injection, app.Activator.CreateFactory(LocalizeDirective));
 })(app || (app = {}));
-//# sourceMappingURL=localize-directive.js.map

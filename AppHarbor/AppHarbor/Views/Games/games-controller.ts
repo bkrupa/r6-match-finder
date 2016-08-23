@@ -118,6 +118,10 @@
 
         }
 
+        public openChat(game) {
+            this.$rootScope.$emit('openGameChat', game.id);
+        }
+
         public createGame() {
             var modal: ng.ui.bootstrap.IModalServiceInstance = this.$uibModal.open({
                 backdrop: 'static',

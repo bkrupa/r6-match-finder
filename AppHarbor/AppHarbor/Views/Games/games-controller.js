@@ -96,6 +96,9 @@ var app;
                 _this.bindGames(false);
             });
         }
+        GamesController.prototype.openChat = function (game) {
+            this.$rootScope.$emit('openGameChat', game.id);
+        };
         GamesController.prototype.createGame = function () {
             var _this = this;
             var modal = this.$uibModal.open({
@@ -211,4 +214,3 @@ var app;
         .module('app')
         .controller(GamesController.Injection, GamesController);
 })(app || (app = {}));
-//# sourceMappingURL=games-controller.js.map
