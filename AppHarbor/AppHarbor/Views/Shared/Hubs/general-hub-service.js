@@ -15,7 +15,6 @@ var app;
         GeneralHubService.$inject = ['Hub'];
         GeneralHubService.$events = {
             RefreshGameList: 'refreshGameList',
-            Test: 'test',
             Connecting: 'connecting',
             Connected: 'connected',
             Reconnecting: 'reconnecting',
@@ -33,4 +32,3 @@ var app;
         .module('app')
         .factory(GeneralHubService.Injection, app.Activator.CreateFactory(GeneralHubService));
 })(app || (app = {}));
-//# sourceMappingURL=general-hub-service.js.map

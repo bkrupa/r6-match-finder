@@ -5,11 +5,16 @@ using R6MatchFinder.Common.Web.Interfaces;
 using R6MatchFinder.Common.Web.Model;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
+using WebApiCache;
 
 namespace R6MatchFinder.Controllers
 {
@@ -24,14 +29,69 @@ namespace R6MatchFinder.Controllers
         }
 
         [HttpGet, Route("")]
-        public Dictionary<string, string> GetUserInfo()
+        public Dictionary<string, string> GetCurrentUserInfo()
         {
             Dictionary<string, string> rtn =
-                ((ClaimsIdentity)User.Identity).Claims.GroupBy(c => c.Type).ToDictionary(g => g.Key.Split('/').Last(), g => string.Join(", ", g.Select(c => c.Value)));
+                ((ClaimsIdentity)User.Identity).Claims.GroupBy(c => c.Type)
+                .ToDictionary(g => g.Key.Split('/').Last(), g => string.Join(", ", g.Select(c => c.Value)));
 
             rtn["id"] = User.Identity.GetUserId();
 
             return rtn;
+        }
+
+        [HttpGet, Route("{id}/Info")]
+        public async Task<Dictionary<string, string>> GetUserInfo(string id)
+        {
+            IList<Claim> claims = await ApplicationUserManager.Current.GetClaimsAsync(id);
+
+            Dictionary<string, string> rtn = claims.GroupBy(c => c.Type)
+                .ToDictionary(g => g.Key.Split('/').Last(), g => string.Join(", ", g.Select(c => c.Value)));
+            rtn["id"] = id;
+
+            return rtn;
+        }
+
+        [HttpGet, Route("{id}/Image"), Cache(VaryByPath = true, VaryByUser = false)]
+        public async Task<HttpResponseMessage> GetUserImage(string id)
+        {
+            IList<Claim> claims = await ApplicationUserManager.Current.GetClaimsAsync(id);
+            Claim picClaim = claims.FirstOrDefault(c => c.Type == "picture");
+
+            if (picClaim != null)
+            {
+                WebRequest request = WebRequest.Create(picClaim.Value);
+
+                using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    await response.GetResponseStream().CopyToAsync(stream);
+                    stream.Seek(0, SeekOrigin.Begin);
+
+
+                    HttpResponseMessage result = new HttpResponseMessage(HttpStatusCode.OK);
+                    result.Content = new ByteArrayContent(stream.ToArray());
+                    result.Content.Headers.ContentType = new MediaTypeHeaderValue("image/png");
+                    return result;
+                }
+            }
+
+            // Get here if the user doesn't have a "picture" claim
+            string missingImagePath = HttpContext.Current.Request.MapPath("~/Images/Portrait_placeholder.png");
+
+            using (FileStream fileStream = new FileStream(missingImagePath, FileMode.Open))
+            {
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    await fileStream.CopyToAsync(stream);
+                    stream.Seek(0, SeekOrigin.Begin);
+
+                    HttpResponseMessage result = new HttpResponseMessage(HttpStatusCode.OK);
+                    result.Content = new ByteArrayContent(stream.ToArray());
+                    result.Content.Headers.ContentType = new MediaTypeHeaderValue("image/png");
+                    return result;
+                }
+            }
         }
 
         [HttpGet, Route("{id}/Statistics")]

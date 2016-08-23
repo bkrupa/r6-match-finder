@@ -1,10 +1,5 @@
 ﻿using Quartz;
 using R6MatchFinder.Common.Database;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace R6MatchFinder.Jobs
 {

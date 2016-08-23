@@ -4,6 +4,7 @@ using R6MatchFinder.Common.Database.Model;
 using R6MatchFinder.Common.Utility;
 using System;
 using System.Data.Entity.Migrations;
+using System.Linq;
 
 namespace R6MatchFinder.Common.Database.Migrations
 {
@@ -40,6 +41,23 @@ namespace R6MatchFinder.Common.Database.Migrations
 
                 foreach (IdentityRole role in context.Roles)
                     role.Users.Add(new IdentityUserRole { UserId = user.Id, RoleId = role.Id });
+            }
+
+            if (!context.Maps.Any())
+            {
+                context.Maps.Add(new Map { Name = "Consulate" });
+                context.Maps.Add(new Map { Name = "Chalet" });
+                context.Maps.Add(new Map { Name = "House" });
+                context.Maps.Add(new Map { Name = "Hereford Base" });
+                context.Maps.Add(new Map { Name = "Kanal" });
+                context.Maps.Add(new Map { Name = "Club House" });
+                context.Maps.Add(new Map { Name = "Bank" });
+                context.Maps.Add(new Map { Name = "Border" });
+                context.Maps.Add(new Map { Name = "Favelas" });
+                context.Maps.Add(new Map { Name = "Yacht" });
+                context.Maps.Add(new Map { Name = "Plane" });
+                context.Maps.Add(new Map { Name = "Oregon" });
+                context.Maps.Add(new Map { Name = "Kafe Dostoyevsky" });
             }
         }
 

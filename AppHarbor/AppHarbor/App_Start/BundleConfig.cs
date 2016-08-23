@@ -11,7 +11,8 @@ namespace R6MatchFinder.App_Start
                 .Include("~/Scripts/jquery-{version}.js")
                 .Include("~/Scripts/jquery-ui-{version}.js")
                 .Include("~/Scripts/jquery.unobtrusive*", "~/Scripts/jquery.validate*")
-                .Include("~/Scripts/jquery.signalR-{version}.js"));
+                .Include("~/Scripts/jquery.signalR-{version}.js")
+                .Include("~/Scripts/jquery.mCustomScrollbar.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                 "~/Scripts/angular.js",
@@ -43,10 +44,12 @@ namespace R6MatchFinder.App_Start
                 "~/Content/font-awesome.css",
                 "~/Content/toastr.css",
                 "~/Content/zocial.css",
-                "~/css/bootstrap-slider.min.css"));
+                "~/css/bootstrap-slider.min.css",
+                "~/Content/jquery.mCustomScrollbar.css"));
 
             bundles.Add(new StyleBundle("~/bundles/Content/app").Include(
                 "~/Content/App/Spinners.css",
+                "~/Content/App/chat-box.css",
                 "~/Content/App/Site.css"));
 
             #endregion

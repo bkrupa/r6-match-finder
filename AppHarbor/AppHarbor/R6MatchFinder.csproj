@@ -253,6 +253,10 @@
       <HintPath>..\packages\WebActivatorEx.2.1.0\lib\net40\WebActivatorEx.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="WebApiOutputCache, Version=0.0.4.42296, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebApiOutputCache.0.0.4.42296\lib\net451\WebApiOutputCache.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
       <Private>True</Private>
@@ -268,10 +272,12 @@
     <Content Include="bin\roslyn\System.Reflection.Metadata.dll" />
     <Content Include="bin\roslyn\vbc.exe" />
     <Content Include="bin\roslyn\VBCSCompiler.exe" />
+    <Content Include="Content\App\site.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\jquery.mCustomScrollbar.css" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
     <Content Include="Content\ui-bootstrap-csp.css" />
@@ -279,6 +285,7 @@
     <Content Include="css\bootstrap-slider.min.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\zocial-regular-webfont.svg" />
+    <Content Include="Images\Portrait_placeholder.png" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -309,11 +316,11 @@
     <Content Include="scripts\bootstrap-slider.min.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
-    <None Include="scripts\jquery-3.1.0.intellisense.js" />
-    <Content Include="scripts\jquery-3.1.0.js" />
-    <Content Include="scripts\jquery-3.1.0.min.js" />
-    <Content Include="scripts\jquery-3.1.0.slim.js" />
-    <Content Include="scripts\jquery-3.1.0.slim.min.js" />
+    <Content Include="Content\App\chat-box.css" />
+    <None Include="scripts\jquery-2.2.4.intellisense.js" />
+    <Content Include="scripts\jquery-2.2.4.js" />
+    <Content Include="scripts\jquery-2.2.4.min.js" />
+    <Content Include="scripts\jquery.mCustomScrollbar.js" />
     <Content Include="scripts\jquery.signalR-2.2.1.js" />
     <Content Include="scripts\jquery.signalR-2.2.1.min.js" />
     <Content Include="scripts\toastr.js" />
@@ -344,7 +351,9 @@
     <Content Include="Views\Games\my-games-grid.html" />
     <Content Include="Views\Games\my-statistics.html" />
     <Content Include="Views\Games\upcoming-games-grid.html" />
+    <Content Include="Views\Shared\Directives\templates\chat-box-template.html" />
     <Content Include="Views\Shared\Directives\templates\datetimepicker-template.html" />
+    <Content Include="Views\Shared\Directives\templates\game-chat-container-template.html" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
@@ -353,8 +362,7 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\_ExternalLoginListPartial.cshtml" />
-    <Content Include="scripts\jquery-3.1.0.slim.min.map" />
-    <Content Include="scripts\jquery-3.1.0.min.map" />
+    <Content Include="scripts\jquery-2.2.4.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1161,8 +1169,10 @@
     <Compile Include="Controllers\DiscoveryController.cs" />
     <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MapController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\UtilityController.cs" />
+    <Compile Include="Formatters\CamelCaseJsonSerializer.cs" />
     <Compile Include="Formatters\ExactCaseFormatter.cs" />
     <Compile Include="Formatters\UpperCaseFormatter.cs" />
     <Compile Include="Global.asax.cs">
@@ -1173,12 +1183,13 @@
     <Compile Include="Hubs\AbstractHub.cs" />
     <Compile Include="Hubs\ActiveGameHub.cs" />
     <Compile Include="Hubs\GeneralHub.cs" />
-    <Compile Include="IoC\NinjectSignalRDependencyResolver.cs" />
+    <Compile Include="SignalR\NinjectSignalRDependencyResolver.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ExternalViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Providers\CentralizedPrefixProvider.cs" />
+    <Compile Include="SignalR\SignalRContractResolver.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
   </ItemGroup>
@@ -1209,14 +1220,18 @@
     <TypeScriptCompile Include="scripts\typings\angularjs\angular.d.ts" />
     <TypeScriptCompile Include="scripts\typings\bootstrap-slider\bootstrap-slider.d.ts" />
     <TypeScriptCompile Include="scripts\typings\jquery\jquery.d.ts" />
+    <TypeScriptCompile Include="scripts\typings\mCustomScrollbar\mCustomScrollbar.d.ts" />
     <TypeScriptCompile Include="scripts\typings\signalr\signalr.d.ts" />
     <TypeScriptCompile Include="scripts\typings\toastr\toastr.d.ts" />
     <TypeScriptCompile Include="Views\Games\games-controller.ts" />
     <TypeScriptCompile Include="Views\Shared\Classes\activator-classes.ts" />
     <TypeScriptCompile Include="Views\Shared\Classes\root-scope-interface.ts" />
+    <TypeScriptCompile Include="Views\Shared\Directives\chat-box-directive.ts" />
     <TypeScriptCompile Include="Views\Shared\Directives\datetimepicker-directive.ts" />
     <TypeScriptCompile Include="Views\Shared\Directives\enum-text-directive.ts" />
     <TypeScriptCompile Include="Views\Shared\Classes\base-hub-classes.ts" />
+    <TypeScriptCompile Include="Views\Shared\Directives\game-chat-container-directive.ts" />
+    <TypeScriptCompile Include="Views\Shared\Directives\localize-directive.ts" />
     <TypeScriptCompile Include="Views\Shared\Hubs\active-game-hub-service.ts" />
     <TypeScriptCompile Include="Views\Shared\Hubs\general-hub-service.ts" />
     <TypeScriptCompile Include="Views\Shared\Interceptors\error-interceptor.ts" />
@@ -1226,6 +1241,7 @@
     <TypeScriptCompile Include="Views\Shared\Directives\enum-dropdown-directive.ts" />
     <TypeScriptCompile Include="Views\Shared\Directives\radio-button-group-directive.ts" />
     <TypeScriptCompile Include="Views\Shared\Directives\toggle-button-directive.ts" />
+    <TypeScriptCompile Include="Views\Shared\Repositories\maps-repository.ts" />
     <TypeScriptCompile Include="Views\Shared\Repositories\utility-repository.ts" />
     <TypeScriptCompile Include="Views\Shared\Services\resource-service.ts" />
     <TypeScriptCompile Include="Views\Shared\Startup\current-user.ts" />

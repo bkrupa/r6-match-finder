@@ -18,17 +18,16 @@ namespace R6MatchFinder.App_Start
     using Common.Database.Repository;
     using System.Collections.Generic;
     using Common.Database.Services;
-    using Hubs;
-    using Microsoft.AspNet.SignalR.Hubs;
-    using Microsoft.AspNet.SignalR.Infrastructure;
-    using IoC;
     using Microsoft.AspNet.SignalR;
+    using Newtonsoft.Json;
+    using SignalR;
 
     public static class NinjectWebCommon
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
 
         public static DefaultDependencyResolver Resolver { get; private set; }
+        public static IKernel Kernel { get; private set; }
 
         /// <summary>
         /// Starts the application
@@ -54,19 +53,19 @@ namespace R6MatchFinder.App_Start
         /// <returns>The created kernel.</returns>
         private static IKernel CreateKernel()
         {
-            var kernel = new StandardKernel();
+            Kernel = new StandardKernel();
             try
             {
-                kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
-                kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
+                Kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
+                Kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
 
-                RegisterServices(kernel);
-                Resolver = new NinjectSignalRDependencyResolver(kernel);
-                return kernel;
+                RegisterServices(Kernel);
+                Resolver = new NinjectSignalRDependencyResolver(Kernel);
+                return Kernel;
             }
             catch
             {
-                kernel.Dispose();
+                Kernel.Dispose();
                 throw;
             }
         }
@@ -78,6 +77,11 @@ namespace R6MatchFinder.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<IDbContext>().To<R6Context>().InRequestScope();
+
+            JsonSerializerSettings settings = new JsonSerializerSettings();
+            settings.ContractResolver = new SignalRContractResolver();
+            JsonSerializer serializer = JsonSerializer.Create(settings);
+            kernel.Bind<JsonSerializer>().ToConstant(serializer);
 
             IEnumerable<Type> allTypes = Assembly.GetAssembly(typeof(R6Context)).GetTypes();
 

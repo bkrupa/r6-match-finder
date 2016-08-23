@@ -10,4 +10,3 @@ var app;
         .module('app')
         .filter('replace', ReplaceFilter);
 })(app || (app = {}));
-//# sourceMappingURL=replace-filter.js.map

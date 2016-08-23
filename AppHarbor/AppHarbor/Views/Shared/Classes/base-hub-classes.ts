@@ -1,12 +1,24 @@
 ﻿module app {
+    class MethodCall {
+        constructor(
+            public method: string,
+            public args: any[],
+            public promise: ng.IPromise<any>
+        ) {
+        }
+    }
+
     export abstract class BaseHub {
         protected $eventHandlers: EventDictionary = {};
 
         private options: ngSignalr.HubOptions = {
+            useSharedConnection: false,
             listeners: this.GetListeners(),
             logging: this.enableLogging,
             methods: this.serverMethods,
-            errorHandler: this.onSignalRError,
+            errorHandler: (...args: any[]) => {
+                this.onSignalRError.apply(this, args);
+            },
             stateChanged: (state) => {
                 switch (state.newState) {
                     case $.signalR.connectionState.connecting:
@@ -38,6 +50,8 @@
             private enableLogging: boolean) {
             this.hub = new hubFactory(hubName, this.options);
         }
+
+        private $eventStack: Array<MethodCall> = [];
 
         protected hub: any;
 
@@ -77,7 +91,6 @@
             console.debug(msg);
         }
 
-
         private callFn(event: string, args: any[]): void {
             var handlers = this.$eventHandlers[event];
 
@@ -89,5 +102,19 @@
                     handlers[i].apply(null, args);
             }
         }
+
+        protected executeServerMethod(method: string, ...args: any[]): ng.IPromise<any> {
+            var $q = angular.injector(['app']).get('$q');
+            var deferred = $q.defer<any>();
+
+            this.hub.promise.then(() => {
+                this.hub[method].apply(null, args).then(
+                    (...args: any[]) => { deferred.resolve.apply(null, args); },
+                    (...args: any[]) => { deferred.reject.apply(null, args); });
+            }, (...args: any[]) => { deferred.reject.apply(null, args); });
+
+            return deferred.promise;
+        }
+
     }
 }

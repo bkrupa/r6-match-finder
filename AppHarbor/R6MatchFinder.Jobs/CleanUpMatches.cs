@@ -1,7 +1,6 @@
 ﻿using Quartz;
 using R6MatchFinder.Common.Database;
 using R6MatchFinder.Common.Database.Model;
-using R6MatchFinder.Common.Utilities;
 using R6MatchFinder.Jobs.Attributes;
 using System;
 using System.Collections.Generic;

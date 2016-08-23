@@ -10,5 +10,9 @@ namespace R6MatchFinder.Common.Web.Model
 
         public WMUser Challenger { get; set; }
         public string ChallengerId { get; set; }
+
+
+        public WMActiveGameMatchSettings MatchSettings { get; set; }
+        public WMActiveGameModeSettings ModeSettings { get; set; }
     }
 }

@@ -17,6 +17,7 @@ namespace R6MatchFinder.Common.Database
         DbSet<UserStatistics> UserStatistics { get; }
         DbSet<UserAccounts> UserAccounts { get; }
         DbSet<GameChat> GameChat { get; }
+        DbSet<Map> Maps { get; }
 
         DbSet<Log> Log { get; set; }
 

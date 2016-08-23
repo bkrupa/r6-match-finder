@@ -1,16 +1,13 @@
-﻿using Microsoft.AspNet.SignalR;
-using System;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.SignalR;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 
 namespace R6MatchFinder.Hubs
 {
     public abstract class AbstractHub : Hub
     {
-        protected string UserId { get { return ApplicationUserManager.GetUserId(); } }
+        protected string UserId { get { return Context.User.Identity.GetUserId(); } }
         protected readonly ConcurrentDictionary<string, string> ConnectedUsers = new ConcurrentDictionary<string, string>();
 
         public AbstractHub()

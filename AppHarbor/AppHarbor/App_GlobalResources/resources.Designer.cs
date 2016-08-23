@@ -61,6 +61,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Active Games.
+        /// </summary>
+        internal static string ACTIVE_GAMES {
+            get {
+                return ResourceManager.GetString("ACTIVE_GAMES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to MatchFinder.
         /// </summary>
         internal static string APPLICATION_NAME {
@@ -291,6 +300,15 @@ namespace Resources {
         internal static string LEAN {
             get {
                 return ResourceManager.GetString("LEAN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Map.
+        /// </summary>
+        internal static string MAP {
+            get {
+                return ResourceManager.GetString("MAP", resourceCulture);
             }
         }
         

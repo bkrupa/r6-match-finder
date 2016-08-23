@@ -15,7 +15,16 @@ var app;
                 // because we've returned nothing, no state change occurs
             });
             $stateProvider
-                .state('home', { url: '/games', templateUrl: 'Views/Games/games-landing.html', controller: app.GamesController.Injection, controllerAs: 'vm' });
+                .state(RouteConfig.$routes.Home, {
+                url: '/games',
+                templateUrl: 'Views/Games/games-landing.html',
+                controller: app.GamesController.Injection,
+                controllerAs: 'vm',
+                resolve: {
+                    Maps: [app.MapsRepository.Injection, function (repo) { return repo.getAll(); }]
+                }
+            })
+                .state(RouteConfig.$routes.GameDetails, { url: '/:group/:gameId', params: { group: 'open' } });
             //.otherwise({ redirectTo: function () { return redirectFn.apply(this, arguments) || '/'; } });
             $urlRouterProvider.otherwise('/games');
             $locationProvider.html5Mode(true);
@@ -25,6 +34,10 @@ var app;
             '$urlRouterProvider',
             '$locationProvider'
         ];
+        RouteConfig.$routes = {
+            Home: 'home',
+            GameDetails: 'home.details'
+        };
         return RouteConfig;
     }());
     app.RouteConfig = RouteConfig;
@@ -32,4 +45,3 @@ var app;
         .module('app')
         .config(RouteConfig);
 })(app || (app = {}));
-//# sourceMappingURL=route-config.js.map

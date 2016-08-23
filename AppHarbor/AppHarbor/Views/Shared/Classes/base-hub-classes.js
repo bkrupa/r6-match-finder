@@ -1,5 +1,13 @@
 var app;
 (function (app) {
+    var MethodCall = (function () {
+        function MethodCall(method, args, promise) {
+            this.method = method;
+            this.args = args;
+            this.promise = promise;
+        }
+        return MethodCall;
+    }());
     var BaseHub = (function () {
         function BaseHub(hubName, hubFactory, eventMap, serverMethods, enableLogging) {
             var _this = this;
@@ -10,10 +18,17 @@ var app;
             this.enableLogging = enableLogging;
             this.$eventHandlers = {};
             this.options = {
+                useSharedConnection: false,
                 listeners: this.GetListeners(),
                 logging: this.enableLogging,
                 methods: this.serverMethods,
-                errorHandler: this.onSignalRError,
+                errorHandler: function () {
+                    var args = [];
+                    for (var _i = 0; _i < arguments.length; _i++) {
+                        args[_i - 0] = arguments[_i];
+                    }
+                    _this.onSignalRError.apply(_this, args);
+                },
                 stateChanged: function (state) {
                     switch (state.newState) {
                         case $.signalR.connectionState.connecting:
@@ -31,6 +46,7 @@ var app;
                     }
                 }
             };
+            this.$eventStack = [];
             this.hub = new hubFactory(hubName, this.options);
         }
         BaseHub.prototype.onSignalRError = function (error) {
@@ -77,8 +93,38 @@ var app;
                     handlers[i].apply(null, args);
             }
         };
+        BaseHub.prototype.executeServerMethod = function (method) {
+            var _this = this;
+            var args = [];
+            for (var _i = 1; _i < arguments.length; _i++) {
+                args[_i - 1] = arguments[_i];
+            }
+            var $q = angular.injector(['app']).get('$q');
+            var deferred = $q.defer();
+            this.hub.promise.then(function () {
+                _this.hub[method].apply(null, args).then(function () {
+                    var args = [];
+                    for (var _i = 0; _i < arguments.length; _i++) {
+                        args[_i - 0] = arguments[_i];
+                    }
+                    deferred.resolve.apply(null, args);
+                }, function () {
+                    var args = [];
+                    for (var _i = 0; _i < arguments.length; _i++) {
+                        args[_i - 0] = arguments[_i];
+                    }
+                    deferred.reject.apply(null, args);
+                });
+            }, function () {
+                var args = [];
+                for (var _i = 0; _i < arguments.length; _i++) {
+                    args[_i - 0] = arguments[_i];
+                }
+                deferred.reject.apply(null, args);
+            });
+            return deferred.promise;
+        };
         return BaseHub;
     }());
     app.BaseHub = BaseHub;
 })(app || (app = {}));
-//# sourceMappingURL=base-hub-classes.js.map

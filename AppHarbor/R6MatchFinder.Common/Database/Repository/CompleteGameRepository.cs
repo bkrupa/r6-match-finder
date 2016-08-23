@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace R6MatchFinder.Common.Database.Repository
@@ -40,6 +39,7 @@ namespace R6MatchFinder.Common.Database.Repository
                 .Include(g => g.ModeSettings)
                 .Include(g => g.Challenger)
                 .Include(g => g.Creator)
+                .Include(g => g.Map)
                 .ToListAsync();
         }
 
@@ -50,6 +50,7 @@ namespace R6MatchFinder.Common.Database.Repository
                 .Include(g => g.ModeSettings)
                 .Include(g => g.Challenger)
                 .Include(g => g.Creator)
+                .Include(g => g.Map)
                 .FirstOrDefaultAsync(g => g.Id == id);
         }
 
@@ -60,6 +61,7 @@ namespace R6MatchFinder.Common.Database.Repository
                 .Include(g => g.ModeSettings)
                 .Include(g => g.Challenger)
                 .Include(g => g.Creator)
+                .Include(g => g.Map)
                 .Where(g => g.UserId == userId || g.ChallengerId == userId)
                 .ToListAsync();
         }

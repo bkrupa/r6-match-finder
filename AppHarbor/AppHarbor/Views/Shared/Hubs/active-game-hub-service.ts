@@ -2,6 +2,9 @@
 
     interface GameHubEvents extends ISignalREvents {
         ReceiveMessage: string;
+        StartTyping: string;
+        CancelTyping: string;
+        Initialize: string;
     }
 
     export class ActiveGameHubService extends BaseHub {
@@ -14,15 +17,21 @@
             Reconnecting: 'reconnecting',
             Disconnected: 'disconnected',
             Error: 'error',
-            ReceiveMessage: 'receiveMessage'
+            ReceiveMessage: 'receiveMessage',
+            StartTyping: 'startTyping',
+            CancelTyping: 'cancelTyping',
+            Initialize: 'initialize'
         };
 
 
         private static EventMap: StringStringDictionary = {
-            receiveMessage: ActiveGameHubService.$events.ReceiveMessage
+            receiveMessage: ActiveGameHubService.$events.ReceiveMessage,
+            startTyping: ActiveGameHubService.$events.StartTyping,
+            cancelTyping: ActiveGameHubService.$events.CancelTyping,
+            initialize: ActiveGameHubService.$events.Initialize
         }
 
-        private static ServerEvents: Array<string> = ['sendMessage', 'connectToGame'];
+        private static ServerEvents: Array<string> = ['sendMessage', 'connectToGame', 'startTyping', 'cancelTyping'];
 
 
         constructor(
@@ -31,14 +40,20 @@
             super('activeGameHub', Hub, ActiveGameHubService.EventMap, ActiveGameHubService.ServerEvents, false);
         }
 
-        private gameId: string = 'BBC740E5-CA67-E611-BDAC-B2B8EA070CAD';
-
-        public SendMessage(message: string): ng.IPromise<void> {
-            return this.hub.sendMessage(this.gameId, message);
+        public SendMessage(gameId: string, message: string): ng.IPromise<void> {
+            return this.executeServerMethod('sendMessage', gameId, message);
         }
 
-        public Connect(): ng.IPromise<void> {
-            return this.hub.connectToGame(this.gameId);
+        public Connect(gameId: string): ng.IPromise<void> {
+            return this.executeServerMethod('connectToGame', gameId);
+        }
+
+        public StartTyping(gameId: string): ng.IPromise<void> {
+            return this.executeServerMethod('startTyping', gameId);
+        }
+
+        public CancelTyping(gameId: string): ng.IPromise<void> {
+            return this.executeServerMethod('cancelTyping', gameId);
         }
     }
 

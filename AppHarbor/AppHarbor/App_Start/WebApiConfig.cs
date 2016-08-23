@@ -1,7 +1,7 @@
 ﻿using Microsoft.Owin.Security.OAuth;
-using Newtonsoft.Json.Serialization;
 using R6MatchFinder.Handlers;
 using R6MatchFinder.Providers;
+using R6MatchFinder.SignalR;
 using System.Web.Http;
 
 namespace R6MatchFinder.App_Start
@@ -19,7 +19,7 @@ namespace R6MatchFinder.App_Start
 
 
             // Use camel case for JSON data.
-            config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new SignalRContractResolver();
 
             // Web API routes
             config.MapHttpAttributeRoutes(new CentralizedPrefixProvider("api"));

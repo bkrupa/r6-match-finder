@@ -1,11 +1,21 @@
 ﻿module app {
 
+    export interface Routes {
+        Home: string;
+        GameDetails: string;
+    }
+
     export class RouteConfig {
         static $inject = [
             '$stateProvider',
             '$urlRouterProvider',
             '$locationProvider'
         ];
+
+        static $routes: Routes = {
+            Home: 'home',
+            GameDetails: 'home.details'
+        };
 
         constructor(
             private $stateProvider: ng.ui.IStateProvider,
@@ -25,9 +35,18 @@
 
 
             $stateProvider
-                .state('home', { url: '/games', templateUrl: 'Views/Games/games-landing.html', controller: GamesController.Injection, controllerAs: 'vm' })
-                ;
+                .state(RouteConfig.$routes.Home, {
+                    url: '/games',
+                    templateUrl: 'Views/Games/games-landing.html',
+                    controller: GamesController.Injection,
+                    controllerAs: 'vm',
+                    resolve: {
+                        Maps: [MapsRepository.Injection, (repo: MapsRepository) => { return repo.getAll(); }]
+                    }
+                })
 
+                .state(RouteConfig.$routes.GameDetails, { url: '/:group/:gameId', params: { group: 'open' } })
+                ;
 
             //.otherwise({ redirectTo: function () { return redirectFn.apply(this, arguments) || '/'; } });
             $urlRouterProvider.otherwise('/games');

@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNet.Identity;
+﻿
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.SignalR;
 using R6MatchFinder;
 using R6MatchFinder.App_Start;
 using R6MatchFinder.Common.Configuration;
 using R6MatchFinder.Common.Database.Model;
-using R6MatchFinder.Common.Utilities;
 using R6MatchFinder.Jobs;
 using System;
 using System.Net;
@@ -33,6 +33,7 @@ namespace AppHarbor
             // otherwise GlobalHost.ConnectionManager.GetHubContext<T> won't return the right client set
             // http://stackoverflow.com/questions/20561196/signalr-calling-client-method-from-outside-hub-using-globalhost-connectionmanage
             GlobalHost.DependencyResolver = NinjectWebCommon.Resolver;
+            //            NinjectWebCommon.Kernel.Bind<JsonSerializer>().ToConstant(JsonSerializer.Create(GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings));
 
             JobConfig.Start();
         }

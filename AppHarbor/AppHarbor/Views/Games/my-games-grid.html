@@ -8,6 +8,7 @@
             <th>{{resolve('TIME')}}</th>
             <th>{{resolve('RULE_SET')}}</th>
             <th>{{resolve('MODE')}}</th>
+            <th>{{resolve('MAP')}}</th>
             <th>{{resolve('PLAYERS')}}</th>
             <th style="width: 130px;"></th>
         </tr>
@@ -21,6 +22,7 @@
             <td ng-bind="game.date | date:'medium'"></td>
             <td><span enum-text="RULE_SET" value="game.rules" /></td>
             <td><span enum-text="GAME_MODE" value="game.mode" /></td>
+            <td><span ng-bind="game.map.name"></span></td>
             <td ng-bind="game.playersPerTeam"></td>
             <td style="width: 130px;" class="text-center">
                 <button class="fa fa-check-circle btn btn-link" ng-if="game.isActive" type="button" ng-click="vm.completeGame(game)"></button>
@@ -30,12 +32,12 @@
             </td>
         </tr>
         <tr ng-if="vm.myGames.length === 0 && vm.myGames.$resolved">
-            <td colspan="8">
+            <td colspan="9">
                 {{resolve('YOU_HAVE_NOT_SIGNED_UP_FOR_ANY_MATCHES')}}
             </td>
         </tr>
         <tr ng-if="!vm.myGames.$resolved">
-            <td class="text-center" colspan="8">
+            <td class="text-center" colspan="9">
                 <span class="fa fa-spinner fa-spin"></span>
             </td>
         </tr>

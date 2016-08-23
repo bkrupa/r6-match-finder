@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNet.SignalR;
 using Microsoft.Owin;
 using Owin;
-using R6MatchFinder.App_Start;
-using R6MatchFinder.IoC;
 
 [assembly: OwinStartup(typeof(R6MatchFinder.Startup))]
 

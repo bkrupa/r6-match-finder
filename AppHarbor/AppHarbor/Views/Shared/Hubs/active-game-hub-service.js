@@ -10,13 +10,18 @@ var app;
         function ActiveGameHubService(Hub) {
             _super.call(this, 'activeGameHub', Hub, ActiveGameHubService.EventMap, ActiveGameHubService.ServerEvents, false);
             this.Hub = Hub;
-            this.gameId = 'BBC740E5-CA67-E611-BDAC-B2B8EA070CAD';
         }
-        ActiveGameHubService.prototype.SendMessage = function (message) {
-            return this.hub.sendMessage(this.gameId, message);
+        ActiveGameHubService.prototype.SendMessage = function (gameId, message) {
+            return this.executeServerMethod('sendMessage', gameId, message);
         };
-        ActiveGameHubService.prototype.Connect = function () {
-            return this.hub.connectToGame(this.gameId);
+        ActiveGameHubService.prototype.Connect = function (gameId) {
+            return this.executeServerMethod('connectToGame', gameId);
+        };
+        ActiveGameHubService.prototype.StartTyping = function (gameId) {
+            return this.executeServerMethod('startTyping', gameId);
+        };
+        ActiveGameHubService.prototype.CancelTyping = function (gameId) {
+            return this.executeServerMethod('cancelTyping', gameId);
         };
         ActiveGameHubService.Injection = 'activeGameHub';
         ActiveGameHubService.$inject = ['Hub'];
@@ -26,12 +31,18 @@ var app;
             Reconnecting: 'reconnecting',
             Disconnected: 'disconnected',
             Error: 'error',
-            ReceiveMessage: 'receiveMessage'
+            ReceiveMessage: 'receiveMessage',
+            StartTyping: 'startTyping',
+            CancelTyping: 'cancelTyping',
+            Initialize: 'initialize'
         };
         ActiveGameHubService.EventMap = {
-            receiveMessage: ActiveGameHubService.$events.ReceiveMessage
+            receiveMessage: ActiveGameHubService.$events.ReceiveMessage,
+            startTyping: ActiveGameHubService.$events.StartTyping,
+            cancelTyping: ActiveGameHubService.$events.CancelTyping,
+            initialize: ActiveGameHubService.$events.Initialize
         };
-        ActiveGameHubService.ServerEvents = ['sendMessage', 'connectToGame'];
+        ActiveGameHubService.ServerEvents = ['sendMessage', 'connectToGame', 'startTyping', 'cancelTyping'];
         return ActiveGameHubService;
     }(app.BaseHub));
     app.ActiveGameHubService = ActiveGameHubService;
@@ -39,4 +50,3 @@ var app;
         .module('app')
         .factory(ActiveGameHubService.Injection, app.Activator.CreateFactory(ActiveGameHubService));
 })(app || (app = {}));
-//# sourceMappingURL=active-game-hub-service.js.map

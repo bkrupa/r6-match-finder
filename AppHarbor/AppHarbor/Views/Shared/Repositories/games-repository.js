@@ -3,7 +3,7 @@ var app;
     var GamesRepository = (function () {
         function GamesRepository($resource) {
             var that = this;
-            this.gamesResource = $resource('/api/Games/:id/:action', { action: '@action', id: '@id' });
+            this.gamesResource = $resource('/api/Games/:group/:id/:action', { action: '@action', id: '@id' });
             this.gamesResource.prototype.$join = function () {
                 return that.gamesResource.save({
                     action: 'Join',
@@ -26,9 +26,26 @@ var app;
         GamesRepository.prototype.getAll = function () {
             return this.gamesResource.query();
         };
-        GamesRepository.prototype.get = function (id) {
+        GamesRepository.prototype.getOpenGame = function (id) {
             return this.gamesResource.get({
                 id: id
+            });
+        };
+        GamesRepository.prototype.getActiveGames = function () {
+            return this.gamesResource.query({
+                group: 'Active'
+            });
+        };
+        GamesRepository.prototype.getActiveGame = function (id) {
+            return this.gamesResource.get({
+                id: id,
+                group: 'Active'
+            });
+        };
+        GamesRepository.prototype.getCompleteGame = function (id) {
+            return this.gamesResource.get({
+                id: id,
+                group: 'Complete'
             });
         };
         GamesRepository.prototype.create = function () {
@@ -50,6 +67,5 @@ var app;
     app.GamesRepository = GamesRepository;
     angular
         .module('app')
-        .factory(GamesRepository.Injection, ['$resource', function ($resource) { return new GamesRepository($resource); }]);
+        .factory(GamesRepository.Injection, app.Activator.CreateFactory(GamesRepository));
 })(app || (app = {}));
-//# sourceMappingURL=games-repository.js.map

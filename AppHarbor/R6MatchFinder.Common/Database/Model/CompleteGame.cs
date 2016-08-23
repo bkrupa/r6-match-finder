@@ -1,13 +1,9 @@
 ﻿using AutoMapper;
 using R6MatchFinder.Common.Database.Abstracts;
 using R6MatchFinder.Common.Database.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 
@@ -30,7 +26,7 @@ namespace R6MatchFinder.Common.Database.Model
         [Range(1, 5)]
         public int? ChallengerRating { get; set; }
 
-        public ICollection<GameChat> Chat { get; set; }
+        public ICollection<GameChat> ChatHistory { get; set; }
 
         public static CompleteGame FromActiveGame(ActiveGame orig)
         {

@@ -53,26 +53,32 @@ var app;
     }());
     app.GameDetailsController = GameDetailsController;
     var CreateGameController = (function () {
-        function CreateGameController(game) {
+        function CreateGameController(game, maps) {
             this.game = game;
+            this.maps = maps;
+            game.mapId = maps[0].id;
         }
         CreateGameController.Injection = 'createGameController';
         CreateGameController.$inject = [
-            'game'
+            'game',
+            'maps'
         ];
         return CreateGameController;
     }());
     app.CreateGameController = CreateGameController;
     var GamesController = (function () {
-        function GamesController($scope, $rootScope, repository, userRepository, $uibModal, $timeout, generalHub) {
+        function GamesController($scope, $rootScope, $state, $stateParams, repository, userRepository, $uibModal, $timeout, generalHub, maps) {
             var _this = this;
             this.$scope = $scope;
             this.$rootScope = $rootScope;
+            this.$state = $state;
+            this.$stateParams = $stateParams;
             this.repository = repository;
             this.userRepository = userRepository;
             this.$uibModal = $uibModal;
             this.$timeout = $timeout;
             this.generalHub = generalHub;
+            this.maps = maps;
             this.games = [];
             this.myGames = [];
             this.myStatistics = {};
@@ -80,7 +86,13 @@ var app;
             this.currentPage = 1;
             this.view = '';
             this.bindGames(true);
+            $scope.$on('$stateChangeSuccess', function (event, state, params) {
+                if (params.gameId) {
+                    _this.openDetailsModal(params.gameId, params.group);
+                }
+            });
             generalHub.$on(app.GeneralHubService.$events.RefreshGameList, function () {
+                console.log('refresh!');
                 _this.bindGames(false);
             });
         }
@@ -92,13 +104,20 @@ var app;
                 templateUrl: '/Views/Games/game-create.html',
                 controllerAs: 'vm',
                 controller: CreateGameController,
-                resolve: { game: function () { return _this.repository.create(); } }
+                resolve: {
+                    game: function () { return _this.repository.create().$promise; },
+                    maps: function () { return _this.maps; }
+                }
             });
             modal.result.then(function (game) {
                 game.$save().then(function () { _this.bindGames(true); });
             });
         };
         GamesController.prototype.showDetails = function (game) {
+            var group = game.isOpen ? 'open' : game.isActive ? 'active' : 'complete';
+            this.$state.go(app.RouteConfig.$routes.GameDetails, { gameId: game.id, group: group });
+        };
+        GamesController.prototype.openDetailsModal = function (gameId, group) {
             var _this = this;
             var modal = this.$uibModal.open({
                 backdrop: 'static',
@@ -106,11 +125,24 @@ var app;
                 templateUrl: '/Views/Games/game-details.html',
                 controllerAs: 'vm',
                 controller: GameDetailsController,
-                resolve: { game: function () { return game; } }
+                resolve: {
+                    game: function () {
+                        switch (group) {
+                            case 'open':
+                                return _this.repository.getOpenGame(gameId).$promise;
+                            case 'active':
+                                return _this.repository.getActiveGame(gameId).$promise;
+                            case 'complete':
+                                return _this.repository.getCompleteGame(gameId).$promise;
+                        }
+                    }
+                }
             });
             modal.result.then(function () {
                 _this.bindGames(true);
                 _this.view = 'MyGames';
+            }).finally(function () {
+                _this.$state.go(app.RouteConfig.$routes.Home);
             });
         };
         GamesController.prototype.completeGame = function (game) {
@@ -163,12 +195,14 @@ var app;
         GamesController.$inject = [
             '$scope',
             '$rootScope',
+            '$state',
+            '$stateParams',
             app.GamesRepository.Injection,
             app.AccountRepository.Injection,
             '$uibModal',
             '$timeout',
             app.GeneralHubService.Injection,
-            app.ActiveGameHubService.Injection
+            'Maps'
         ];
         return GamesController;
     }());
@@ -177,4 +211,3 @@ var app;
         .module('app')
         .controller(GamesController.Injection, GamesController);
 })(app || (app = {}));
-//# sourceMappingURL=games-controller.js.map

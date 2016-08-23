@@ -19,5 +19,8 @@ namespace R6MatchFinder.Common.Web.Model.Abstract
         public int PlayersPerTeam { get; set; }
 
         public WMUser Creator { get; set; }
+
+        public string MapId { get; set; }
+        public WMMap Map { get; set; }
     }
 }

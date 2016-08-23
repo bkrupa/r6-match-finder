@@ -30,6 +30,7 @@ namespace R6MatchFinder.Common.Database
         public DbSet<CompleteGameModeSettings> CompleteGameModeSettings { get; set; }
 
         public DbSet<GameChat> GameChat { get; set; }
+        public DbSet<Map> Maps { get; set; }
 
         public DbSet<UserStatistics> UserStatistics { get; set; }
         public DbSet<UserAccounts> UserAccounts { get; set; }

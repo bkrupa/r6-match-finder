@@ -17,7 +17,7 @@ namespace R6MatchFinder.Common.Database.Model
 
         public virtual User Challenger { get; set; }
 
-        public ICollection<GameChat> Chat { get; set; }
+        public ICollection<GameChat> ChatHistory { get; set; }
 
         public static ActiveGame FromGame(Game orig)
         {

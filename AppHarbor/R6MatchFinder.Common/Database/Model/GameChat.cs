@@ -1,11 +1,7 @@
 ﻿using R6MatchFinder.Common.Database.Interfaces;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.Entity;
 
 namespace R6MatchFinder.Common.Database.Model
@@ -42,12 +38,12 @@ namespace R6MatchFinder.Common.Database.Model
             var entity = modelBuilder.Entity<GameChat>();
 
             entity.HasOptional(a => a.ActiveGame)
-                .WithMany(a => a.Chat)
+                .WithMany(a => a.ChatHistory)
                 .HasForeignKey(a => a.ActiveGameId)
                 .WillCascadeOnDelete(false);
 
             entity.HasOptional(a => a.CompleteGame)
-                .WithMany(a => a.Chat)
+                .WithMany(a => a.ChatHistory)
                 .HasForeignKey(a => a.CompleteGameId)
                 .WillCascadeOnDelete(false);
         }

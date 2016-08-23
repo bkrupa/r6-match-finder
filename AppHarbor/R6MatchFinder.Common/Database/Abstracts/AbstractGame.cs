@@ -44,6 +44,10 @@ namespace R6MatchFinder.Common.Database.Abstracts
 
         [Required]
         public DateTimeOffset DateCreated { get; set; }
+
+        [ForeignKey("Map"), Required]
+        public Guid MapId { get; set; }
+        public Map Map { get; set; }
     }
 
     public abstract class AbstractGame<T, G> : AbstractGame

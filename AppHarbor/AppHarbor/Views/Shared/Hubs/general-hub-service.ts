@@ -2,7 +2,6 @@
 
     interface GeneralHubEvents extends ISignalREvents {
         RefreshGameList: string;
-        Test: string;
     }
 
     export class GeneralHubService extends BaseHub {
@@ -11,7 +10,6 @@
 
         public static $events: GeneralHubEvents = {
             RefreshGameList: 'refreshGameList',
-            Test: 'test',
             Connecting: 'connecting',
             Connected: 'connected',
             Reconnecting: 'reconnecting',

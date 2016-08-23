@@ -39,6 +39,8 @@ namespace R6MatchFinder.Common.Database.Repository
                 .Include(g => g.ModeSettings)
                 .Include(g => g.Challenger)
                 .Include(g => g.Creator)
+                .Include(g => g.Map)
+                .Include(g => g.ChatHistory)
                 .ToListAsync();
         }
 
@@ -49,6 +51,8 @@ namespace R6MatchFinder.Common.Database.Repository
                 .Include(g => g.ModeSettings)
                 .Include(g => g.Challenger)
                 .Include(g => g.Creator)
+                .Include(g => g.Map)
+                .Include(g => g.ChatHistory)
                 .FirstOrDefaultAsync(g => g.Id == id);
         }
 
@@ -59,6 +63,8 @@ namespace R6MatchFinder.Common.Database.Repository
                 .Include(g => g.ModeSettings)
                 .Include(g => g.Challenger)
                 .Include(g => g.Creator)
+                .Include(g => g.Map)
+                .Include(g => g.ChatHistory)
                 .Where(g => g.UserId == userId || g.ChallengerId == userId)
                 .ToListAsync();
         }

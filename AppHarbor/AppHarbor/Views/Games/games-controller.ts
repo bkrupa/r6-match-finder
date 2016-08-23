@@ -43,7 +43,8 @@
         constructor(
             private $scope: ng.ui.bootstrap.IModalScope,
             private game: any
-        ) { }
+        ) {
+        }
 
         public JoinGame() {
             this.game.$join().$promise.then(() => {
@@ -57,10 +58,14 @@
     export class CreateGameController {
         static Injection: string = 'createGameController';
         static $inject = [
-            'game'
+            'game',
+            'maps'
         ];
 
-        constructor(public game: any) { }
+        constructor(public game: any,
+            public maps: ng.resource.IResourceArray<any>) {
+            game.mapId = maps[0].id;
+        }
     }
 
     export class GamesController {
@@ -68,12 +73,14 @@
         static $inject = [
             '$scope',
             '$rootScope',
+            '$state',
+            '$stateParams',
             GamesRepository.Injection,
             AccountRepository.Injection,
             '$uibModal',
             '$timeout',
             GeneralHubService.Injection,
-            ActiveGameHubService.Injection
+            'Maps'
         ];
 
         private games: Array<any> = [];
@@ -87,15 +94,25 @@
         constructor(
             private $scope: ng.IScope,
             private $rootScope: IAppRootScope,
+            private $state: ng.ui.IStateService,
+            private $stateParams: ng.ui.IStateParamsService,
             private repository: GamesRepository,
             private userRepository: AccountRepository,
             private $uibModal: ng.ui.bootstrap.IModalService,
             private $timeout: ng.ITimeoutService,
-            private generalHub: GeneralHubService
+            private generalHub: GeneralHubService,
+            private maps: ng.resource.IResourceArray<any>
         ) {
             this.bindGames(true);
 
+            $scope.$on('$stateChangeSuccess', (event: ng.IAngularEvent, state: ng.ui.IState, params: any) => {
+                if (params.gameId) {
+                    this.openDetailsModal(params.gameId, params.group);
+                }
+            });
+
             generalHub.$on(GeneralHubService.$events.RefreshGameList, () => {
+                console.log('refresh!');
                 this.bindGames(false);
             });
 
@@ -108,7 +125,10 @@
                 templateUrl: '/Views/Games/game-create.html',
                 controllerAs: 'vm',
                 controller: CreateGameController,
-                resolve: { game: () => { return this.repository.create(); } }
+                resolve: {
+                    game: () => { return this.repository.create().$promise; },
+                    maps: () => { return this.maps; }
+                }
             });
 
             modal.result.then((game) => {
@@ -117,18 +137,36 @@
         }
 
         public showDetails(game) {
+            var group = game.isOpen ? 'open' : game.isActive ? 'active' : 'complete';
+            this.$state.go(RouteConfig.$routes.GameDetails, { gameId: game.id, group: group });
+        }
+
+        private openDetailsModal(gameId: string, group: string) {
             var modal: ng.ui.bootstrap.IModalServiceInstance = this.$uibModal.open({
                 backdrop: 'static',
                 size: 'lg',
                 templateUrl: '/Views/Games/game-details.html',
                 controllerAs: 'vm',
                 controller: GameDetailsController,
-                resolve: { game: () => { return game; } }
+                resolve: {
+                    game: () => {
+                        switch (group) {
+                            case 'open':
+                                return this.repository.getOpenGame(gameId).$promise;
+                            case 'active':
+                                return this.repository.getActiveGame(gameId).$promise;
+                            case 'complete':
+                                return this.repository.getCompleteGame(gameId).$promise;
+                        }
+                    }
+                }
             });
 
             modal.result.then(() => {
                 this.bindGames(true);
                 this.view = 'MyGames';
+            }).finally(() => {
+                this.$state.go(RouteConfig.$routes.Home);
             });
         }
 
@@ -181,8 +219,6 @@
         public deleteGame(game: any) {
             game.$delete().then(() => { this.bindGames(true); });
         }
-
-
     }
 
     angular

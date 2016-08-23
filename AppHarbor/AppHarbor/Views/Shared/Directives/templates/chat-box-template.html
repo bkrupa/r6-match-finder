@@ -1,0 +1,24 @@
+﻿<div class="chat" ng-click="vm.focused()">
+    <div class="chat-title" ng-click="vm.toggleCollapse()" style="position: relative;">
+        <h1 ng-bind="vm.otherUser.username"></h1>
+        <div>
+            <div enum-text="RULE_SET" value="vm.game.rules" />
+            <div enum-text="GAME_MODE" value="vm.game.mode" />
+            <span localize="ON"></span>
+            <span ng-bind="vm.game.map.name"></span>
+        </div>
+        <figure class="avatar bg-success text-center">
+            <span class="fa fa-gamepad"></span>
+        </figure>
+        <button class="btn btn-sm btn-link fa fa-times" style="color: white; position: absolute; top:3px; right:0;" ng-click="vm.close()"></button>
+    </div>
+    <div class="messages">
+        <div class="messages-content"></div>
+    </div>
+    <div class="message-box">
+        <form name="chatForm" ng-submit="vm.sendMessage()">
+            <input type="text" class="message-input" placeholder="Type message..." required ng-model="vm.message" ng-change="vm.change()" />
+            <button type="submit" class="message-submit">Send</button>
+        </form>
+    </div>
+</div>

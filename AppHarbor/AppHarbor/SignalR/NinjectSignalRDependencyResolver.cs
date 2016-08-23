@@ -3,9 +3,8 @@ using Ninject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
-namespace R6MatchFinder.IoC
+namespace R6MatchFinder.SignalR
 {
     public class NinjectSignalRDependencyResolver : DefaultDependencyResolver
     {

@@ -39,6 +39,7 @@ namespace R6MatchFinder.Common.Database.Repository
                 .Include(g => g.MatchSettings)
                 .Include(g => g.ModeSettings)
                 .Include(g => g.Creator.Statistics)
+                .Include(g => g.Map)
                 .ToListAsync();
         }
 
@@ -48,6 +49,7 @@ namespace R6MatchFinder.Common.Database.Repository
                 .Where(g => g.Date >= DateTimeOffset.UtcNow)
                 .Include(g => g.MatchSettings)
                 .Include(g => g.ModeSettings)
+                .Include(g => g.Map)
                 .FirstOrDefaultAsync(g => g.Id == id);
         }
 
@@ -58,6 +60,7 @@ namespace R6MatchFinder.Common.Database.Repository
                 .Include(g => g.MatchSettings)
                 .Include(g => g.ModeSettings)
                 .Include(g => g.Creator.Statistics)
+                .Include(g => g.Map)
                 .Where(g => g.UserId == userId)
                 .ToListAsync();
         }
@@ -67,7 +70,8 @@ namespace R6MatchFinder.Common.Database.Repository
             return _dbContext.Games
                 .Include(g => g.MatchSettings)
                 .Include(g => g.ModeSettings)
-                .Include(g => g.Creator.Statistics);
+                .Include(g => g.Creator.Statistics)
+                .Include(g => g.Map);
         }
 
         public async Task<Game> UpdateAsync(Guid id, Game dbModel)

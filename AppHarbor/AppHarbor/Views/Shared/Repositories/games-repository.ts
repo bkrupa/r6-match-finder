@@ -23,7 +23,7 @@
 
         constructor($resource: ng.resource.IResourceService) {
             var that: GamesRepository = this;
-            this.gamesResource = $resource('/api/Games/:id/:action', { action: '@action', id: '@id' });
+            this.gamesResource = $resource('/api/Games/:group/:id/:action', { action: '@action', id: '@id' });
 
             this.gamesResource.prototype.$join = function (): ng.resource.IResource<any> {
                 return that.gamesResource.save({
@@ -47,13 +47,33 @@
             };
         }
 
-        public getAll(): Array<IGameResource> {
+        public getAll(): ng.resource.IResourceArray<IGameResource> {
             return this.gamesResource.query();
         }
 
-        public get(id: string): IGameResource {
+        public getOpenGame(id: string): IGameResource {
             return this.gamesResource.get({
                 id: id
+            });
+        }
+
+        public getActiveGames(): ng.resource.IResourceArray<IGameResource> {
+            return this.gamesResource.query({
+                group: 'Active'
+            });
+        }
+
+        public getActiveGame(id: string): IGameResource {
+            return this.gamesResource.get({
+                id: id,
+                group: 'Active'
+            });
+        }
+
+        public getCompleteGame(id: string): IGameResource {
+            return this.gamesResource.get({
+                id: id,
+                group: 'Complete'
             });
         }
 
@@ -72,6 +92,6 @@
 
     angular
         .module('app')
-        .factory(GamesRepository.Injection, ['$resource', ($resource) => { return new GamesRepository($resource); }]);
+        .factory(GamesRepository.Injection, Activator.CreateFactory(GamesRepository));
 
 }

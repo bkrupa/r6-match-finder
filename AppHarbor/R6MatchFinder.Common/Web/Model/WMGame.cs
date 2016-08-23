@@ -6,8 +6,11 @@ namespace R6MatchFinder.Common.Web.Model
 {
     public class WMGame : WMGameBase, IWebModel<Game>
     {
-        public WMBaseGameMatchSettings MatchSettings { get; set; }
-        public WMBaseGameModeSettings ModeSettings { get; set; }
+        public bool IsOpen { get { return true; } }
+
+
+        public WMGameMatchSettings MatchSettings { get; set; }
+        public WMGameModeSettings ModeSettings { get; set; }
 
     }
 }

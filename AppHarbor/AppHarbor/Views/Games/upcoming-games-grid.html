@@ -13,6 +13,7 @@
             <th>{{resolve('TIME')}}</th>
             <th>{{resolve('RULE_SET')}}</th>
             <th>{{resolve('GAME_MODE')}}</th>
+            <th>{{resolve('MAP')}}</th>
             <th>{{resolve('PLAYERS')}}</th>
             <th></th>
         </tr>
@@ -31,6 +32,7 @@
             <td ng-bind="game.date | date:'medium'"></td>
             <td><span enum-text="RULE_SET" value="game.rules" /></td>
             <td><span enum-text="GAME_MODE" value="game.mode" /></td>
+            <td><span ng-bind="game.map.name"></span></td>
             <td ng-bind="game.playersPerTeam"></td>
             <td style="width: 130px;" class="text-center">
                 <button class="fa fa-gears btn btn-link" type="button" ng-click="vm.showDetails(game)"></button>

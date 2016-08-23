@@ -51,6 +51,13 @@ namespace R6MatchFinder.Controllers
             return games.ToWebModels<Game, WMGame>();
         }
 
+        [HttpGet, Route("Active")]
+        public async Task<IEnumerable<WMActiveGame>> GetActiveGames()
+        {
+            IEnumerable<ActiveGame> games = await _activeGameRepository.GetForUserAsync(User.Identity.GetUserId());
+            return games.ToWebModels<ActiveGame, WMActiveGame>();
+        }
+
         [HttpGet, Route("MyGames")]
         public async Task<IEnumerable> GetMyGames()
         {
@@ -77,6 +84,28 @@ namespace R6MatchFinder.Controllers
             return game.ToWebModel<Game, WMGame>();
         }
 
+        [HttpGet, Route("Active/{id}")]
+        public async Task<WMActiveGame> GetActiveGame(Guid id)
+        {
+            ActiveGame game = await _activeGameRepository.GetAsync(id);
+
+            if (game == null)
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+
+            return game.ToWebModel<ActiveGame, WMActiveGame>();
+        }
+
+        [HttpGet, Route("Complete/{id}")]
+        public async Task<WMCompleteGame> GetCompleteGame(Guid id)
+        {
+            CompleteGame game = await _completeGameRepository.GetAsync(id);
+
+            if (game == null)
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+
+            return game.ToWebModel<CompleteGame, WMCompleteGame>();
+        }
+
         [HttpGet, Route(Common.Utility.Constants.NEW_ID)]
         public WMGame GetNew()
         {
@@ -90,8 +119,8 @@ namespace R6MatchFinder.Controllers
                 Rules = RuleSet.Standard,
                 Time = TimeOfDay.Day,
                 PlayersPerTeam = 5,
-                ModeSettings = new WMBaseGameModeSettings(),
-                MatchSettings = WMBaseGameMatchSettings.DefaultSettings,
+                ModeSettings = new WMGameModeSettings(),
+                MatchSettings = WMGameMatchSettings.DefaultSettings,
             };
         }
 
@@ -112,7 +141,7 @@ namespace R6MatchFinder.Controllers
                     throw new HttpResponseException(HttpStatusCode.Conflict);
             }
 
-            dbModel = webModel.ToDbModel();
+            dbModel = webModel.ToDbModel<Game>();
 
             if (dbModel == null)
                 throw new HttpResponseException(HttpStatusCode.NotAcceptable);
