@@ -19,13 +19,23 @@ var app;
                 url: '/contact',
                 templateUrl: 'Views/Contact/contact.html'
             })
+                .state(RouteConfig.$routes.Tour, {
+                url: '/tour',
+                templateUrl: 'Views/Games/games-landing.html',
+                controller: app.TourController.Injection,
+                controllerAs: 'vm',
+                resolve: {
+                    Maps: [app.MapsRepository.Injection, function (repo) { return repo.getAll().$promise; }],
+                    Game: [app.GamesRepository.Injection, function (repo) { return repo.create().$promise; }]
+                }
+            })
                 .state(RouteConfig.$routes.Home, {
                 url: '/games',
                 templateUrl: 'Views/Games/games-landing.html',
                 controller: app.GamesController.Injection,
                 controllerAs: 'vm',
                 resolve: {
-                    Maps: [app.MapsRepository.Injection, function (repo) { return repo.getAll(); }]
+                    userInfo: ['$rootScope', function ($rootScope) { return $rootScope.userInfo.$promise; }]
                 }
             })
                 .state(RouteConfig.$routes.GameDetails, { url: '/:group/:gameId', params: { group: 'open' } });
@@ -41,7 +51,8 @@ var app;
         RouteConfig.$routes = {
             Home: 'home',
             GameDetails: 'home.details',
-            Contact: 'contact'
+            Contact: 'contact',
+            Tour: 'tour'
         };
         return RouteConfig;
     }());
@@ -50,3 +61,4 @@ var app;
         .module('app')
         .config(RouteConfig);
 })(app || (app = {}));
+//# sourceMappingURL=route-config.js.map

@@ -2,10 +2,14 @@ var app;
 (function (app) {
     var AccountRepository = (function () {
         function AccountRepository($resource) {
+            this.currentUser = null;
             this.resource = $resource('/api/Users/:id/:action');
         }
         AccountRepository.prototype.getCurrentUserInfo = function () {
-            return this.resource.get();
+            if (this.currentUser)
+                return this.currentUser;
+            this.currentUser = this.resource.get();
+            return this.currentUser;
         };
         AccountRepository.prototype.getUserStatistics = function (id) {
             return this.resource.get({
@@ -24,3 +28,4 @@ var app;
         .module('app')
         .factory(AccountRepository.Injection, ['$resource', function ($resource) { return new AccountRepository($resource); }]);
 })(app || (app = {}));
+//# sourceMappingURL=account-repository.js.map

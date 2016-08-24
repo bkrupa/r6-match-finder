@@ -13,3 +13,4 @@ var app;
         .module('app')
         .filter('startFrom', StartFromFilter);
 })(app || (app = {}));
+//# sourceMappingURL=start-from-filter.js.map

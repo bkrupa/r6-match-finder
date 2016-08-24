@@ -282,6 +282,19 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\jquery.mCustomScrollbar.css" />
+    <Content Include="Content\sideshow\fonts\open-sans-family\opensans-bold.svg" />
+    <Content Include="Content\sideshow\fonts\open-sans-family\opensans-bolditalic.svg" />
+    <Content Include="Content\sideshow\fonts\open-sans-family\opensans-extrabold.svg" />
+    <Content Include="Content\sideshow\fonts\open-sans-family\opensans-extrabolditalic.svg" />
+    <Content Include="Content\sideshow\fonts\open-sans-family\opensans-italic.svg" />
+    <Content Include="Content\sideshow\fonts\open-sans-family\opensans-light.svg" />
+    <Content Include="Content\sideshow\fonts\open-sans-family\opensans-lightitalic.svg" />
+    <Content Include="Content\sideshow\fonts\open-sans-family\opensans-regular.svg" />
+    <Content Include="Content\sideshow\fonts\open-sans-family\opensans-semibold.svg" />
+    <Content Include="Content\sideshow\fonts\open-sans-family\opensans-semibolditalic.svg" />
+    <Content Include="Content\sideshow\fonts\sideshow-fontface.min.css" />
+    <Content Include="Content\sideshow\fonts\sideshow-icons\sideshow-icons.svg" />
+    <Content Include="Content\sideshow\sideshow.min.css" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
     <Content Include="Content\ui-bootstrap-csp.css" />
@@ -318,15 +331,54 @@
     <Content Include="scripts\angular-ui\ui-bootstrap.js" />
     <Content Include="scripts\angular-ui\ui-bootstrap.min.js" />
     <Content Include="scripts\bootstrap-slider.min.js" />
+    <Content Include="scripts\bootstrap-tour\bootstrap-tour.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
     <Content Include="Content\App\chat-box.css" />
+    <Content Include="Content\sideshow\fonts\sideshow-icons\sideshow-icons.woff" />
+    <Content Include="Content\sideshow\fonts\sideshow-icons\sideshow-icons.ttf" />
+    <Content Include="Content\sideshow\fonts\sideshow-icons\sideshow-icons.eot" />
+    <Content Include="Content\sideshow\fonts\open-sans-family\opensans-semibolditalic.woff" />
+    <Content Include="Content\sideshow\fonts\open-sans-family\opensans-semibolditalic.ttf" />
+    <Content Include="Content\sideshow\fonts\open-sans-family\opensans-semibolditalic.eot" />
+    <Content Include="Content\sideshow\fonts\open-sans-family\opensans-semibold.woff" />
+    <Content Include="Content\sideshow\fonts\open-sans-family\opensans-semibold.ttf" />
+    <Content Include="Content\sideshow\fonts\open-sans-family\opensans-semibold.eot" />
+    <Content Include="Content\sideshow\fonts\open-sans-family\opensans-regular.woff" />
+    <Content Include="Content\sideshow\fonts\open-sans-family\opensans-regular.ttf" />
+    <Content Include="Content\sideshow\fonts\open-sans-family\opensans-regular.eot" />
+    <Content Include="Content\sideshow\fonts\open-sans-family\opensans-lightitalic.woff" />
+    <Content Include="Content\sideshow\fonts\open-sans-family\opensans-lightitalic.ttf" />
+    <Content Include="Content\sideshow\fonts\open-sans-family\opensans-lightitalic.eot" />
+    <Content Include="Content\sideshow\fonts\open-sans-family\opensans-light.woff" />
+    <Content Include="Content\sideshow\fonts\open-sans-family\opensans-light.ttf" />
+    <Content Include="Content\sideshow\fonts\open-sans-family\opensans-light.eot" />
+    <Content Include="Content\sideshow\fonts\open-sans-family\opensans-italic.woff" />
+    <Content Include="Content\sideshow\fonts\open-sans-family\opensans-italic.ttf" />
+    <Content Include="Content\sideshow\fonts\open-sans-family\opensans-italic.eot" />
+    <Content Include="Content\sideshow\fonts\open-sans-family\opensans-extrabolditalic.woff" />
+    <Content Include="Content\sideshow\fonts\open-sans-family\opensans-extrabolditalic.ttf" />
+    <Content Include="Content\sideshow\fonts\open-sans-family\opensans-extrabolditalic.eot" />
+    <Content Include="Content\sideshow\fonts\open-sans-family\opensans-extrabold.woff" />
+    <Content Include="Content\sideshow\fonts\open-sans-family\opensans-extrabold.ttf" />
+    <Content Include="Content\sideshow\fonts\open-sans-family\opensans-extrabold.eot" />
+    <Content Include="Content\sideshow\fonts\open-sans-family\opensans-bolditalic.woff" />
+    <Content Include="Content\sideshow\fonts\open-sans-family\opensans-bolditalic.ttf" />
+    <Content Include="Content\sideshow\fonts\open-sans-family\opensans-bolditalic.eot" />
+    <Content Include="Content\sideshow\fonts\open-sans-family\opensans-bold.woff" />
+    <Content Include="Content\sideshow\fonts\open-sans-family\opensans-bold.ttf" />
+    <Content Include="Content\sideshow\fonts\open-sans-family\opensans-bold.eot" />
     <None Include="scripts\jquery-2.2.4.intellisense.js" />
+    <Content Include="scripts\dependencies\jazz.min.js" />
+    <Content Include="scripts\dependencies\jquery.min.js" />
+    <Content Include="scripts\dependencies\pagedown.min.js" />
     <Content Include="scripts\jquery-2.2.4.js" />
     <Content Include="scripts\jquery-2.2.4.min.js" />
     <Content Include="scripts\jquery.mCustomScrollbar.js" />
     <Content Include="scripts\jquery.signalR-2.2.1.js" />
     <Content Include="scripts\jquery.signalR-2.2.1.min.js" />
+    <Content Include="scripts\sideshow.js" />
+    <Content Include="scripts\sideshow.min.js" />
     <Content Include="scripts\toastr.js" />
     <Content Include="scripts\toastr.min.js" />
     <Content Include="scripts\version.json" />
@@ -1239,10 +1291,13 @@
     <TypeScriptCompile Include="scripts\typings\jquery\jquery.d.ts" />
     <TypeScriptCompile Include="scripts\typings\mCustomScrollbar\mCustomScrollbar.d.ts" />
     <TypeScriptCompile Include="scripts\typings\signalr\signalr.d.ts" />
+    <TypeScriptCompile Include="scripts\typings\sideshow\sideshow.d.ts" />
     <TypeScriptCompile Include="scripts\typings\toastr\toastr.d.ts" />
+    <TypeScriptCompile Include="Views\Games\game-modal-service.ts" />
     <TypeScriptCompile Include="Views\Games\games-controller.ts" />
     <TypeScriptCompile Include="Views\Shared\Classes\activator-classes.ts" />
     <TypeScriptCompile Include="Views\Shared\Classes\root-scope-interface.ts" />
+    <TypeScriptCompile Include="Views\Shared\Directives\tour-directive.ts" />
     <TypeScriptCompile Include="Views\Shared\Directives\chat-box-directive.ts" />
     <TypeScriptCompile Include="Views\Shared\Directives\datetimepicker-directive.ts" />
     <TypeScriptCompile Include="Views\Shared\Directives\enum-text-directive.ts" />
@@ -1270,6 +1325,7 @@
     <TypeScriptCompile Include="Views\Shared\route-config.ts" />
     <TypeScriptCompile Include="Views\Shared\Startup\enums-constant.ts" />
     <TypeScriptCompile Include="Views\Shared\Startup\root-scope-functions.ts" />
+    <TypeScriptCompile Include="Views\Tour\tour-controller.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
@@ -1279,9 +1335,6 @@
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>resources.Designer.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

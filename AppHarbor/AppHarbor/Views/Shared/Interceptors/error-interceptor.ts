@@ -13,12 +13,20 @@
         }
 
         public responseError(response) {
+
             if (response.data.exceptionMessage) {
-                toastr.error(response.data.exceptionMessage);
+                if (response.status == 500)
+                    toastr.error(response.data.exceptionMessage);
+                else
+                    toastr.warning(response.data.exceptionMessage);
                 console.error(response.data.exceptionMessage);
             }
             else if (typeof response.data == 'string') {
-                toastr.error(response.data);
+                if (response.status == 500)
+                    toastr.error(response.data);
+                else
+                    toastr.warning(response.data);
+                
                 console.error(response.data);
             }
             return this.$q.reject(response);

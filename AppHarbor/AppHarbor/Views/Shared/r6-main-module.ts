@@ -5,6 +5,7 @@
     var app = angular.module('app', [
         'ngResource',
         'ngAnimate',
+        'ngCookies',
         'ui.bootstrap',
         'ui.router',
         'angular.filter',

@@ -30,6 +30,11 @@ namespace R6MatchFinder.App_Start
                 "~/Scripts/angular-ui-router.js",
                 "~/Scripts/moment.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/sideshow").Include(
+                "~/Scripts/dependencies/jazz.min.js",
+                "~/Scripts/dependencies/pagedown.min.js",
+                "~/Scripts/sideshow.js"));
+
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include("~/Scripts/bootstrap.js").Include("~/Scripts/bootstrap-slider.min.js"));
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include("~/Scripts/modernizr-{version}.js"));
@@ -41,11 +46,14 @@ namespace R6MatchFinder.App_Start
             bundles.Add(new StyleBundle("~/bundles/LibContent").Include(
                 "~/Content/bootstrap.css",
                 "~/Content/bootstrap-theme.css",
+                "~/Content/app/bootstrap-tour.less",
                 "~/Content/font-awesome.css",
                 "~/Content/toastr.css",
                 "~/Content/zocial.css",
                 "~/css/bootstrap-slider.min.css",
-                "~/Content/jquery.mCustomScrollbar.css"));
+                "~/Content/jquery.mCustomScrollbar.css",
+                "~/Content/sideshow/fonts/sideshow-fontface.min.css",
+                "~/Content/sideshow/sideshow.min.css"));
 
             bundles.Add(new StyleBundle("~/bundles/Content/app").Include(
                 "~/Content/App/Spinners.css",

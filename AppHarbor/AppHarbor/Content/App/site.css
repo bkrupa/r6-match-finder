@@ -17,4 +17,7 @@
 th {
     text-align: center;
 }
-.input-group-addon, .input-group-btn {width:auto;}
+
+.input-group-addon, .input-group-btn {
+    width: auto;
+}

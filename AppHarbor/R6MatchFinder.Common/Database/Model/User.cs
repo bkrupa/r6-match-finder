@@ -34,6 +34,8 @@ namespace R6MatchFinder.Common.Database.Model
 
         public virtual UserStatistics Statistics { get; set; }
 
+        public bool CompletedTour { get; set; }
+
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User, string> manager, IAuthenticationManager authentication = null)
         {

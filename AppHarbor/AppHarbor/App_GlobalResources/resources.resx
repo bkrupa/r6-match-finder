@@ -333,6 +333,9 @@
   <data name="TIME_OF_DAY" xml:space="preserve">
     <value>Time of Day</value>
   </data>
+  <data name="TUTORIAL" xml:space="preserve">
+    <value>Tutorial</value>
+  </data>
   <data name="USERNAME" xml:space="preserve">
     <value>Username</value>
   </data>

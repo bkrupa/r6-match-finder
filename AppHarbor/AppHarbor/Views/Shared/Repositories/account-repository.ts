@@ -12,8 +12,14 @@
             this.resource = $resource('/api/Users/:id/:action');
         }
 
+        private currentUser = null;
+
         public getCurrentUserInfo(): Array<any> {
-            return this.resource.get();
+            if (this.currentUser)
+                return this.currentUser;
+
+            this.currentUser = this.resource.get();
+            return this.currentUser;
         }
 
         public getUserStatistics(id: string): any {

@@ -8,6 +8,9 @@
         hud: number;
         mode: number;
         playersPerTeam: number;
+        map: any;
+        isActive: boolean;
+        isComplete: boolean;
 
         $join(): void;
     }
@@ -19,7 +22,7 @@
             '$resource'
         ];
 
-        private gamesResource: ng.resource.IResourceClass<any>;
+        public gamesResource: ng.resource.IResourceClass<any>;
 
         constructor($resource: ng.resource.IResourceService) {
             var that: GamesRepository = this;

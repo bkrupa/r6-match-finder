@@ -15,6 +15,7 @@
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @Styles.Render("~/bundles/Libcontent")
+    @Styles.Render("~/bundles/sideshow_content")
     @Styles.Render("~/bundles/Content/app")
     @RenderSection("styles", false)
 </head>
@@ -31,6 +32,8 @@
 
                 @if (Request.IsAuthenticated)
                 {
+                    <li class="nav-item"><a href="/tour" class="nav-link">@Resources.resources.TUTORIAL</a></li>
+
                     Claim DisplayClaim = ((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(c => c.Type.Equals("display_name"));
                     Claim PictureClaim = ((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(c => c.Type.Equals("picture"));
 

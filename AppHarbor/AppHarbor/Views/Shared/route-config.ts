@@ -4,6 +4,7 @@
         Home: string;
         GameDetails: string;
         Contact: string;
+        Tour: string;
     }
 
     export class RouteConfig {
@@ -16,7 +17,8 @@
         static $routes: Routes = {
             Home: 'home',
             GameDetails: 'home.details',
-            Contact: 'contact'
+            Contact: 'contact',
+            Tour: 'tour'
         };
 
         constructor(
@@ -41,13 +43,24 @@
                     url: '/contact',
                     templateUrl: 'Views/Contact/contact.html'
                 })
+                .state(RouteConfig.$routes.Tour, {
+                    url: '/tour',
+                    templateUrl: 'Views/Games/games-landing.html',
+                    controller: TourController.Injection,
+                    controllerAs: 'vm',
+                    resolve: {
+                        Maps: [MapsRepository.Injection, (repo: MapsRepository) => { return repo.getAll().$promise; }],
+                        Game: [GamesRepository.Injection, (repo: GamesRepository) => { return repo.create().$promise; }]
+                    }
+                })
+
                 .state(RouteConfig.$routes.Home, {
                     url: '/games',
                     templateUrl: 'Views/Games/games-landing.html',
                     controller: GamesController.Injection,
                     controllerAs: 'vm',
                     resolve: {
-                        Maps: [MapsRepository.Injection, (repo: MapsRepository) => { return repo.getAll(); }]
+                        userInfo: ['$rootScope', ($rootScope) => $rootScope.userInfo.$promise]
                     }
                 })
 
@@ -58,7 +71,6 @@
             $urlRouterProvider.otherwise('/games');
 
             $locationProvider.html5Mode(true);
-
         }
     }
 

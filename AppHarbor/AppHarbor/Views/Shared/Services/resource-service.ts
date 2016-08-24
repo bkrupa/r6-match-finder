@@ -19,7 +19,7 @@
 
         }
 
-        public resolve(value: string, callback: Function): string {
+        public resolve(value: string, callback?: Function): string {
             if (this.resources.hasOwnProperty(value)) {
                 if (callback)
                     callback(this.resources[value]);

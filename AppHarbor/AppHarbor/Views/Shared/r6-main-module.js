@@ -3,6 +3,7 @@ var app;
     var app = angular.module('app', [
         'ngResource',
         'ngAnimate',
+        'ngCookies',
         'ui.bootstrap',
         'ui.router',
         'angular.filter',
@@ -15,3 +16,4 @@ var app;
         }]);
     ;
 })(app || (app = {}));
+//# sourceMappingURL=r6-main-module.js.map

@@ -1,11 +1,11 @@
 ﻿<h3 class="col-md-11">{{resolve('GAMES')}}</h3>
 <div class="col-md-1 pull-right">
-    <button class="btn btn-success btn-sm" type="button" ng-click="vm.createGame()" style="margin-bottom: 10px;"
+    <button id="cmdCreate" class="btn btn-success btn-sm" type="button" ng-click="vm.createGame()" style="margin-bottom: 10px;"
             ng-if="vm.games.$resolved && !(vm.games | map:'userId' | contains:userInfo.id)">
         {{resolve('CREATE')}}
     </button>
 </div>
-<table class="table table-bordered table-striped">
+<table class="table table-bordered table-striped" id="tblUpcomingGames">
     <thead ng-if="vm.games.length > 0">
         <tr>
             <th>{{resolve('RELIABILITY')}}</th>
@@ -35,8 +35,8 @@
             <td><span ng-bind="game.map.name"></span></td>
             <td ng-bind="game.playersPerTeam"></td>
             <td style="width: 130px;" class="text-center">
-                <button class="fa fa-gears btn btn-link" type="button" ng-click="vm.showDetails(game)"></button>
-                <button class="fa fa-trash-o btn btn-link" type="button" ng-if="game.userId == userInfo.id" ng-click="vm.deleteGame(game)"></button>
+                <button id="cmdGameDetails_{{game.id}}" class="fa fa-gears btn btn-link" type="button" ng-click="vm.showDetails(game)"></button>
+                <button id="cmdDeleteGame_{{game.id}}" class="fa fa-trash-o btn btn-link" type="button" ng-if="game.userId == userInfo.id" ng-click="vm.deleteGame(game)"></button>
             </td>
         </tr>
         <tr ng-if="vm.games.length === 0 && vm.games.$resolved">

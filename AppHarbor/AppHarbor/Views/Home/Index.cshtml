@@ -1,8 +1,7 @@
 ﻿@using Resources;
 
 <div ng-app="app">
-
-    <div ui-view>
+    <div ui-view id="divContent">
 
     </div>
 
@@ -27,6 +26,7 @@
 {
     @Scripts.Render("~/bundles/angular")
     @Scripts.Render("~/bundles/angular-ui")
+    @Scripts.Render("~/bundles/sideshow")
 
 
     @Scripts.Render("~/bundles/Classes")
