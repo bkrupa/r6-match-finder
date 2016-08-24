@@ -14,6 +14,18 @@
     }
 
     [PublicEnum]
+    public enum Region
+    {
+        EusRegion,
+        CusRegion,
+        ScusRegion,
+        WusRegion,
+        WeuRegion,
+        EeuRegion,
+        SeaRegion
+    }
+
+    [PublicEnum]
     public enum Gender
     {
         Male,

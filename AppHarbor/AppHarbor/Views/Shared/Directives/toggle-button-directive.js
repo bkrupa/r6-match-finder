@@ -45,3 +45,4 @@ var app;
         .module('app')
         .directive(ToggleButtonDirective.Injection, app.Activator.CreateFactory(ToggleButtonDirective));
 })(app || (app = {}));
+//# sourceMappingURL=toggle-button-directive.js.map

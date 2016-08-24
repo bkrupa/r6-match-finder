@@ -6,6 +6,7 @@
             <th>{{resolve('CHALLENGER')}}</th>
             <th>{{resolve('PLATFORM')}}</th>
             <th>{{resolve('TIME')}}</th>
+            <th>{{resolve('REGION')}}</th>
             <th>{{resolve('RULE_SET')}}</th>
             <th>{{resolve('MODE')}}</th>
             <th>{{resolve('MAP')}}</th>
@@ -20,6 +21,7 @@
             <td ng-bind="game.challenger.username"></td>
             <td><span enum-text="PLATFORM" value="game.platform" /></td>
             <td ng-bind="game.date | date:'medium'"></td>
+            <td><span enum-text="REGION" value="game.region" /></td>
             <td><span enum-text="RULE_SET" value="game.rules" /></td>
             <td><span enum-text="GAME_MODE" value="game.mode" /></td>
             <td><span ng-bind="game.map.name"></span></td>
@@ -33,12 +35,12 @@
             </td>
         </tr>
         <tr ng-if="vm.myGames.length === 0 && vm.myGames.$resolved">
-            <td colspan="9">
+            <td colspan="10">
                 {{resolve('YOU_HAVE_NOT_SIGNED_UP_FOR_ANY_MATCHES')}}
             </td>
         </tr>
         <tr ng-if="!vm.myGames.$resolved">
-            <td class="text-center" colspan="9">
+            <td class="text-center" colspan="10">
                 <span class="fa fa-spinner fa-spin"></span>
             </td>
         </tr>

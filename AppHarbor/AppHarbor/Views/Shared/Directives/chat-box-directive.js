@@ -181,3 +181,4 @@ var app;
         .module('app')
         .directive(ChatBoxDirective.Injection, app.Activator.CreateFactory(ChatBoxDirective));
 })(app || (app = {}));
+//# sourceMappingURL=chat-box-directive.js.map

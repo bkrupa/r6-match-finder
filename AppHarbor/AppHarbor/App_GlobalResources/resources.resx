@@ -156,6 +156,9 @@
   <data name="CREATOR" xml:space="preserve">
     <value>Creator</value>
   </data>
+  <data name="CUS_REGION" xml:space="preserve">
+    <value>Central US</value>
+  </data>
   <data name="DAMAGE_HANDICAP" xml:space="preserve">
     <value>Damage Handicap</value>
   </data>
@@ -164,6 +167,12 @@
   </data>
   <data name="DEATH_REPLAY" xml:space="preserve">
     <value>Death Replay</value>
+  </data>
+  <data name="EEU_REGION" xml:space="preserve">
+    <value>East Europe</value>
+  </data>
+  <data name="EUS_REGION" xml:space="preserve">
+    <value>East US</value>
   </data>
   <data name="EXTERNAL_LOGINS" xml:space="preserve">
     <value>External Logins</value>
@@ -291,6 +300,9 @@
   <data name="RATE_THIS_GAME" xml:space="preserve">
     <value>Rate This Game</value>
   </data>
+  <data name="REGION" xml:space="preserve">
+    <value>Region</value>
+  </data>
   <data name="RELIABILITY" xml:space="preserve">
     <value>Reliability</value>
   </data>
@@ -305,6 +317,12 @@
   </data>
   <data name="SAVE" xml:space="preserve">
     <value>Save</value>
+  </data>
+  <data name="SCUS_REGION" xml:space="preserve">
+    <value>South Central US</value>
+  </data>
+  <data name="SEA_REGION" xml:space="preserve">
+    <value>Southeast Asia</value>
   </data>
   <data name="SECURE_AREA" xml:space="preserve">
     <value>Secure Area</value>
@@ -323,6 +341,9 @@
   </data>
   <data name="START_TIME_IS_LIMITED_TO_WITHIN_SIX_HOURS_FROM_NOW" xml:space="preserve">
     <value>Start time is limited to within six hours from now.</value>
+  </data>
+  <data name="SUS_REGION" xml:space="preserve">
+    <value>South US</value>
   </data>
   <data name="TACTICAL_REALISM" xml:space="preserve">
     <value>Tactical Realism</value>
@@ -344,6 +365,12 @@
   </data>
   <data name="U_PLAY" xml:space="preserve">
     <value>UPlay</value>
+  </data>
+  <data name="WEU_REGION" xml:space="preserve">
+    <value>West Europe</value>
+  </data>
+  <data name="WUS_REGION" xml:space="preserve">
+    <value>West US</value>
   </data>
   <data name="XBOX_ONE" xml:space="preserve">
     <value>Xbox One</value>

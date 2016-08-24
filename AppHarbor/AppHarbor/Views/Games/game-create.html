@@ -16,7 +16,7 @@
                     </div>
                     <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne" style="padding:10px;">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-7">
                                 <div class="form-group">
                                     <label class="form-control-label">{{resolve('TIME')}}</label>
                                     <div>
@@ -24,6 +24,14 @@
                                     </div>
                                     <div class="text-info">
                                         <small>{{resolve('START_TIME_IS_LIMITED_TO_WITHIN_SIX_HOURS_FROM_NOW')}}</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label class="form-control-label" localize="REGION"></label>
+                                    <div>
+                                        <div enum-dropdown="REGION" ng-model="vm.game.region" class="form-control" />
                                     </div>
                                 </div>
                             </div>
