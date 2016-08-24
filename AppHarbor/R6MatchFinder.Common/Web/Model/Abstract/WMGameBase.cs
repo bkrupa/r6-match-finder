@@ -15,6 +15,7 @@ namespace R6MatchFinder.Common.Web.Model.Abstract
         public HudSettings Hud { get; set; }
         public GameMode Mode { get; set; }
         public Platform Platform { get; set; }
+        public Region Region { get; set; }
 
         public int PlayersPerTeam { get; set; }
 

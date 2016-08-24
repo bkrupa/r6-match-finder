@@ -11,6 +11,7 @@
             <th>{{resolve('RELIABILITY')}}</th>
             <th>{{resolve('PLATFORM')}}</th>
             <th>{{resolve('TIME')}}</th>
+            <th>{{resolve('REGION')}}</th>
             <th>{{resolve('RULE_SET')}}</th>
             <th>{{resolve('GAME_MODE')}}</th>
             <th>{{resolve('MAP')}}</th>
@@ -30,6 +31,7 @@
             </td>
             <td><span enum-text="PLATFORM" value="game.platform" /></td>
             <td ng-bind="game.date | date:'medium'"></td>
+            <td><span enum-text="REGION" value="game.region" /></td>
             <td><span enum-text="RULE_SET" value="game.rules" /></td>
             <td><span enum-text="GAME_MODE" value="game.mode" /></td>
             <td><span ng-bind="game.map.name"></span></td>
@@ -40,12 +42,12 @@
             </td>
         </tr>
         <tr ng-if="vm.games.length === 0 && vm.games.$resolved">
-            <td colspan="7">
+            <td colspan="8">
                 No Games Were Found!
             </td>
         </tr>
         <tr ng-if="!vm.games.$resolved">
-            <td class="text-center" colspan="7">
+            <td class="text-center" colspan="8">
                 <span class="fa fa-spinner fa-spin"></span>
             </td>
         </tr>

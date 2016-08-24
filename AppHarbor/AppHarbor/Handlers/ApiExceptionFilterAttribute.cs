@@ -23,6 +23,10 @@ namespace R6MatchFinder.Handlers
                 // Throw it so we can catch based on type
                 throw actionExecutedContext.Exception;
             }
+            catch(OperationCanceledException e)
+            {
+                /* Do Nothing */
+            }
             catch (DbEntityValidationException ex)
             {
                 message = string.Join(Environment.NewLine, ex.EntityValidationErrors.SelectMany(v => v.ValidationErrors.Select(e => e.ErrorMessage)));

@@ -26,6 +26,9 @@ namespace R6MatchFinder.Common.Database.Abstracts
 
 
         [Required]
+        public Region Region { get; set; }
+
+        [Required]
         public RuleSet Rules { get; set; }
 
         /** Game Settings **/

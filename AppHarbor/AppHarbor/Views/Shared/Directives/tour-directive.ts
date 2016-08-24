@@ -30,10 +30,7 @@
                     }
                 ],
                 listeners: {
-                    afterWizardEnds: () => {
-                        this.$cookies.put(userId + '.tourComplete', 'true');
-                        this.$state.go(RouteConfig.$routes.Home);
-                    }
+                    afterWizardEnds: () => this.finishTour()
                 }
             }).storyLine({
                 showStepPosition: true,
@@ -143,15 +140,18 @@
             });
         }
 
+        private finishTour() {
+            this.$cookies.put(this.$rootScope.userInfo.id + '.tourComplete', 'true');
+            this.$state.go(RouteConfig.$routes.Home);
+        }
+
         public link(scope, elem, attrs) {
             var tourComplete = this.$cookies.get(this.$rootScope.userInfo.id + '.tourComplete');
 
             if (this.$state.current.name == RouteConfig.$routes.Tour) {
                 Sideshow.start({ wizardName: 'siteTutorial' });
 
-                Sideshow.CloseButton.singleInstance.$el.click(() => {
-                    this.$state.go(RouteConfig.$routes.Home);
-                });
+                Sideshow.CloseButton.singleInstance.$el.click(() => this.finishTour());
             }
             else if (!tourComplete) {
                 this.$state.go(RouteConfig.$routes.Tour);
