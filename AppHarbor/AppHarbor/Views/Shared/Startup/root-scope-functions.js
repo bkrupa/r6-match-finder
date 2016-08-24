@@ -20,4 +20,3 @@ var app;
         .module('app')
         .run(RootScopeFunctionsConfig);
 })(app || (app = {}));
-//# sourceMappingURL=root-scope-functions.js.map

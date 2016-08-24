@@ -148,6 +148,10 @@
 
             if (this.$state.current.name == RouteConfig.$routes.Tour) {
                 Sideshow.start({ wizardName: 'siteTutorial' });
+
+                Sideshow.CloseButton.singleInstance.$el.click(() => {
+                    this.$state.go(RouteConfig.$routes.Home);
+                });
             }
             else if (!tourComplete) {
                 this.$state.go(RouteConfig.$routes.Tour);

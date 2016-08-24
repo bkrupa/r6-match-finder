@@ -132,9 +132,13 @@ var app;
             });
         }
         TourDirective.prototype.link = function (scope, elem, attrs) {
+            var _this = this;
             var tourComplete = this.$cookies.get(this.$rootScope.userInfo.id + '.tourComplete');
             if (this.$state.current.name == app.RouteConfig.$routes.Tour) {
                 Sideshow.start({ wizardName: 'siteTutorial' });
+                Sideshow.CloseButton.singleInstance.$el.click(function () {
+                    _this.$state.go(app.RouteConfig.$routes.Home);
+                });
             }
             else if (!tourComplete) {
                 this.$state.go(app.RouteConfig.$routes.Tour);
@@ -149,4 +153,3 @@ var app;
         .module('app')
         .directive(TourDirective.Injection, app.Activator.CreateFactory(TourDirective));
 })(app || (app = {}));
-//# sourceMappingURL=tour-directive.js.map

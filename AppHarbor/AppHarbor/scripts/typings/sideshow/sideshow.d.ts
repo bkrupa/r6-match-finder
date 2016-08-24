@@ -8,6 +8,8 @@ declare interface SideshowTutorial {
     init(): void;
     goToStep(i: number);
     start(config: SideshowStartConfig);
+
+    CloseButton: any;
 }
 
 declare interface SideshowStartConfig {

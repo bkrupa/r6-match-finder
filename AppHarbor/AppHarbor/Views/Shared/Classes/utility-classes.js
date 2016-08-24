@@ -16,4 +16,3 @@ var app;
     }());
     app.Utilities = Utilities;
 })(app || (app = {}));
-//# sourceMappingURL=utility-classes.js.map

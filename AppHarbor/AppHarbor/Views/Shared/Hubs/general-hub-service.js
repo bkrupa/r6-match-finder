@@ -32,4 +32,3 @@ var app;
         .module('app')
         .factory(GeneralHubService.Injection, app.Activator.CreateFactory(GeneralHubService));
 })(app || (app = {}));
-//# sourceMappingURL=general-hub-service.js.map

@@ -39,4 +39,3 @@ var app;
         .module('app')
         .factory(ResourceService.Injection, app.Activator.CreateFactory(ResourceService));
 })(app || (app = {}));
-//# sourceMappingURL=resource-service.js.map

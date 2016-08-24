@@ -18,4 +18,3 @@ var app;
     }());
     app.Activator = Activator;
 })(app || (app = {}));
-//# sourceMappingURL=activator-classes.js.map

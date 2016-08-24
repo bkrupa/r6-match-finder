@@ -36,4 +36,3 @@ var app;
         .module('app')
         .factory(MapsRepository.Injection, app.Activator.CreateFactory(MapsRepository));
 })(app || (app = {}));
-//# sourceMappingURL=maps-repository.js.map
