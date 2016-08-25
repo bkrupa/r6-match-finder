@@ -8,14 +8,21 @@
 
     <footer style="position:fixed; left: 0; bottom: 0; width:100%; background-color: white;display:none;" ng-style="{'display': 'block'}">
         <hr style="margin-top: 9px; margin-bottom: 9px;" />
-        <p style="margin-left: 20px; margin-right:20px;" class="text-center">
-            <div class="col-md-6 text-left">
+        <div style="margin-left: 20px; margin-right:20px;" class="text-center">
+            <div style="display: inline-block; width: 200px; font-size:10px;" class="text-right">
                 &copy; @DateTime.Now.Year - @resources.APPLICATION_NAME
-                <span ng-show="appVersion">({{appVersion}})</span>
+                <span ng-show="appVersion">({{appVersion}})</span>&nbsp;
+
+            </div>
+            <span>|</span>
+            <div style="display: inline-block; width: 200px; font-size:12px;" class="text-left">
+                <div class="btn-group btn-group-sm" role="group" aria-label="Contact Details">
+                    <a href="https://www.reddit.com/user/bkrupa_21/" class="fa fa-reddit-alien btn btn-link"></a>
+                    <a href="mailto:r6.match.finder@gmail.com" class="fa fa-envelope btn btn-link"></a>
+                </div>
             </div>
 
-            <div class="col-md-6 text-right"><a href="/contact">Contact Us</a></div>
-        </p>
+        </div>
     </footer>
 </div>
 

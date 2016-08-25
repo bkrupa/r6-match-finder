@@ -18,7 +18,7 @@
         <tr ng-repeat="game in vm.myGames | orderBy:'-date' | startFrom: (vm.currentPage-1) * vm.pageSize | limitTo: vm.pageSize"
             ng-class="{'table-info': !game.isActive && !game.isComplete && game.userId == userInfo.id, 'table-success': game.isComplete, 'table-warning': game.isActive}">
             <td ng-bind="game.creator.username"></td>
-            <td ng-bind="game.challenger.username"></td>
+            <td title="{{game.challenger.username}}"><div ng-bind="game.challenger.username" style="max-width: 120px;text-overflow: ellipsis;overflow: hidden;"></div></td>
             <td><span enum-text="PLATFORM" value="game.platform" /></td>
             <td ng-bind="game.date | date:'medium'"></td>
             <td><span enum-text="REGION" value="game.region" /></td>

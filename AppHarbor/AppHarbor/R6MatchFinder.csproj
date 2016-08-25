@@ -1174,7 +1174,6 @@
     <Content Include="scripts\sideshow.min.js" />
     <Content Include="scripts\toastr.js" />
     <Content Include="scripts\toastr.min.js" />
-    <Content Include="Views\Contact\contact.html" />
     <Content Include="Views\Games\game-create.html" />
     <Content Include="Views\Games\game-details.html" />
     <Content Include="Views\Games\game-rate.html" />

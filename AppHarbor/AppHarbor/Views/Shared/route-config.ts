@@ -3,7 +3,6 @@
     export interface Routes {
         Home: string;
         GameDetails: string;
-        Contact: string;
         Tour: string;
     }
 
@@ -17,7 +16,6 @@
         static $routes: Routes = {
             Home: 'home',
             GameDetails: 'home.details',
-            Contact: 'contact',
             Tour: 'tour'
         };
 
@@ -39,10 +37,6 @@
 
 
             $stateProvider
-                .state(RouteConfig.$routes.Contact, {
-                    url: '/contact',
-                    templateUrl: 'Views/Contact/contact.html'
-                })
                 .state(RouteConfig.$routes.Tour, {
                     url: '/tour',
                     templateUrl: 'Views/Games/games-landing.html',
