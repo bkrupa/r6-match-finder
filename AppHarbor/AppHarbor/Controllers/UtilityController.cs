@@ -29,7 +29,6 @@ namespace R6MatchFinder.Controllers
             };
         }
 
-
         #region Resources
 
         /// <summary>
