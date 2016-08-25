@@ -6,7 +6,7 @@
                 <button type="button" class="btn btn-secondary fa fa-times" ng-click="$dismiss()"></button>
             </div>
         </div>
-        <div class="modal-body" style="height: 560px; overflow:hidden;">
+        <div class="modal-body" style="height: 590px; overflow:hidden; font-size: 12px;">
             <div id="accordion" role="tablist" aria-multiselectable="true">
                 <div class="panel panel-default">
                     <div class="navbar navbar-dark bg-inverse" role="tab" id="headingOne" style="padding: 10px 20px 2px;  border: solid 1px #ccc;" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -16,7 +16,7 @@
                     </div>
                     <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne" style="padding:10px;">
                         <div class="row">
-                            <div class="col-md-7">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-control-label">{{resolve('TIME')}}</label>
                                     <div>
@@ -92,72 +92,83 @@
                     <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo" style="padding:5px;">
 
                         <div class="form-group row">
-                            <div class="col-md-3 text-center">
-                                <label class="form-control-label">{{resolve('NUMBER_OF_ROUNDS')}}</label>
-                                <div radio-button-group ng-model="vm.game.matchSettings.numberOfRounds" count="4" start="1"></div>
-                            </div>
-                            <div class="col-md-3 text-center">
-                                <label class="form-control-label">{{resolve('ROLE_SWAP')}}</label>
-                                <div radio-button-group ng-model="vm.game.matchSettings.roleSwap" count="4" start="1"></div>
-                            </div>
-                            <div class="col-md-6 text-center">
-                                <label class="form-control-label">{{resolve('OBJECTIVE_ROTATION_PARAMETER')}}</label>
-                                <div radio-button-group ng-model="vm.game.matchSettings.objectiveRotationParameter" show-null="true" null-text="{{resolve('OFF')}}" count="7"></div>
-                            </div>
-                        </div>
+                            <div class="col-md-9">
+                                <div class="form-group row text-center">
+                                    <div class="text-center col-md-7">
+                                        <label class="form-control-label">{{resolve('NUMBER_OF_ROUNDS')}}</label>
+                                        <div radio-button-group ng-model="vm.game.matchSettings.numberOfRounds" count="10" start="1"></div>
+                                    </div>
+                                    <div class="col-md-5 text-center">
+                                        <label class="form-control-label">{{resolve('ROLE_SWAP')}}</label>
+                                        <div radio-button-group ng-model="vm.game.matchSettings.roleSwap" count="5" start="1" show-null="true" null-text="{{resolve('OFF')}}"></div>
+                                    </div>
+                                </div>
+                                <div class="form-group row text-center">
+                                    <div class="text-center col-md-8">
+                                        <label class="form-control-label">{{resolve('OBJECTIVE_ROTATION_PARAMETER')}}</label>
+                                        <div radio-button-group ng-model="vm.game.matchSettings.objectiveRotationParameter" show-null="true" null-text="{{resolve('OFF')}}" start="1" count="10"></div>
+                                    </div>
+                                </div>
 
-                        <div class="form-group row">
-                            <div class="col-md-3 text-center">
-                                <label class="form-control-label">{{resolve('OVERTIME_ROUNDS')}}</label>
-                                <div radio-button-group ng-model="vm.game.matchSettings.overtimeRounds" count="4" start="1"></div>
-                            </div>
-                            <div class="col-md-3 text-center">
-                                <label class="form-control-label">{{resolve('OVERTIME_ROLE_CHANGE')}}</label>
-                                <div radio-button-group ng-model="vm.game.matchSettings.overtimeRoleChange" count="4" start="1"></div>
-                            </div>
-                            <div class="col-md-4 text-center">
-                                <label class="form-control-label">{{resolve('OVERTIME_SCORE_DIFFERENCE')}}</label>
-                                <div radio-button-group ng-model="vm.game.matchSettings.overtimeScoreDifference" count="4" start="1"></div>
-                            </div>
-                        </div>
+                                <hr />
+                                <h4 class="text-center">{{resolve('OVERTIME')}}</h4>
+                                <div class="form-group row">
+                                    <div class="col-md-4 text-center">
+                                        <label class="form-control-label">{{resolve('SCORE_DIFFERENCE')}}</label>
+                                        <div radio-button-group ng-model="vm.game.matchSettings.overtimeScoreDifference" count="2" start="1"></div>
+                                    </div>
+                                    <div class="col-md-3 text-center">
+                                        <label class="form-control-label">{{resolve('ROLE_CHANGE')}}</label>
+                                        <div radio-button-group ng-model="vm.game.matchSettings.overtimeRoleChange" count="3"></div>
+                                    </div>
+                                    <div class="col-md-5 text-center">
+                                        <label class="form-control-label">{{resolve('ROUNDS')}}</label>
+                                        <div radio-button-group ng-model="vm.game.matchSettings.overtimeRounds" count="6" start="1" show-null="true" null-text="{{resolve('OFF')}}"></div>
+                                    </div>
+                                </div>
 
-                        <div class="form-group row">
-                            <div class="col-md-4 text-center">
-                                <label class="form-control-label">{{resolve('DAMAGE_HANDICAP')}}</label>
-                                <div>
-                                    <div class="text-center">{{vm.game.matchSettings.damageHandicap}}</div>
-                                    <div bootstrap-slider ng-model="vm.game.matchSettings.damageHandicap" max-value="150" min-value="50" step="10" style="width: 100%;"></div>
+                                <hr />
+                                <div class="form-group row">
+                                    <div class="col-md-4 text-center">
+                                        <label class="form-control-label">{{resolve('DAMAGE_HANDICAP')}}</label>
+                                        <div>
+                                            <div class="text-center">{{vm.game.matchSettings.damageHandicap}}</div>
+                                            <div bootstrap-slider ng-model="vm.game.matchSettings.damageHandicap" max-value="200" min-value="25" step="25" style="width: 100%;"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 text-center">
+                                        <label class="form-control-label">{{resolve('FRIENDLY_FIRE_DAMAGE')}}</label>
+                                        <div>
+                                            <div class="text-center">{{vm.game.matchSettings.friendlyFireDamage}}</div>
+                                            <div bootstrap-slider ng-model="vm.game.matchSettings.friendlyFireDamage" max-value="200" min-value="25" step="25" style="width: 100%;"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 text-center">
+                                        <label class="form-control-label">{{resolve('INJURED_HEALTH')}}</label>
+                                        <div>
+                                            <div radio-button-group ng-model="vm.game.matchSettings.injuredHealth" count="2" step="20"></div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-4 text-center">
-                                <label class="form-control-label">{{resolve('FRIENDLY_FIRE_DAMAGE')}}</label>
-                                <div>
-                                    <div class="text-center">{{vm.game.matchSettings.friendlyFireDamage}}</div>
-                                    <div bootstrap-slider ng-model="vm.game.matchSettings.friendlyFireDamage" max-value="150" min-value="50" step="10" style="width: 100%;"></div>
+                            <div class="col-md-3 row">
+                                <div class="form-group">
+                                    <div class="text-center"><label class="form-control-label">{{resolve('SPRINT')}}</label></div>
+                                    <div class="text-center" toggle-button ng-model="vm.game.matchSettings.sprint" true-text="{{resolve('ON')}}" false-text="{{resolve('OFF')}}"></div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="text-center"><label class="form-control-label">{{resolve('LEAN')}}</label></div>
+                                    <div class="text-center" toggle-button ng-model="vm.game.matchSettings.lean" true-text="{{resolve('ON')}}" false-text="{{resolve('OFF')}}"></div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="text-center"><label class="form-control-label">{{resolve('DEATH_REPLAY')}}</label></div>
+                                    <div class="text-center" toggle-button ng-model="vm.game.matchSettings.deathReplay" true-text="{{resolve('ON')}}" false-text="{{resolve('OFF')}}"></div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="text-center"><label class="form-control-label">{{resolve('ATTACKER_UNIQUE_SPAWN')}}</label></div>
+                                    <div class="text-center" toggle-button ng-model="vm.game.matchSettings.attackerUniqueSpawn"></div>
                                 </div>
                             </div>
-                            <div class="col-md-4 text-center">
-                                <label class="form-control-label">{{resolve('INJURED_HEALTH')}}</label>
-                                <div>
-                                    <div class="text-center">{{vm.game.matchSettings.injuredHealth}}</div>
-                                    <div bootstrap-slider ng-model="vm.game.matchSettings.injuredHealth" max-value="50" min-value="5" step="5" style="width: 100%;"></div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                        <div class="row form-group">
-                            <div class="col-md-3 text-center"><label class="form-control-label">{{resolve('SPRINT')}}</label></div>
-                            <div class="col-md-3 text-center"><label class="form-control-label">{{resolve('LEAN')}}</label></div>
-                            <div class="col-md-3 text-center"><label class="form-control-label">{{resolve('DEATH_REPLAY')}}</label></div>
-                            <div class="col-md-3 text-center"><label class="form-control-label">{{resolve('ATTACKER_UNIQUE_SPAWN')}}</label></div>
-                        </div>
-                        <div class="row form-group">
-                            <div class="col-md-3 text-center" toggle-button ng-model="vm.game.matchSettings.sprint" true-text="{{resolve('ON')}}" false-text="{{resolve('OFF')}}"></div>
-                            <div class="col-md-3 text-center" toggle-button ng-model="vm.game.matchSettings.lean" true-text="{{resolve('ON')}}" false-text="{{resolve('OFF')}}"></div>
-                            <div class="col-md-3 text-center" toggle-button ng-model="vm.game.matchSettings.deathReplay" true-text="{{resolve('ON')}}" false-text="{{resolve('OFF')}}"></div>
-                            <div class="col-md-3 text-center" toggle-button ng-model="vm.game.matchSettings.attackerUniqueSpawn"></div>
                         </div>
                     </div>
                 </div>

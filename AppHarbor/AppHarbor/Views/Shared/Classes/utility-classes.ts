@@ -21,14 +21,15 @@
     }
 
     export class Utilities {
-        public static Range(count: number, start: number): Array<number> {
+        public static Range(count: number, start: number, step?: number): Array<number> {
             start = start || 0;
+            step = step || 1;
 
             if (!count || count <= 0)
                 return [];
 
             var ar = [];
-            for (var i = start; i < count + start; i++)
+            for (var i = start; i < (count * step) + start; i += step)
                 ar.push(i);
 
             return ar;

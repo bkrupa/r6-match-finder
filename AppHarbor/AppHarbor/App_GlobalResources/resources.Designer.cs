@@ -187,6 +187,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Damage.
+        /// </summary>
+        internal static string DAMAGE {
+            get {
+                return ResourceManager.GetString("DAMAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Damage Handicap.
         /// </summary>
         internal static string DAMAGE_HANDICAP {
@@ -502,29 +511,11 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Overtime Role Change.
+        ///   Looks up a localized string similar to Overtime.
         /// </summary>
-        internal static string OVERTIME_ROLE_CHANGE {
+        internal static string OVERTIME {
             get {
-                return ResourceManager.GetString("OVERTIME_ROLE_CHANGE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Overtime Rounds.
-        /// </summary>
-        internal static string OVERTIME_ROUNDS {
-            get {
-                return ResourceManager.GetString("OVERTIME_ROUNDS", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Overtime Score Difference.
-        /// </summary>
-        internal static string OVERTIME_SCORE_DIFFERENCE {
-            get {
-                return ResourceManager.GetString("OVERTIME_SCORE_DIFFERENCE", resourceCulture);
+                return ResourceManager.GetString("OVERTIME", resourceCulture);
             }
         }
         
@@ -638,11 +629,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Role Change.
+        /// </summary>
+        internal static string ROLE_CHANGE {
+            get {
+                return ResourceManager.GetString("ROLE_CHANGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Role Swap.
         /// </summary>
         internal static string ROLE_SWAP {
             get {
                 return ResourceManager.GetString("ROLE_SWAP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rounds.
+        /// </summary>
+        internal static string ROUNDS {
+            get {
+                return ResourceManager.GetString("ROUNDS", resourceCulture);
             }
         }
         
@@ -661,6 +670,15 @@ namespace Resources {
         internal static string SAVE {
             get {
                 return ResourceManager.GetString("SAVE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Score Difference.
+        /// </summary>
+        internal static string SCORE_DIFFERENCE {
+            get {
+                return ResourceManager.GetString("SCORE_DIFFERENCE", resourceCulture);
             }
         }
         

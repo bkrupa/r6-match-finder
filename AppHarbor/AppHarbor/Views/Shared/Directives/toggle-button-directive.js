@@ -7,8 +7,8 @@ var app;
             this.replace = false;
             this.restrict = 'A';
             this.template = '<div class="btn-group" data-toggle="buttons">' +
-                '<button type="button" class="btn btn-primary" ng-class="{active: !value}" ng-click="setValue(false)">{{falseText}}</button>' +
-                '<button type="button" class="btn btn-primary" ng-class="{active: value}" ng-click="setValue(true)" >{{trueText}}</button>' +
+                '<button type="button" class="btn btn-secondary btn-sm" ng-class="{active: !value}" ng-click="setValue(false)">{{falseText}}</button>' +
+                '<button type="button" class="btn btn-secondary btn-sm" ng-class="{active: value}" ng-click="setValue(true)" >{{trueText}}</button>' +
                 '</div>';
             this.scope = {
                 trueText: '@',
