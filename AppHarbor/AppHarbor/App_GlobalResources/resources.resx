@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ACTION_PHASE_DURATION" xml:space="preserve">
+    <value>Action Phase Duration</value>
+  </data>
   <data name="ACTIVE_GAMES" xml:space="preserve">
     <value>Active Games</value>
   </data>
@@ -157,7 +160,7 @@
     <value>Creator</value>
   </data>
   <data name="CUS_REGION" xml:space="preserve">
-    <value>Central US</value>
+    <value>cus</value>
   </data>
   <data name="DAMAGE" xml:space="preserve">
     <value>Damage</value>
@@ -171,17 +174,32 @@
   <data name="DEATH_REPLAY" xml:space="preserve">
     <value>Death Replay</value>
   </data>
+  <data name="DEFUSER_CARRIER_SELECTION" xml:space="preserve">
+    <value>Defuse Carrier Selection</value>
+  </data>
+  <data name="DEFUSE_DURATION" xml:space="preserve">
+    <value>Defuse Duration</value>
+  </data>
+  <data name="EAS_REGION" xml:space="preserve">
+    <value>eas</value>
+  </data>
+  <data name="EAU_REGION" xml:space="preserve">
+    <value>eau</value>
+  </data>
   <data name="EEU_REGION" xml:space="preserve">
-    <value>East Europe</value>
+    <value>eeu</value>
   </data>
   <data name="EUS_REGION" xml:space="preserve">
-    <value>East US</value>
+    <value>eus</value>
   </data>
   <data name="EXTERNAL_LOGINS" xml:space="preserve">
     <value>External Logins</value>
   </data>
   <data name="FRIENDLY_FIRE_DAMAGE" xml:space="preserve">
     <value>Friendly Fire Damage</value>
+  </data>
+  <data name="FUSE_TIME" xml:space="preserve">
+    <value>Fuse Time</value>
   </data>
   <data name="GAMES" xml:space="preserve">
     <value>Games</value>
@@ -209,6 +227,9 @@
   </data>
   <data name="HOSTAGE" xml:space="preserve">
     <value>Hostage</value>
+  </data>
+  <data name="HOSTAGE_DEATH" xml:space="preserve">
+    <value>Hostage Death</value>
   </data>
   <data name="HUD_SETTINGS" xml:space="preserve">
     <value>HUD Settings</value>
@@ -243,6 +264,9 @@
   <data name="MY_STATS" xml:space="preserve">
     <value>My Stats</value>
   </data>
+  <data name="NEU_REGION" xml:space="preserve">
+    <value>neu</value>
+  </data>
   <data name="NIGHT" xml:space="preserve">
     <value>Night</value>
   </data>
@@ -276,6 +300,9 @@
   <data name="PHONE_NUMBER" xml:space="preserve">
     <value>Phone Number</value>
   </data>
+  <data name="PLANT_DURATION" xml:space="preserve">
+    <value>Plant Duration</value>
+  </data>
   <data name="PLATFORM" xml:space="preserve">
     <value>Platform</value>
   </data>
@@ -290,6 +317,9 @@
   </data>
   <data name="PLEASE_ALLOW_ONE_HOUR_PRIOR_TO_A_GAMES_SCHEDULED_START_AND_ONE_HOUR_AFTER_CURRENT_GAME_CONFLICTS" xml:space="preserve">
     <value>Please allow one hour prior to a game's scheduled start time, and one hour after the scheduled start time before scheduling another game. This game conflicts with another.</value>
+  </data>
+  <data name="PREPARATION_PHASE_DURATION" xml:space="preserve">
+    <value>Preparation Phase Duration</value>
   </data>
   <data name="PRO_LEAGUE" xml:space="preserve">
     <value>Pro League</value>
@@ -321,17 +351,23 @@
   <data name="SAVE" xml:space="preserve">
     <value>Save</value>
   </data>
+  <data name="SBR_REGION" xml:space="preserve">
+    <value>sbr</value>
+  </data>
   <data name="SCORE_DIFFERENCE" xml:space="preserve">
     <value>Score Difference</value>
   </data>
   <data name="SCUS_REGION" xml:space="preserve">
-    <value>South Central US</value>
+    <value>scus</value>
   </data>
-  <data name="SEA_REGION" xml:space="preserve">
-    <value>Southeast Asia</value>
+  <data name="SEAS_REGION" xml:space="preserve">
+    <value>seas</value>
   </data>
   <data name="SECURE_AREA" xml:space="preserve">
     <value>Secure Area</value>
+  </data>
+  <data name="SECURE_TIME_LIMIT" xml:space="preserve">
+    <value>Secure Time Limit</value>
   </data>
   <data name="SET" xml:space="preserve">
     <value>Set</value>
@@ -349,7 +385,7 @@
     <value>Start time is limited to within six hours from now.</value>
   </data>
   <data name="SUS_REGION" xml:space="preserve">
-    <value>South US</value>
+    <value>sus</value>
   </data>
   <data name="TACTICAL_REALISM" xml:space="preserve">
     <value>Tactical Realism</value>
@@ -363,6 +399,9 @@
   <data name="TUTORIAL" xml:space="preserve">
     <value>Tutorial</value>
   </data>
+  <data name="UNSECURE_TIME_LIMIT" xml:space="preserve">
+    <value>Unsecure Time Limit</value>
+  </data>
   <data name="USERNAME" xml:space="preserve">
     <value>Username</value>
   </data>
@@ -373,10 +412,13 @@
     <value>UPlay</value>
   </data>
   <data name="WEU_REGION" xml:space="preserve">
-    <value>West Europe</value>
+    <value>weu</value>
+  </data>
+  <data name="WJA_REGION" xml:space="preserve">
+    <value>wja</value>
   </data>
   <data name="WUS_REGION" xml:space="preserve">
-    <value>West US</value>
+    <value>wus</value>
   </data>
   <data name="XBOX_ONE" xml:space="preserve">
     <value>Xbox One</value>

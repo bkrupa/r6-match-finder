@@ -1,7 +1,4 @@
 ﻿module app {
-
-
-
     export class GamesController {
         static Injection: string = 'gamesController';
         static $inject = [

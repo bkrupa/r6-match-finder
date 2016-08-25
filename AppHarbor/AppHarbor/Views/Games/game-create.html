@@ -6,7 +6,7 @@
                 <button type="button" class="btn btn-secondary fa fa-times" ng-click="$dismiss()"></button>
             </div>
         </div>
-        <div class="modal-body" style="height: 590px; overflow:hidden; font-size: 12px;">
+        <div class="modal-body" style="height: 570px; overflow:hidden; font-size: 12px;">
             <div id="accordion" role="tablist" aria-multiselectable="true">
                 <div class="panel panel-default">
                     <div class="navbar navbar-dark bg-inverse" role="tab" id="headingOne" style="padding: 10px 20px 2px;  border: solid 1px #ccc;" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -186,8 +186,69 @@
                                     <div enum-dropdown="GAME_MODE" ng-model="vm.game.mode" class="form-control" />
                                 </div>
                             </div>
+                        </div>
 
+                        <div class="form-group">
+                            <label class="form-control-label">{{resolve('PREPARATION_PHASE_DURATION')}}</label>
+                            <div>
+                                <div class="text-center">{{vm.game.modeSettings.preparationPhaseDuration}}</div>
+                                <div bootstrap-slider ng-model="vm.game.modeSettings.preparationPhaseDuration" max-value="120" min-value="15" step="5" style="width: 100%;"></div>
+                            </div>
+                        </div>
 
+                        <div class="form-group">
+                            <label class="form-control-label">{{resolve('ACTION_PHASE_DURATION')}}</label>
+                            <div>
+                                <div class="text-center">{{vm.game.modeSettings.actionPhaseDuration}}</div>
+                                <div bootstrap-slider ng-model="vm.game.modeSettings.actionPhaseDuration" ticks="vm.actionPhaseTicks" tick-bounds="30" style="width: 100%;"></div>
+                            </div>
+                        </div>
+
+                        <div enum-when="GAME_MODE.BOMB" ng-model="vm.game.mode">
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <label>{{resolve('PLANT_DURATION')}}</label>
+                                    <div>
+                                        <div class="text-center">{{vm.game.modeSettings.plantDuration}}</div>
+                                        <div bootstrap-slider ng-model="vm.game.modeSettings.plantDuration" max-value="15" min-value="5" step="1" style="width: 100%;"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>{{resolve('DEFUSE_DURATION')}}</label>
+                                    <div>
+                                        <div class="text-center">{{vm.game.modeSettings.defuseDuration}}</div>
+                                        <div bootstrap-slider ng-model="vm.game.modeSettings.defuseDuration" max-value="15" min-value="5" step="1" style="width: 100%;"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-control-label">{{resolve('FUSE_TIME')}}</label>
+                                    <div radio-button-group ng-model="vm.game.modeSettings.fuseTime" count="6" start="15" step="15"></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div><label class="form-control-label">{{resolve('DEFUSER_CARRIER_SELECTION')}}</label></div>
+                                    <div toggle-button ng-model="vm.game.modeSettings.defuserCarrierSelection" true-text="{{resolve('ON')}}" false-text="{{resolve('OFF')}}"></div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div enum-when="GAME_MODE.HOSTAGE" ng-model="vm.game.mode">
+                            <div class="form-group">
+                                <div><label class="form-control-label">{{resolve('HOSTAGE_DEATH')}}</label></div>
+                                <div toggle-button ng-model="vm.game.modeSettings.hostageDeath" true-text="{{resolve('ON')}}" false-text="{{resolve('OFF')}}"></div>
+                            </div>
+                        </div>
+
+                        <div enum-when="GAME_MODE.SECURE_AREA" ng-model="vm.game.mode">
+                            <div class="form-group">
+                                <label class="form-control-label">{{resolve('SECURE_TIME_LIMIT')}}</label>
+                                <div radio-button-group ng-model="vm.game.modeSettings.secureTimeLimit" count="12" start="5" step="5"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-control-label">{{resolve('UNSECURE_TIME_LIMIT')}}</label>
+                                <div radio-button-group ng-model="vm.game.modeSettings.unsecureTimeLimit" count="12" start="5" step="5"></div>
+                            </div>
                         </div>
                     </div>
                 </div>

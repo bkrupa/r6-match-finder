@@ -119,7 +119,7 @@ namespace R6MatchFinder.Controllers
                 Rules = RuleSet.Standard,
                 Time = TimeOfDay.Day,
                 PlayersPerTeam = 5,
-                ModeSettings = new WMGameModeSettings(),
+                ModeSettings = WMGameModeSettings.DefaultSettings,
                 MatchSettings = WMGameMatchSettings.DefaultSettings,
             };
         }

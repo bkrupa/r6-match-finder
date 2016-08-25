@@ -61,6 +61,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Action Phase Duration.
+        /// </summary>
+        internal static string ACTION_PHASE_DURATION {
+            get {
+                return ResourceManager.GetString("ACTION_PHASE_DURATION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Active Games.
         /// </summary>
         internal static string ACTIVE_GAMES {
@@ -178,7 +187,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Central US.
+        ///   Looks up a localized string similar to cus.
         /// </summary>
         internal static string CUS_REGION {
             get {
@@ -223,7 +232,43 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to East Europe.
+        ///   Looks up a localized string similar to Defuse Carrier Selection.
+        /// </summary>
+        internal static string DEFUSER_CARRIER_SELECTION {
+            get {
+                return ResourceManager.GetString("DEFUSER_CARRIER_SELECTION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Defuse Duration.
+        /// </summary>
+        internal static string DEFUSE_DURATION {
+            get {
+                return ResourceManager.GetString("DEFUSE_DURATION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to eas.
+        /// </summary>
+        internal static string EAS_REGION {
+            get {
+                return ResourceManager.GetString("EAS_REGION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to eau.
+        /// </summary>
+        internal static string EAU_REGION {
+            get {
+                return ResourceManager.GetString("EAU_REGION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to eeu.
         /// </summary>
         internal static string EEU_REGION {
             get {
@@ -232,7 +277,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to East US.
+        ///   Looks up a localized string similar to eus.
         /// </summary>
         internal static string EUS_REGION {
             get {
@@ -255,6 +300,15 @@ namespace Resources {
         internal static string FRIENDLY_FIRE_DAMAGE {
             get {
                 return ResourceManager.GetString("FRIENDLY_FIRE_DAMAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fuse Time.
+        /// </summary>
+        internal static string FUSE_TIME {
+            get {
+                return ResourceManager.GetString("FUSE_TIME", resourceCulture);
             }
         }
         
@@ -336,6 +390,15 @@ namespace Resources {
         internal static string HOSTAGE {
             get {
                 return ResourceManager.GetString("HOSTAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hostage Death.
+        /// </summary>
+        internal static string HOSTAGE_DEATH {
+            get {
+                return ResourceManager.GetString("HOSTAGE_DEATH", resourceCulture);
             }
         }
         
@@ -439,6 +502,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to neu.
+        /// </summary>
+        internal static string NEU_REGION {
+            get {
+                return ResourceManager.GetString("NEU_REGION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Night.
         /// </summary>
         internal static string NIGHT {
@@ -538,6 +610,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Plant Duration.
+        /// </summary>
+        internal static string PLANT_DURATION {
+            get {
+                return ResourceManager.GetString("PLANT_DURATION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Platform.
         /// </summary>
         internal static string PLATFORM {
@@ -580,6 +661,15 @@ namespace Resources {
             get {
                 return ResourceManager.GetString("PLEASE_ALLOW_ONE_HOUR_PRIOR_TO_A_GAMES_SCHEDULED_START_AND_ONE_HOUR_AFTER_CURRENT" +
                         "_GAME_CONFLICTS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preparation Phase Duration.
+        /// </summary>
+        internal static string PREPARATION_PHASE_DURATION {
+            get {
+                return ResourceManager.GetString("PREPARATION_PHASE_DURATION", resourceCulture);
             }
         }
         
@@ -674,6 +764,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to sbr.
+        /// </summary>
+        internal static string SBR_REGION {
+            get {
+                return ResourceManager.GetString("SBR_REGION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Score Difference.
         /// </summary>
         internal static string SCORE_DIFFERENCE {
@@ -683,7 +782,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to South Central US.
+        ///   Looks up a localized string similar to scus.
         /// </summary>
         internal static string SCUS_REGION {
             get {
@@ -692,11 +791,11 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Southeast Asia.
+        ///   Looks up a localized string similar to seas.
         /// </summary>
-        internal static string SEA_REGION {
+        internal static string SEAS_REGION {
             get {
-                return ResourceManager.GetString("SEA_REGION", resourceCulture);
+                return ResourceManager.GetString("SEAS_REGION", resourceCulture);
             }
         }
         
@@ -706,6 +805,15 @@ namespace Resources {
         internal static string SECURE_AREA {
             get {
                 return ResourceManager.GetString("SECURE_AREA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Secure Time Limit.
+        /// </summary>
+        internal static string SECURE_TIME_LIMIT {
+            get {
+                return ResourceManager.GetString("SECURE_TIME_LIMIT", resourceCulture);
             }
         }
         
@@ -755,7 +863,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to South US.
+        ///   Looks up a localized string similar to sus.
         /// </summary>
         internal static string SUS_REGION {
             get {
@@ -800,6 +908,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unsecure Time Limit.
+        /// </summary>
+        internal static string UNSECURE_TIME_LIMIT {
+            get {
+                return ResourceManager.GetString("UNSECURE_TIME_LIMIT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Username.
         /// </summary>
         internal static string USERNAME {
@@ -827,7 +944,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to West Europe.
+        ///   Looks up a localized string similar to weu.
         /// </summary>
         internal static string WEU_REGION {
             get {
@@ -836,7 +953,16 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to West US.
+        ///   Looks up a localized string similar to wja.
+        /// </summary>
+        internal static string WJA_REGION {
+            get {
+                return ResourceManager.GetString("WJA_REGION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to wus.
         /// </summary>
         internal static string WUS_REGION {
             get {

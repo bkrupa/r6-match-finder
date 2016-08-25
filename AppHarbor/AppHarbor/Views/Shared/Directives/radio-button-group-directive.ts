@@ -29,6 +29,7 @@
         }
 
         public link(scope: any, element: JQuery, attrs, ngModelCtrl: ng.INgModelController) {
+
             scope.getValues = () => {
                 return Utilities.Range(scope.count || 0, scope.start || 0, scope.step || 1);
             }

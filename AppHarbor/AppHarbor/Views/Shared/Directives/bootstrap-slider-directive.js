@@ -9,7 +9,9 @@ var app;
             this.scope = {
                 maxValue: '=',
                 minValue: '=',
-                step: '='
+                step: '=',
+                ticks: '=',
+                tickBounds: '='
             };
         }
         BootstrapSliderDirective.prototype.link = function (scope, element, attrs, ngModelCtrl) {
@@ -19,7 +21,9 @@ var app;
                 step: scope.step,
                 min: scope.minValue,
                 max: scope.maxValue,
-                tooltip: 'hide'
+                tooltip: 'hide',
+                ticks: scope.ticks,
+                ticks_snap_bounds: scope.tickBounds
             });
             slider
                 .on('slideStop', function (newValue) { ngModelCtrl.$setViewValue(newValue); })

@@ -1295,6 +1295,7 @@
     <TypeScriptCompile Include="Views\Games\games-controller.ts" />
     <TypeScriptCompile Include="Views\Shared\Classes\activator-classes.ts" />
     <TypeScriptCompile Include="Views\Shared\Classes\root-scope-interface.ts" />
+    <TypeScriptCompile Include="Views\Shared\Directives\enum-when-directive.ts" />
     <TypeScriptCompile Include="Views\Shared\Directives\tour-directive.ts" />
     <TypeScriptCompile Include="Views\Shared\Directives\chat-box-directive.ts" />
     <TypeScriptCompile Include="Views\Shared\Directives\datetimepicker-directive.ts" />

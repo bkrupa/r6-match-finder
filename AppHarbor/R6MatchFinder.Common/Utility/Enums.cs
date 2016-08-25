@@ -22,7 +22,12 @@
         WusRegion,
         WeuRegion,
         EeuRegion,
-        SeaRegion
+        SeasRegion,
+        SbrRegion,
+        WjaRegion,
+        EasRegion,
+        NeuRegion,
+        EauRegion
     }
 
     [PublicEnum]

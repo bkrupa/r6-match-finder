@@ -6,7 +6,7 @@
         </div>
     </div>
     <div class="modal-body">
-        <div class="row">
+        <div class="row" style="font-size: 14px;">
             <div class="col-md-6">
                 <h4>{{resolve('GAME_SETTINGS')}}</h4>
                 <div class="form-group">
@@ -40,6 +40,41 @@
                     <label style="font-weight: bold;">{{resolve('GAME_MODE')}}</label> &nbsp;
                     <div class="text-muted" enum-text="GAME_MODE" value="vm.game.mode" />
                     <br />
+                    <label style="font-weight: bold;">{{resolve('PREPARATION_PHASE_DURATION')}}</label> &nbsp;
+                    <span class="text-muted" ng-bind="vm.game.modeSettings.preparationPhaseDuration" />
+                    <br />
+                    <label style="font-weight: bold;">{{resolve('ACTION_PHASE_DURATION')}}</label> &nbsp;
+                    <span class="text-muted" ng-bind="vm.game.modeSettings.actionPhaseDuration" />
+                    <br />
+                    <div enum-when="GAME_MODE.BOMB" ng-model="vm.game.mode">
+                        <label style="font-weight: bold;">{{resolve('PLANT_DURATION')}}</label> &nbsp;
+                        <span class="text-muted" ng-bind="vm.game.modeSettings.plantDuration" />
+                        <br />
+                        <label style="font-weight: bold;">{{resolve('DEFUSE_DURATION')}}</label> &nbsp;
+                        <span class="text-muted" ng-bind="vm.game.modeSettings.defuseDuration" />
+                        <br />
+                        <label style="font-weight: bold;">{{resolve('FUSE_TIME')}}</label> &nbsp;
+                        <span class="text-muted" ng-bind="vm.game.modeSettings.fuseTime" />
+                        <br />
+                        <label style="font-weight: bold;">{{resolve('DEFUSER_CARRIER_SELECTION')}}</label> &nbsp;
+                        <span ng-if="vm.game.modeSettings.defuserCarrierSelection" class="text-muted">{{resolve('ON')}}</span>
+                        <span ng-if="!vm.game.modeSettings.defuserCarrierSelection" class="text-muted">{{resolve('OFF')}}</span>
+                        <br />
+                    </div>
+                    <div enum-when="GAME_MODE.HOSTAGE" ng-model="vm.game.mode">
+                        <label style="font-weight: bold;">{{resolve('HOSTAGE_DEATH')}}</label> &nbsp;
+                        <span ng-if="vm.game.modeSettings.hostageDeath" class="text-muted">{{resolve('ON')}}</span>
+                        <span ng-if="!vm.game.modeSettings.hostageDeath" class="text-muted">{{resolve('OFF')}}</span>
+                        <br />
+                    </div>
+                    <div enum-when="GAME_MODE.SECURE_AREA" ng-model="vm.game.mode">
+                        <label style="font-weight: bold;">{{resolve('SECURE_TIME_LIMIT')}}</label> &nbsp;
+                        <span class="text-muted" ng-bind="vm.game.modeSettings.secureTimeLimit" />
+                        <br />
+                        <label style="font-weight: bold;">{{resolve('UNSECURE_TIME_LIMIT')}}</label> &nbsp;
+                        <span class="text-muted" ng-bind="vm.game.modeSettings.unsecureTimeLimit" />
+                        <br />
+                    </div>
                 </div>
             </div>
             <div class="col-md-6">
@@ -55,16 +90,17 @@
                     <label style="font-weight: bold;">{{resolve('OBJECTIVE_ROTATION_PARAMETER')}}</label> &nbsp;
                     <span ng-if="vm.game.matchSettings.objectiveRotationParameter | isNull" class="text-muted">{{resolve('OFF')}}</span>
                     <span ng-if="!(vm.game.matchSettings.objectiveRotationParameter | isNull)" class="text-muted" ng-bind="vm.game.matchSettings.objectiveRotationParameter | number" />
-                    <br />
-                    <label style="font-weight: bold;">{{resolve('OVERTIME_ROUNDS')}}</label> &nbsp;
+                    <hr />
+                    <h4>{{resolve('OVERTIME')}}</h4>
+                    <label style="font-weight: bold;">{{resolve('ROUNDS')}}</label> &nbsp;
                     <span class="text-muted" ng-bind="vm.game.matchSettings.overtimeRounds | number" />
                     <br />
-                    <label style="font-weight: bold;">{{resolve('OVERTIME_ROLE_CHANGE')}}</label> &nbsp;
+                    <label style="font-weight: bold;">{{resolve('ROLE_CHANGE')}}</label> &nbsp;
                     <span class="text-muted" ng-bind="vm.game.matchSettings.overtimeRoleChange | number" />
                     <br />
-                    <label style="font-weight: bold;">{{resolve('OVERTIME_SCORE_DIFFERENCE')}}</label> &nbsp;
+                    <label style="font-weight: bold;">{{resolve('SCORE_DIFFERENCE')}}</label> &nbsp;
                     <span class="text-muted" ng-bind="vm.game.matchSettings.overtimeScoreDifference | number" />
-                    <br />
+                    <hr />
                     <label style="font-weight: bold;">{{resolve('DAMAGE_HANDICAP')}}</label> &nbsp;
                     <span class="text-muted" ng-bind="vm.game.matchSettings.damageHandicap | number" />
                     <br />

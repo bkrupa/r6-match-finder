@@ -10,3 +10,7 @@ th {
 .input-group-addon, .input-group-btn {
     width: auto;
 }
+
+.slider-tick {
+    display: none;
+}

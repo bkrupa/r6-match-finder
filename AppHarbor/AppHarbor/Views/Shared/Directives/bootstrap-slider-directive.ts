@@ -4,6 +4,8 @@
         maxValue: number;
         minValue: number;
         step: number;
+        ticks: Array<number>;
+        tickBounds: number;
     }
 
     export class BootstrapSliderDirective implements ng.IDirective {
@@ -20,7 +22,9 @@
         public scope: any = {
             maxValue: '=',
             minValue: '=',
-            step: '='
+            step: '=',
+            ticks: '=',
+            tickBounds: '='
         };
 
         private static sliderNumber: number = 0;
@@ -39,7 +43,9 @@
                 step: scope.step,
                 min: scope.minValue,
                 max: scope.maxValue,
-                tooltip: 'hide'
+                tooltip: 'hide',
+                ticks: scope.ticks,
+                ticks_snap_bounds: scope.tickBounds
             });
 
 
