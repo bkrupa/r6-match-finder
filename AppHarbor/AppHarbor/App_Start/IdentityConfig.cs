@@ -95,7 +95,7 @@ namespace R6MatchFinder
 
         public async static Task<User> GetCurrentUserAsync()
         {
-            return await Current.FindByIdAsync(HttpContext.Current.User.Identity.GetUserId());
+            return await Current.FindByIdAsync(GetUserId());
         }
 
         internal static string GetUserId()

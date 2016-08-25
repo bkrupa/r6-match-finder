@@ -220,6 +220,22 @@ Messages
                 bottom: -4px;
             }
 
+        .messages .message.message-status {
+            border-radius: 10px;
+            margin-left: auto;
+            margin-right: auto;
+            top: 10px;
+            float: none;
+            width: 60%;
+        }
+
+            .messages .message.message-status::before {
+                left: auto;
+                right: auto;
+                border-right: none;
+                border-left: none;
+            }
+
         .messages .message:last-child {
             margin-bottom: 30px;
         }

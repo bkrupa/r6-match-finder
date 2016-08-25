@@ -88,10 +88,28 @@ namespace R6MatchFinder.App_Start
             // Iterate over all types in the Common DLL.
             foreach (Type type in allTypes)
             {
-                IEnumerable<Type> repoInterfaceTypes = type.GetInterfaces().Where(i =>
-                                                i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IAsyncRepository<>));
+                IEnumerable<Type> repoInterfaceTypes;
+
+                // For any types that implement IReadOnlyAsyncRepository<T>, bind IReadOnlyAsyncRepository<T> to the type.
+                #region IReadOnlyAsyncRepository
+                repoInterfaceTypes = type.GetInterfaces().Where(i =>
+                                                i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IReadOnlyAsyncRepository<>));
+
+
+                foreach (Type repoInterfaceType in repoInterfaceTypes)
+                {
+                    Type genericArg = repoInterfaceType.GetGenericArguments()[0];
+                    Type repoType = typeof(IReadOnlyAsyncRepository<>).MakeGenericType(genericArg);
+
+                    kernel.Bind(repoType).To(type);
+                }
+                #endregion
 
                 // For any types that implement IAsyncRepository, bind IAsyncRepository<T> to the type.
+                #region IAsyncRepository
+                repoInterfaceTypes = type.GetInterfaces().Where(i =>
+                                                i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IAsyncRepository<>));
+
                 foreach (Type repoInterfaceType in repoInterfaceTypes)
                 {
                     Type genericArg = repoInterfaceType.GetGenericArguments()[0];
@@ -99,8 +117,10 @@ namespace R6MatchFinder.App_Start
 
                     kernel.Bind(repoType).To(type);
                 }
+                #endregion
 
                 // Do the same thing for IOwnedAsyncRepositories
+                #region IOwnedAsyncRepository
                 repoInterfaceTypes = type.GetInterfaces().Where(i =>
                                                 i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IOwnedAsyncRepository<>));
 
@@ -111,6 +131,7 @@ namespace R6MatchFinder.App_Start
 
                     kernel.Bind(repoType).To(type);
                 }
+                #endregion
 
                 // Do the same thing for IOwnedAsyncRepositories
                 IEnumerable<Type> serviceTypes = type.GetInterfaces().Where(i => i == typeof(IService));

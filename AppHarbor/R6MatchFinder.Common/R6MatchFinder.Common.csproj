@@ -131,7 +131,9 @@
     <Compile Include="Database\Repository\GameRepository.cs" />
     <Compile Include="Database\Repository\IAsyncRepository.cs" />
     <Compile Include="Database\Repository\IOwnedAsyncRepository.cs" />
+    <Compile Include="Database\Repository\IReadOnlyAsyncRepository.cs" />
     <Compile Include="Database\Repository\MapRepository.cs" />
+    <Compile Include="Database\Repository\UserRepository.cs" />
     <Compile Include="Database\Repository\UserStatisticsRepository.cs" />
     <Compile Include="Database\Services\IService.cs" />
     <Compile Include="Database\Services\UserStatisticsService.cs" />

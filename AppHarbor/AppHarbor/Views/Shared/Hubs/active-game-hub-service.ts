@@ -5,6 +5,8 @@
         StartTyping: string;
         CancelTyping: string;
         Initialize: string;
+        UserJoined: string;
+        UserLeft: string;
     }
 
     export class ActiveGameHubService extends BaseHub {
@@ -20,7 +22,9 @@
             ReceiveMessage: 'receiveMessage',
             StartTyping: 'startTyping',
             CancelTyping: 'cancelTyping',
-            Initialize: 'initialize'
+            Initialize: 'initialize',
+            UserJoined: 'userJoined',
+            UserLeft: 'userLeft'
         };
 
 
@@ -28,10 +32,12 @@
             receiveMessage: ActiveGameHubService.$events.ReceiveMessage,
             startTyping: ActiveGameHubService.$events.StartTyping,
             cancelTyping: ActiveGameHubService.$events.CancelTyping,
-            initialize: ActiveGameHubService.$events.Initialize
+            initialize: ActiveGameHubService.$events.Initialize,
+            userJoined: ActiveGameHubService.$events.UserJoined,
+            userLeft: ActiveGameHubService.$events.UserLeft
         }
 
-        private static ServerEvents: Array<string> = ['sendMessage', 'connectToGame', 'startTyping', 'cancelTyping'];
+        private static ServerEvents: Array<string> = ['sendMessage', 'connectToGame', 'disconnectFromGame', 'startTyping', 'cancelTyping'];
 
 
         constructor(
@@ -46,6 +52,10 @@
 
         public Connect(gameId: string): ng.IPromise<void> {
             return this.executeServerMethod('connectToGame', gameId);
+        }
+
+        public Disconnect(gameId: string): ng.IPromise<void> {
+            return this.executeServerMethod('disconnectFromGame', gameId);
         }
 
         public StartTyping(gameId: string): ng.IPromise<void> {

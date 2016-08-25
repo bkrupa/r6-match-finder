@@ -12,6 +12,7 @@
 
         public message: string;
         private started: boolean = false;
+        private connected: boolean = false;
 
         private otherUser: any;
         public game: any;
@@ -37,6 +38,22 @@
                     $scope.$emit('initialize', config);
                     this.initialize(config);
                 }
+            }).$on(ActiveGameHubService.$events.UserJoined, (gameId, userId, user) => {
+                if (gameId == this.game.id) {
+                    $scope.$apply(() => {
+                        this.connected = true;
+                    });
+
+                    $scope.$emit('userJoined', user);
+                }
+            }).$on(ActiveGameHubService.$events.UserLeft, (gameId, userId, user) => {
+                if (gameId == this.game.id) {
+                    $scope.$apply(() => {
+                        this.connected = false;
+                    });
+
+                    $scope.$emit('userLeft', user);
+                }
             });
         }
 
@@ -61,6 +78,8 @@
         }
 
         public close() {
+            this.gameHub.Disconnect(this.game.id);
+
             this.$scope.$emit('close');
         }
 
@@ -75,6 +94,7 @@
         private initialize(config): void {
             this.$scope.$apply((scope) => {
                 this.otherUser = config.challenger;
+                this.connected = config.isUserConnected;
             });
         }
     }
@@ -110,6 +130,16 @@
                 $('<div class="message new"><figure class="avatar"><img src="/api/Users/' + message.fromUserId + '/Image" /></figure>' + message.message + '</div>').appendTo(scrollContainer).addClass('new');
             }
             ChatBoxDirective.setDate(new Date(message.date));
+            ChatBoxDirective.updateScrollbar(msgElement);
+        }
+
+        private addConnectedMessage(scrollContainer: JQuery, msgElement: JQuery, user: any): void {
+            $('<div class="message message-status new">' + user.username + ' Connected</div>').appendTo(scrollContainer);
+            ChatBoxDirective.updateScrollbar(msgElement);
+        }
+
+        private addDisconnectedMessage(scrollContainer: JQuery, msgElement: JQuery, user: any): void {
+            $('<div class="message message-status new">' + user.username + ' Disconnected</div>').appendTo(scrollContainer);
             ChatBoxDirective.updateScrollbar(msgElement);
         }
 
@@ -213,6 +243,14 @@
                 gameConfig = config;
                 this.initialize($scrollContainer, $messages, config);
                 ChatBoxDirective.updateScrollbar($messages);
+            });
+
+            scope.$on('userJoined', (event, user) => {
+                this.addConnectedMessage($scrollContainer, $messages, user);
+            });
+
+            scope.$on('userLeft', (event, user) => {
+                this.addDisconnectedMessage($scrollContainer, $messages, user);
             });
 
             scope.$on('close', (event) => {

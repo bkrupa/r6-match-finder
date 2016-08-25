@@ -86,4 +86,3 @@ var app;
     angular.module('app')
         .directive(DateTimePickerDirective.Injection, app.Activator.CreateFactory(DateTimePickerDirective));
 })(app || (app = {}));
-//# sourceMappingURL=datetimepicker-directive.js.map

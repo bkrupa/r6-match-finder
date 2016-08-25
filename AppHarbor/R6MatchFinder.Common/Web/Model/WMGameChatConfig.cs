@@ -6,5 +6,6 @@ namespace R6MatchFinder.Common.Web.Model
     {
         public WMUser Challenger { get; set; }
         public IEnumerable<WMGameChat> History { get; set; }
+        public bool IsUserConnected { get; set; }
     }
 }

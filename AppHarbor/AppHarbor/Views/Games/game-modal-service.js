@@ -133,4 +133,3 @@ var app;
         .module('app')
         .factory(GameModalService.Injection, app.Activator.CreateFactory(GameModalService));
 })(app || (app = {}));
-//# sourceMappingURL=game-modal-service.js.map

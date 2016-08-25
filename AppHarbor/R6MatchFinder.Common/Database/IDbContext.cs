@@ -19,6 +19,8 @@ namespace R6MatchFinder.Common.Database
         DbSet<GameChat> GameChat { get; }
         DbSet<Map> Maps { get; }
 
+        IDbSet<User> Users { get; }
+
         DbSet<Log> Log { get; set; }
 
         Task<int> SaveChangesAsync();

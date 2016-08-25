@@ -1,13 +1,16 @@
 ﻿<div class="chat" ng-click="vm.focused()">
     <div class="chat-title" ng-click="vm.toggleCollapse()" style="position: relative;">
-        <h1 ng-bind="vm.otherUser.username"></h1>
+        <h1>
+            {{vm.otherUser.username}}&nbsp;
+            <span ng-if="!vm.connected">(<span localize="DISCONNECTED"></span>)</span>
+        </h1>
         <div>
             <div enum-text="RULE_SET" value="vm.game.rules" />
             <div enum-text="GAME_MODE" value="vm.game.mode" />
             <span localize="ON"></span>
             <span ng-bind="vm.game.map.name"></span>
         </div>
-        <figure class="avatar bg-success text-center">
+        <figure class="avatar text-center" ng-class="{'bg-success': vm.connected}">
             <span class="fa fa-gamepad"></span>
         </figure>
         <button class="btn btn-sm btn-link fa fa-times" style="color: white; position: absolute; top:3px; right:0;" ng-click="vm.close()"></button>

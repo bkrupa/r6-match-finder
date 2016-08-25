@@ -7,6 +7,7 @@ var app;
             this.$scope = $scope;
             this.gameHub = gameHub;
             this.started = false;
+            this.connected = false;
             this.gameHub.Connect($scope.game.id);
             this.gameHub.$on(app.ActiveGameHubService.$events.ReceiveMessage, function (gameId, userId, msg) {
                 if (gameId == _this.game.id)
@@ -21,6 +22,20 @@ var app;
                 if (gameId == _this.game.id) {
                     $scope.$emit('initialize', config);
                     _this.initialize(config);
+                }
+            }).$on(app.ActiveGameHubService.$events.UserJoined, function (gameId, userId, user) {
+                if (gameId == _this.game.id) {
+                    $scope.$apply(function () {
+                        _this.connected = true;
+                    });
+                    $scope.$emit('userJoined', user);
+                }
+            }).$on(app.ActiveGameHubService.$events.UserLeft, function (gameId, userId, user) {
+                if (gameId == _this.game.id) {
+                    $scope.$apply(function () {
+                        _this.connected = false;
+                    });
+                    $scope.$emit('userLeft', user);
                 }
             });
         }
@@ -42,6 +57,7 @@ var app;
             }
         };
         ChatBoxDirectiveController.prototype.close = function () {
+            this.gameHub.Disconnect(this.game.id);
             this.$scope.$emit('close');
         };
         ChatBoxDirectiveController.prototype.focused = function () {
@@ -55,6 +71,7 @@ var app;
             var _this = this;
             this.$scope.$apply(function (scope) {
                 _this.otherUser = config.challenger;
+                _this.connected = config.isUserConnected;
             });
         };
         ChatBoxDirectiveController.Injection = 'chatBoxController';
@@ -83,6 +100,14 @@ var app;
                 $('<div class="message new"><figure class="avatar"><img src="/api/Users/' + message.fromUserId + '/Image" /></figure>' + message.message + '</div>').appendTo(scrollContainer).addClass('new');
             }
             ChatBoxDirective.setDate(new Date(message.date));
+            ChatBoxDirective.updateScrollbar(msgElement);
+        };
+        ChatBoxDirective.prototype.addConnectedMessage = function (scrollContainer, msgElement, user) {
+            $('<div class="message message-status new">' + user.username + ' Connected</div>').appendTo(scrollContainer);
+            ChatBoxDirective.updateScrollbar(msgElement);
+        };
+        ChatBoxDirective.prototype.addDisconnectedMessage = function (scrollContainer, msgElement, user) {
+            $('<div class="message message-status new">' + user.username + ' Disconnected</div>').appendTo(scrollContainer);
             ChatBoxDirective.updateScrollbar(msgElement);
         };
         ChatBoxDirective.startTyping = function (scrollContainer, msgElement, userId) {
@@ -167,6 +192,12 @@ var app;
                 _this.initialize($scrollContainer, $messages, config);
                 ChatBoxDirective.updateScrollbar($messages);
             });
+            scope.$on('userJoined', function (event, user) {
+                _this.addConnectedMessage($scrollContainer, $messages, user);
+            });
+            scope.$on('userLeft', function (event, user) {
+                _this.addDisconnectedMessage($scrollContainer, $messages, user);
+            });
             scope.$on('close', function (event) {
                 element.remove();
                 scope.onClose();
@@ -181,4 +212,3 @@ var app;
         .module('app')
         .directive(ChatBoxDirective.Injection, app.Activator.CreateFactory(ChatBoxDirective));
 })(app || (app = {}));
-//# sourceMappingURL=chat-box-directive.js.map

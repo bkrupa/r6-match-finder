@@ -152,4 +152,3 @@ var app;
         .module('app')
         .directive(TourDirective.Injection, app.Activator.CreateFactory(TourDirective));
 })(app || (app = {}));
-//# sourceMappingURL=tour-directive.js.map
