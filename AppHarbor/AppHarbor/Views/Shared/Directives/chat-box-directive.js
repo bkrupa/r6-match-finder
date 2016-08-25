@@ -124,11 +124,8 @@ var app;
             }
         };
         ChatBoxDirective.setDate = function (d) {
-            //if (lastUpdate != d.getMinutes()) {
-            //    lastUpdate = d.getMinutes();
             var stringM = "00" + d.getMinutes().toString();
             var timestamp = $('<div class="timestamp">' + d.getHours() + ':' + stringM.substring(stringM.length - 2, stringM.length) + '</div>');
-            //}
             timestamp.appendTo($('.message:last'));
         };
         ChatBoxDirective.updateScrollbar = function (msgElement) {
