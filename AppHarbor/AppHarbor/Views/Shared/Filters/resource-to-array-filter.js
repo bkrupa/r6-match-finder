@@ -12,3 +12,4 @@ var app;
         .module('app')
         .filter('resourceToArray', ResourceToArrayFilter);
 })(app || (app = {}));
+//# sourceMappingURL=resource-to-array-filter.js.map

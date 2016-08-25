@@ -57,3 +57,4 @@ var app;
         .module('app')
         .factory(ActiveGameHubService.Injection, app.Activator.CreateFactory(ActiveGameHubService));
 })(app || (app = {}));
+//# sourceMappingURL=active-game-hub-service.js.map

@@ -16,3 +16,4 @@ var app;
         .module('app')
         .run(CurrentUserConfig);
 })(app || (app = {}));
+//# sourceMappingURL=current-user.js.map

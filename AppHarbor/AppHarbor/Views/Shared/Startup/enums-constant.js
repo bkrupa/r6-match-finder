@@ -14,3 +14,4 @@ var app;
         .constant('Enums', {})
         .run(EnumsConfiguration);
 })(app || (app = {}));
+//# sourceMappingURL=enums-constant.js.map

@@ -69,3 +69,4 @@ var app;
         .module('app')
         .factory(GamesRepository.Injection, app.Activator.CreateFactory(GamesRepository));
 })(app || (app = {}));
+//# sourceMappingURL=games-repository.js.map
