@@ -77,23 +77,9 @@ namespace R6MatchFinder.Controllers
             }
 
             // Get here if the user doesn't have a "picture" claim
-            string missingImagePath = HttpContext.Current.Request.MapPath("~/Images/Portrait_placeholder.png");
-
-            AppHarborLog.LogMessage(missingImagePath);
-
-            using (FileStream fileStream = new FileStream(missingImagePath, FileMode.Open))
-            {
-                using (MemoryStream stream = new MemoryStream())
-                {
-                    await fileStream.CopyToAsync(stream);
-                    stream.Seek(0, SeekOrigin.Begin);
-
-                    HttpResponseMessage result = new HttpResponseMessage(HttpStatusCode.OK);
-                    result.Content = new ByteArrayContent(stream.ToArray());
-                    result.Content.Headers.ContentType = new MediaTypeHeaderValue("image/png");
-                    return result;
-                }
-            }
+            HttpResponseMessage redirResponse = Request.CreateResponse(HttpStatusCode.TemporaryRedirect);
+            redirResponse.Headers.Location = new Uri("~/Images/Portrait_placeholder.png");
+            return redirResponse;
         }
 
         [HttpGet, Route("{id}/Statistics")]
