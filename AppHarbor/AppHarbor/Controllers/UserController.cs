@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using R6MatchFinder.Handlers;
+using WebApiCache;
 
 namespace R6MatchFinder.Controllers
 {
@@ -52,7 +53,7 @@ namespace R6MatchFinder.Controllers
             return rtn;
         }
 
-        [HttpGet, Route("{id}/Image")]
+        [HttpGet, Route("{id}/Image"), Cache(VaryByPath = true, VaryByUser = false)]
         public async Task<HttpResponseMessage> GetUserImage(string id)
         {
             IList<Claim> claims = await ApplicationUserManager.Current.GetClaimsAsync(id);
