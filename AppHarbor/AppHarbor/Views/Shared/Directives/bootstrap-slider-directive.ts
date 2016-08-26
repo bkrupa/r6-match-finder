@@ -1,6 +1,6 @@
 ﻿module app {
 
-    export interface BootstrapSliderScope {
+    export interface BootstrapSliderScope extends ng.IScope {
         maxValue: number;
         minValue: number;
         step: number;
@@ -24,7 +24,8 @@
             minValue: '=',
             step: '=',
             ticks: '=',
-            tickBounds: '='
+            tickBounds: '=',
+            disabled: '='
         };
 
         private static sliderNumber: number = 0;
@@ -48,7 +49,6 @@
                 ticks_snap_bounds: scope.tickBounds
             });
 
-
             slider
                 .on('slideStop', (newValue: JQueryEventObject) => { ngModelCtrl.$setViewValue(newValue); })
                 .on('slide', (newValue: JQueryEventObject) => { ngModelCtrl.$setViewValue(newValue); });
@@ -56,6 +56,13 @@
             ngModelCtrl.$render = function () {
                 slider.setValue(parseInt(ngModelCtrl.$viewValue), false, false);
             };
+
+            scope.$watch('disabled', (newValue, oldValue) => {
+                if (newValue)
+                    slider.disable();
+                else
+                    slider.enable();
+            });
 
         }
     }

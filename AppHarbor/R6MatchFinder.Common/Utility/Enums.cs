@@ -61,6 +61,7 @@
     public enum HudSettings
     {
         Standard,
+        Minimal,
         ProLeague
     }
 

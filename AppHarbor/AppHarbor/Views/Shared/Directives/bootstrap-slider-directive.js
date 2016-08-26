@@ -11,7 +11,8 @@ var app;
                 minValue: '=',
                 step: '=',
                 ticks: '=',
-                tickBounds: '='
+                tickBounds: '=',
+                disabled: '='
             };
         }
         BootstrapSliderDirective.prototype.link = function (scope, element, attrs, ngModelCtrl) {
@@ -31,6 +32,12 @@ var app;
             ngModelCtrl.$render = function () {
                 slider.setValue(parseInt(ngModelCtrl.$viewValue), false, false);
             };
+            scope.$watch('disabled', function (newValue, oldValue) {
+                if (newValue)
+                    slider.disable();
+                else
+                    slider.enable();
+            });
         };
         BootstrapSliderDirective.Injection = 'bootstrapSlider';
         BootstrapSliderDirective.$inject = [];

@@ -12,12 +12,13 @@
         public replace: boolean = false;
         public restrict: string = 'A';
         public template: string = '<div class="btn-group" data-toggle="buttons">' +
-        '<button type="button" class="btn btn-secondary btn-sm" ng-class="{active: !value}" ng-click="setValue(false)">{{falseText}}</button>' +
-        '<button type="button" class="btn btn-secondary btn-sm" ng-class="{active: value}" ng-click="setValue(true)" >{{trueText}}</button>' +
+        '<button type="button" class="btn btn-secondary btn-sm" ng-disabled="disabled" ng-class="{active: !value}" ng-click="setValue(false)">{{falseText}}</button>' +
+        '<button type="button" class="btn btn-secondary btn-sm" ng-disabled="disabled" ng-class="{active: value}" ng-click="setValue(true)" >{{trueText}}</button>' +
         '</div>';
         public scope: any = {
             trueText: '@',
-            falseText: '@'
+            falseText: '@',
+            disabled: '='
         };
 
 
@@ -44,7 +45,6 @@
                 scope.value = newValue;
                 ngModelCtrl.$setViewValue(newValue);
             };
-
 
             ngModelCtrl.$render = function () {
                 scope.value = ngModelCtrl.$viewValue || false;

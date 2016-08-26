@@ -252,6 +252,9 @@
   <data name="MATCH_SETTINGS" xml:space="preserve">
     <value>Match Settings</value>
   </data>
+  <data name="MINIMAL" xml:space="preserve">
+    <value>Minimal</value>
+  </data>
   <data name="MODE" xml:space="preserve">
     <value>Mode</value>
   </data>

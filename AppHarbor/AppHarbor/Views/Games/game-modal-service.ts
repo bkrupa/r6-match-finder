@@ -58,16 +58,35 @@
         static Injection: string = 'createGameController';
         static $inject = [
             'game',
-            'maps'
+            'maps',
+            'Enums'
         ];
 
         public actionPhaseTicks: Array<number> = [60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180,
             190, 200, 210, 220, 230, 240, 250, 260, 270, 280, 290, 300, 310,
             320, 330, 340, 350, 360, 390, 420, 450, 480, 510, 540, 570, 600];
 
-        constructor(public game: any,
-            public maps: ng.resource.IResourceArray<any>) {
+        public isRealism: boolean = false;
+
+        constructor(
+            public game: any,
+            public maps: ng.resource.IResourceArray<any>,
+            public Enums: any) {
             game.mapId = maps[0].id;
+        }
+
+
+        public changeRules() {
+            this.isRealism = this.Enums.RULE_SET.TACTICAL_REALISM == this.game.rules;
+
+
+            if (this.isRealism) {
+                this.game.matchSettings.deathReplay = false;
+                this.game.matchSettings.damageHandicap = 100;
+                this.game.matchSettings.friendlyFireDamage = 100;
+                this.game.matchSettings.injuredHealth = 20;
+                this.game.hud = this.Enums.HUD_SETTINGS.PRO_LEAGUE;
+            }
         }
     }
 

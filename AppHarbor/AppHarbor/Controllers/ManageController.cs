@@ -56,6 +56,7 @@ namespace R6MatchFinder.Controllers
         {
             ViewBag.StatusMessage =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
+                : message == ManageMessageId.ChangeUsernameSuccess ? "Your username has been changed."
                 : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
                 : message == ManageMessageId.RemoveLoginSuccess ? "The external login was removed."
                 : "";
@@ -207,7 +208,7 @@ namespace R6MatchFinder.Controllers
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                 }
 
-                return await Index(ManageMessageId.ChangePasswordSuccess);
+                return await Index(ManageMessageId.ChangeUsernameSuccess);
             }
             AddErrors(result);
             return await Index(ManageMessageId.Error);
@@ -297,7 +298,8 @@ namespace R6MatchFinder.Controllers
             SetPasswordSuccess,
             RemoveLoginSuccess,
             RemovePhoneSuccess,
-            Error
+            Error,
+            ChangeUsernameSuccess,
         }
 
         #endregion

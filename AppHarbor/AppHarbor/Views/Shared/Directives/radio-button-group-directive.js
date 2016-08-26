@@ -6,15 +6,16 @@ var app;
             this.replace = false;
             this.restrict = 'A';
             this.template = '<div class="btn-group" data-toggle="buttons">' +
-                '<button type="button" class="btn btn-secondary btn-sm" ng-if="showNull" ng-class="{active: value == null}" ng-click="setValue(null)">{{nullText}}</button>' +
-                '<button type="button" class="btn btn-secondary btn-sm" ng-class="{active: value == i}" ng-click="setValue(i)" ng-repeat="i in getValues()" >{{i}}</button>' +
+                '<button type="button" class="btn btn-secondary btn-sm" ng-disabled="disabled" ng-if="showNull" ng-class="{active: value == null}" ng-click="setValue(null)">{{nullText}}</button>' +
+                '<button type="button" class="btn btn-secondary btn-sm" ng-disabled="disabled" ng-class="{active: value == i}" ng-click="setValue(i)" ng-repeat="i in getValues()" >{{i}}</button>' +
                 '</div>';
             this.scope = {
                 count: '=',
                 start: '=',
                 nullText: '@',
                 showNull: '=',
-                step: '='
+                step: '=',
+                disabled: '='
             };
         }
         RadioButtonGroupDirective.prototype.link = function (scope, element, attrs, ngModelCtrl) {

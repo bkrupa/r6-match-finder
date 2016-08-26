@@ -466,6 +466,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Minimal.
+        /// </summary>
+        internal static string MINIMAL {
+            get {
+                return ResourceManager.GetString("MINIMAL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mode.
         /// </summary>
         internal static string MODE {

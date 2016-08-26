@@ -48,13 +48,13 @@
                                 <div class="form-group">
                                     <label class="form-control-label">{{resolve('RULE_SET')}}</label>
                                     <div>
-                                        <div enum-dropdown="RULE_SET" ng-model="vm.game.rules" class="form-control" />
+                                        <div enum-dropdown="RULE_SET" ng-model="vm.game.rules" class="form-control" on-change="vm.changeRules()" />
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-control-label">{{resolve('HUD_SETTINGS')}}</label>
                                     <div>
-                                        <div enum-dropdown="HUD_SETTINGS" ng-model="vm.game.hud" class="form-control" />
+                                        <div enum-dropdown="HUD_SETTINGS" ng-model="vm.game.hud" class="form-control" ng-disabled="vm.isRealism" />
                                     </div>
                                 </div>
                             </div>
@@ -133,20 +133,20 @@
                                         <label class="form-control-label">{{resolve('DAMAGE_HANDICAP')}}</label>
                                         <div>
                                             <div class="text-center">{{vm.game.matchSettings.damageHandicap}}</div>
-                                            <div bootstrap-slider ng-model="vm.game.matchSettings.damageHandicap" max-value="200" min-value="25" step="25" style="width: 100%;"></div>
+                                            <div bootstrap-slider ng-model="vm.game.matchSettings.damageHandicap" disabled="vm.isRealism" max-value="200" min-value="25" step="25" style="width: 100%;"></div>
                                         </div>
                                     </div>
                                     <div class="col-md-4 text-center">
                                         <label class="form-control-label">{{resolve('FRIENDLY_FIRE_DAMAGE')}}</label>
                                         <div>
                                             <div class="text-center">{{vm.game.matchSettings.friendlyFireDamage}}</div>
-                                            <div bootstrap-slider ng-model="vm.game.matchSettings.friendlyFireDamage" max-value="200" min-value="25" step="25" style="width: 100%;"></div>
+                                            <div bootstrap-slider ng-model="vm.game.matchSettings.friendlyFireDamage" disabled="vm.isRealism" max-value="200" min-value="25" step="25" style="width: 100%;"></div>
                                         </div>
                                     </div>
                                     <div class="col-md-4 text-center">
                                         <label class="form-control-label">{{resolve('INJURED_HEALTH')}}</label>
                                         <div>
-                                            <div radio-button-group ng-model="vm.game.matchSettings.injuredHealth" count="2" step="20"></div>
+                                            <div radio-button-group ng-model="vm.game.matchSettings.injuredHealth" disabled="vm.isRealism" count="2" step="20"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -162,7 +162,7 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="text-center"><label class="form-control-label">{{resolve('DEATH_REPLAY')}}</label></div>
-                                    <div class="text-center" toggle-button ng-model="vm.game.matchSettings.deathReplay" true-text="{{resolve('ON')}}" false-text="{{resolve('OFF')}}"></div>
+                                    <div class="text-center" toggle-button ng-model="vm.game.matchSettings.deathReplay" disabled="vm.isRealism" true-text="{{resolve('ON')}}" false-text="{{resolve('OFF')}}"></div>
                                 </div>
                                 <div class="form-group">
                                     <div class="text-center"><label class="form-control-label">{{resolve('ATTACKER_UNIQUE_SPAWN')}}</label></div>

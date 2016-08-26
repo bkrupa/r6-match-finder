@@ -11,9 +11,10 @@
         public require: string = '?ngModel';
         public restrict: string = 'A';
         public replace: boolean = true;
-        public template: string = '<select ng-options="value as resolve(key) for (key, value) in options"></select>';
+        public template: string = '<select ng-options="value as resolve(key) for (key, value) in options" ng-change="change()"></select>';
         public scope: any = {
-            enumName: '@enumDropdown'
+            enumName: '@enumDropdown',
+            onChange: '&'
         };
 
         constructor(
@@ -28,6 +29,10 @@
 
             scope.resolve = (val) => {
                 return that.$resources.resolve(val, undefined);
+            };
+
+            scope.change = () => {
+                scope.onChange();
             };
         }
     }
