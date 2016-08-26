@@ -128,3 +128,4 @@ var app;
     }());
     app.BaseHub = BaseHub;
 })(app || (app = {}));
+//# sourceMappingURL=base-hub-classes.js.map

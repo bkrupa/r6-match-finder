@@ -49,3 +49,4 @@ var app;
         .module('app')
         .directive(BootstrapSliderDirective.Injection, app.Activator.CreateFactory(BootstrapSliderDirective));
 })(app || (app = {}));
+//# sourceMappingURL=bootstrap-slider-directive.js.map

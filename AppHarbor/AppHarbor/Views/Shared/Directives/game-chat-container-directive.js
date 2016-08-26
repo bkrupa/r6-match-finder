@@ -63,3 +63,4 @@ var app;
         .module('app')
         .directive(GameChatContainerDirective.Injection, app.Activator.CreateFactory(GameChatContainerDirective));
 })(app || (app = {}));
+//# sourceMappingURL=game-chat-container-directive.js.map

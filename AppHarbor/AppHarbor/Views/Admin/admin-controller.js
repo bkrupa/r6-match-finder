@@ -57,3 +57,4 @@ var app;
         .module('app')
         .controller(AdminController.Injection, AdminController);
 })(app || (app = {}));
+//# sourceMappingURL=admin-controller.js.map

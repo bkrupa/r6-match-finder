@@ -14,7 +14,6 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
-using System.Web.Mvc;
 using R6MatchFinder.Handlers;
 
 namespace R6MatchFinder.Controllers

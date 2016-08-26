@@ -32,3 +32,4 @@ var app;
         .module('app')
         .directive(EnumWhenDirective.Injection, app.Activator.CreateFactory(EnumWhenDirective));
 })(app || (app = {}));
+//# sourceMappingURL=enum-when-directive.js.map
