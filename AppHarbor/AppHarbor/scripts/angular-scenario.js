@@ -40070,17 +40070,17 @@ var NG_HIDE_IN_PROGRESS_CLASS = 'ng-hide-animate';
       <div>
         Show:
         <div class="check-element animate-show" ng-show="checked">
-          <span class="glyphicon glyphicon-thumbs-up"></span> I show up when your checkbox is checked.
+          <span class="fa fa-thumbs-up"></span> I show up when your checkbox is checked.
         </div>
       </div>
       <div>
         Hide:
         <div class="check-element animate-show" ng-hide="checked">
-          <span class="glyphicon glyphicon-thumbs-down"></span> I hide when your checkbox is checked.
+          <span class="fa fa-thumbs-down"></span> I hide when your checkbox is checked.
         </div>
       </div>
     </file>
-    <file name="glyphicons.css">
+    <file name="fas.css">
       @import url(../../components/bootstrap-3.1.1/css/bootstrap.css);
     </file>
     <file name="animations.css">
@@ -40109,8 +40109,8 @@ var NG_HIDE_IN_PROGRESS_CLASS = 'ng-hide-animate';
       }
     </file>
     <file name="protractor.js" type="protractor">
-      var thumbsUp = element(by.css('span.glyphicon-thumbs-up'));
-      var thumbsDown = element(by.css('span.glyphicon-thumbs-down'));
+      var thumbsUp = element(by.css('span.fa-thumbs-up'));
+      var thumbsDown = element(by.css('span.fa-thumbs-down'));
 
       it('should check ng-show / ng-hide', function() {
         expect(thumbsUp.isDisplayed()).toBeFalsy();
@@ -40237,17 +40237,17 @@ var ngShowDirective = ['$animate', function($animate) {
       <div>
         Show:
         <div class="check-element animate-hide" ng-show="checked">
-          <span class="glyphicon glyphicon-thumbs-up"></span> I show up when your checkbox is checked.
+          <span class="fa fa-thumbs-up"></span> I show up when your checkbox is checked.
         </div>
       </div>
       <div>
         Hide:
         <div class="check-element animate-hide" ng-hide="checked">
-          <span class="glyphicon glyphicon-thumbs-down"></span> I hide when your checkbox is checked.
+          <span class="fa fa-thumbs-down"></span> I hide when your checkbox is checked.
         </div>
       </div>
     </file>
-    <file name="glyphicons.css">
+    <file name="fas.css">
       @import url(../../components/bootstrap-3.1.1/css/bootstrap.css);
     </file>
     <file name="animations.css">
@@ -40273,8 +40273,8 @@ var ngShowDirective = ['$animate', function($animate) {
       }
     </file>
     <file name="protractor.js" type="protractor">
-      var thumbsUp = element(by.css('span.glyphicon-thumbs-up'));
-      var thumbsDown = element(by.css('span.glyphicon-thumbs-down'));
+      var thumbsUp = element(by.css('span.fa-thumbs-up'));
+      var thumbsDown = element(by.css('span.fa-thumbs-down'));
 
       it('should check ng-show / ng-hide', function() {
         expect(thumbsUp.isDisplayed()).toBeFalsy();
