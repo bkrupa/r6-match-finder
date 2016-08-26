@@ -243,3 +243,6 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+
+# Ignore the compiled js files
+AppHarbor/AppHarbor/Views/**/*.js
