@@ -52,7 +52,7 @@ namespace R6MatchFinder.Controllers
             return rtn;
         }
 
-        [HttpGet, Route("{id}/Image"), Cache(VaryByPath = true, VaryByUser = false)]
+        [HttpGet, Route("{id}/Image")]
         public async Task<HttpResponseMessage> GetUserImage(string id)
         {
             IList<Claim> claims = await ApplicationUserManager.Current.GetClaimsAsync(id);
