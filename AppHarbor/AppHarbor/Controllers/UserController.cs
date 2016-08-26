@@ -78,7 +78,7 @@ namespace R6MatchFinder.Controllers
 
             // Get here if the user doesn't have a "picture" claim
             HttpResponseMessage redirResponse = Request.CreateResponse(HttpStatusCode.TemporaryRedirect);
-            redirResponse.Headers.Location = new Uri(VirtualPathUtility.ToAbsolute("~/Images/Portrait_placeholder.png"));
+            redirResponse.Headers.Location = new Uri(VirtualPathUtility.ToAbsolute("~/Images/Portrait_placeholder.png"), UriKind.Relative);
             return redirResponse;
         }
 
