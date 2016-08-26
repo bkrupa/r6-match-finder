@@ -1248,6 +1248,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Handlers\ApiExceptionFilterAttribute.cs" />
+    <Compile Include="Handlers\AppHarborLog.cs" />
     <Compile Include="Handlers\ErrorHandlerAttribute.cs" />
     <Compile Include="Hubs\AbstractHub.cs" />
     <Compile Include="Hubs\ActiveGameHub.cs" />

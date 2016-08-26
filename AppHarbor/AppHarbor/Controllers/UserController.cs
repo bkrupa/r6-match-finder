@@ -14,7 +14,8 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
-using WebApiCache;
+using System.Web.Mvc;
+using R6MatchFinder.Handlers;
 
 namespace R6MatchFinder.Controllers
 {
@@ -78,6 +79,8 @@ namespace R6MatchFinder.Controllers
 
             // Get here if the user doesn't have a "picture" claim
             string missingImagePath = HttpContext.Current.Request.MapPath("~/Images/Portrait_placeholder.png");
+
+            AppHarborLog.LogMessage(missingImagePath);
 
             using (FileStream fileStream = new FileStream(missingImagePath, FileMode.Open))
             {
