@@ -1183,6 +1183,7 @@
     <Content Include="Views\Games\my-games-grid.html" />
     <Content Include="Views\Games\my-statistics.html" />
     <Content Include="Views\Games\upcoming-games-grid.html" />
+    <Content Include="Views\Admin\admin.html" />
     <Content Include="Views\Shared\Directives\templates\chat-box-template.html" />
     <Content Include="Views\Shared\Directives\templates\datetimepicker-template.html" />
     <Content Include="Views\Shared\Directives\templates\game-chat-container-template.html" />
@@ -1295,6 +1296,7 @@
     <TypeScriptCompile Include="scripts\typings\toastr\toastr.d.ts" />
     <TypeScriptCompile Include="Views\Games\game-modal-service.ts" />
     <TypeScriptCompile Include="Views\Games\games-controller.ts" />
+    <TypeScriptCompile Include="Views\Admin\admin-controller.ts" />
     <TypeScriptCompile Include="Views\Shared\Classes\activator-classes.ts" />
     <TypeScriptCompile Include="Views\Shared\Classes\root-scope-interface.ts" />
     <TypeScriptCompile Include="Views\Shared\Directives\enum-when-directive.ts" />

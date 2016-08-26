@@ -1,4 +1,4 @@
-﻿using R6MatchFinder.Common.Utilities;
+﻿using R6MatchFinder.Common.Utility;
 using System.Web.Mvc;
 
 namespace R6MatchFinder.Handlers

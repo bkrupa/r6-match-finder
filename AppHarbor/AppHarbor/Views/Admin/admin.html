@@ -1,0 +1,80 @@
+﻿
+<div class="container">
+    <h2>Administration</h2>
+
+
+    <div class="card-columns">
+        <div class="card" style="min-width: 500px;">
+            <div class="card-header text-uppercase text-center" style="font-size: 14px;">
+                Add User to Admin
+            </div>
+            <div class="card-block">
+                <label>Email</label>
+                <input type="text" ng-model="vm.email" class="form-control" ng-change="vm.updateUsers()" />
+
+                <hr />
+
+                <div class="row">
+                    <table class="table">
+                        <tr>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th></th>
+                        </tr>
+                        <tr ng-if="vm.users.$resolved === false">
+                            <td colspan="3" class="text-center">
+                                <span class="fa fa-spinner fa-spin"></span>
+                            </td>
+                        </tr>
+                        <tr ng-if="vm.users.$resolved && vm.users.length === 0">
+                            <td colspan="3">No Users Found</td>
+                        </tr>
+                        <tr ng-repeat="user in vm.users">
+                            <td>
+                                {{user.userName}}
+                            </td>
+                            <td>
+                                {{user.email}}
+                            </td>
+                            <td>
+                                <button type="button" class="fa fa-plus-circle btn btn-success-outline" ng-click="vm.addUserToAdmin(user)"></button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="card" style="min-width: 500px;">
+            <div class="card-header text-uppercase text-center" style="font-size: 14px;">
+                Remove User From Admin
+            </div>
+            <div class="card-block">
+                <div>
+                    <table class="table">
+                        <tr>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th></th>
+                        </tr>
+                        <tr ng-if="vm.adminUsers.$resolved === false">
+                            <td colspan="3" class="text-center">
+                                <span class="fa fa-spinner fa-spin"></span>
+                            </td>
+                        </tr>
+                        <tr ng-repeat="user in vm.adminUsers">
+                            <td>
+                                {{user.username}}
+                            </td>
+                            <td>
+                                {{user.email}}
+                            </td>
+                            <td>
+                                <button type="button" class="fa fa-minus-circle btn btn-danger-outline" ng-click="vm.removeUserFromAdmin(user)"></button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

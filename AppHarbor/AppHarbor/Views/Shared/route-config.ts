@@ -4,6 +4,7 @@
         Home: string;
         GameDetails: string;
         Tour: string;
+        Admin: string;
     }
 
     export class RouteConfig {
@@ -16,7 +17,8 @@
         static $routes: Routes = {
             Home: 'home',
             GameDetails: 'home.details',
-            Tour: 'tour'
+            Tour: 'tour',
+            Admin: 'admin',
         };
 
         constructor(
@@ -46,6 +48,13 @@
                         Maps: [MapsRepository.Injection, (repo: MapsRepository) => { return repo.getAll().$promise; }],
                         Game: [GamesRepository.Injection, (repo: GamesRepository) => { return repo.create().$promise; }]
                     }
+                })
+
+                .state(RouteConfig.$routes.Admin, {
+                    url: '/admin',
+                    templateUrl: 'Views/Admin/admin.html',
+                    controller: AdminController.Injection,
+                    controllerAs: 'vm'
                 })
 
                 .state(RouteConfig.$routes.Home, {

@@ -32,7 +32,7 @@ namespace R6MatchFinder.Jobs
             }
             catch (Exception ex)
             {
-                Common.Utilities.Utilities.HandleException(ex);
+                Common.Utility.Utilities.HandleException(ex);
             }
         }
     }

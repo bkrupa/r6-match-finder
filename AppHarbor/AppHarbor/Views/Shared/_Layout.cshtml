@@ -33,6 +33,11 @@
                 {
                     <li class="nav-item"><a href="/tour" class="nav-link">@Resources.resources.TUTORIAL</a></li>
 
+                    if (User.IsInRole(R6MatchFinder.Common.Utility.Roles.Administrator.ToString()))
+                    {
+                        <li class="nav-item"><a href="/admin" class="nav-link">Admin</a></li>
+                    }
+
                     Claim DisplayClaim = ((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(c => c.Type.Equals("display_name"));
                     Claim PictureClaim = ((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(c => c.Type.Equals("picture"));
 

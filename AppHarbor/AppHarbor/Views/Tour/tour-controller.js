@@ -49,4 +49,3 @@ var app;
         .module('app')
         .controller(TourController.Injection, TourController);
 })(app || (app = {}));
-//# sourceMappingURL=tour-controller.js.map

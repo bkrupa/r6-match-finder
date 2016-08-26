@@ -1,4 +1,4 @@
-﻿using R6MatchFinder.Common.Utilities;
+﻿using R6MatchFinder.Common.Utility;
 using System;
 using System.Data.Entity.Validation;
 using System.Linq;
@@ -23,7 +23,7 @@ namespace R6MatchFinder.Handlers
                 // Throw it so we can catch based on type
                 throw actionExecutedContext.Exception;
             }
-            catch(OperationCanceledException e)
+            catch (OperationCanceledException e)
             {
                 /* Do Nothing */
             }

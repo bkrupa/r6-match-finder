@@ -25,6 +25,12 @@ var app;
                     Game: [app.GamesRepository.Injection, function (repo) { return repo.create().$promise; }]
                 }
             })
+                .state(RouteConfig.$routes.Admin, {
+                url: '/admin',
+                templateUrl: 'Views/Admin/admin.html',
+                controller: app.AdminController.Injection,
+                controllerAs: 'vm'
+            })
                 .state(RouteConfig.$routes.Home, {
                 url: '/games',
                 templateUrl: 'Views/Games/games-landing.html',
@@ -47,7 +53,8 @@ var app;
         RouteConfig.$routes = {
             Home: 'home',
             GameDetails: 'home.details',
-            Tour: 'tour'
+            Tour: 'tour',
+            Admin: 'admin',
         };
         return RouteConfig;
     }());
@@ -56,4 +63,3 @@ var app;
         .module('app')
         .config(RouteConfig);
 })(app || (app = {}));
-//# sourceMappingURL=route-config.js.map

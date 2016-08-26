@@ -2,7 +2,6 @@
 using R6MatchFinder.Common.Database.Model;
 using R6MatchFinder.Common.Database.Repository;
 using R6MatchFinder.Common.Database.Services;
-using R6MatchFinder.Common.Utilities;
 using R6MatchFinder.Common.Utility;
 using R6MatchFinder.Common.Web.Interfaces;
 using R6MatchFinder.Common.Web.Model;

@@ -35,4 +35,3 @@ var app;
             $httpProvider.interceptors.push(app.Activator.CreateFactory(ErrorInterceptor));
         }]);
 })(app || (app = {}));
-//# sourceMappingURL=error-interceptor.js.map

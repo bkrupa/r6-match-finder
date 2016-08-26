@@ -1,4 +1,5 @@
-﻿using R6MatchFinder.Common.Database.Model;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using R6MatchFinder.Common.Database.Model;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Threading.Tasks;
@@ -20,6 +21,7 @@ namespace R6MatchFinder.Common.Database
         DbSet<Map> Maps { get; }
 
         IDbSet<User> Users { get; }
+        IDbSet<IdentityRole> Roles { get; }
 
         DbSet<Log> Log { get; set; }
 
